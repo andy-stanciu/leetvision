@@ -61,6 +61,14 @@ query panelQuestionList($currentQuestionSlug: String!, $categorySlug: String, $e
 }
 """
 
+consolePanelConfig_query = """
+query consolePanelConfig($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    metaData
+  }
+}
+"""
+
 communitySolution_query = """
 query communitySolution($topicId: Int!) {
   topic(id: $topicId) {
