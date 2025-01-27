@@ -2,3 +2,4 @@ target/
 *.iml
 .idea/
 solutions/
+.DS_Store

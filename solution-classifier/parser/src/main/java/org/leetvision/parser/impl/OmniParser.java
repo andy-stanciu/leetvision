@@ -9,12 +9,12 @@ public class OmniParser {
     public static final OmniParser STANDARD = new OmniParser(new ArrayList<>() {{
         add(new CSolutionParser());
         add(new PythonSolutionParser());
-         add(new CppSolutionParser());
-         add(new JavaSolutionParser());
-         add(new JavaScriptSolutionParser());
+        add(new CppSolutionParser());
+        add(new JavaSolutionParser());
+        add(new JavaScriptSolutionParser());
         add(new TypeScriptSolutionParser());
-         add(new CSharpSolutionParser());
-         add(new GolangSolutionParser());
+        add(new CSharpSolutionParser());
+        add(new GolangSolutionParser());
     }});
 
     private final List<IParsable> suite;
