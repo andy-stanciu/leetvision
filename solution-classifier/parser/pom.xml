@@ -22,6 +22,12 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/antlr-4.13.0-complete.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 
