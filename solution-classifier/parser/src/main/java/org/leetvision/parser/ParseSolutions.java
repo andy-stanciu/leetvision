@@ -1,16 +1,12 @@
 package org.leetvision.parser;
 
-import org.leetvision.parser.impl.Language;
-import org.leetvision.parser.impl.OmniParser;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
 
 public class ParseSolutions {
     private static final String SOLUTIONS_DIR = "solution-classifier/solutions";
-
-    private static final Map<Language, Integer> LANGUAGE_FREQUENCIES = new HashMap<>();
+    private static final String DOT_DIR = "solution-classifier/dot";
 
     public static void main(String[] args) throws IOException {
         var path = Path.of(SOLUTIONS_DIR);
@@ -20,25 +16,25 @@ public class ParseSolutions {
             return;
         }
 
-        var dirs = dir.listFiles();
-        for (var solutionDir : dirs) {
-            if (!solutionDir.isDirectory()) {
-                continue;
-            }
+        var omniParser = OmniParser.STANDARD.withSolutionDirectories(Objects.requireNonNull(dir.listFiles()));
 
-            var files = Objects.requireNonNull(solutionDir.listFiles());
-            System.out.printf("Parsing %d solutions in %s%n", files.length, solutionDir);
-            for (var file : files) {
-                if (file.isFile()) {
-                    var language = OmniParser.STANDARD.parse(file.getPath());
-                    LANGUAGE_FREQUENCIES.put(language, LANGUAGE_FREQUENCIES.getOrDefault(language, 0) + 1);
-                }
-            }
-        }
+        omniParser.exportDot(DOT_DIR);
 
-        System.out.println("Language frequencies: ");
-        for (var entry : LANGUAGE_FREQUENCIES.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
+//        var embeddings = omniParser.encodeCooccurences();
+//        for (var entry : embeddings.entrySet()) {
+//            System.out.println(entry.getKey().toString() + ": " + Arrays.toString(entry.getValue()));
+//        }
+
+//        var solutions = omniParser.getSolutions();
+//        var languages = omniParser.getLanguages();
+//
+//        System.out.printf("Solutions (%d questions):%n", solutions.size());
+//        for (var entry : solutions) {
+//            System.out.println(entry.getKey() + ": " + entry.getValue());
+//        }
+//        System.out.println("Language frequencies:");
+//        for (var entry : languages.entrySet()) {
+//            System.out.println(entry.getKey() + ": " + entry.getValue());
+//        }
     }
 }
