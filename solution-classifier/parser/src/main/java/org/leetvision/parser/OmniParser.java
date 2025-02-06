@@ -289,7 +289,15 @@ public final class OmniParser {
     }
 
     private int processSolutionsInParallel(File[] solutionDirectories,
-                                           Consumer<File> action, boolean verbose) {
+                                           Consumer<File> action,
+                                           boolean verbose) {
+        return processSolutionsInParallel(solutionDirectories, action, verbose, null);
+    }
+
+    private int processSolutionsInParallel(File[] solutionDirectories,
+                                           Consumer<File> action,
+                                           boolean verbose,
+                                           String solutionFilter) {
         ExecutorService executorService = new ThreadPoolExecutor(
                 THREAD_POOL_SIZE,
                 THREAD_POOL_SIZE,
@@ -303,15 +311,16 @@ public final class OmniParser {
         var solutionCount = new AtomicInteger();
         var questionCount = new AtomicInteger();
 
-        int totalQuestions = (int)Arrays.stream(solutionDirectories)
-                .filter(File::isDirectory)
-                .count();
+        var directories = Arrays.stream(solutionDirectories)
+                .filter(dir -> {
+                    if (dir.isDirectory()) {
+                        return solutionFilter == null || dir.getName().equals(solutionFilter);
+                    }
+                    return false;
+                }).toList();
+        int totalQuestions = directories.size();
 
-        for (var dir : solutionDirectories) {
-            if (!dir.isDirectory()) {
-                continue;
-            }
-
+        for (var dir : directories) {
             var future = executorService.submit(() -> {
                 var files = Objects.requireNonNull(dir.listFiles());
                 int count = 0;

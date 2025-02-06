@@ -49,6 +49,9 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("typeType", MetaNode.TYPE);
         put("primitiveType", MetaNode.TYPE_PRIMITIVE);
         put("typeArguments", MetaNode.TYPE_ARGUMENTS);
+        put("typeArgumentsOrDiamond", MetaNode.TYPE_ARGUMENTS);
+        put("nonWildcardTypeArguments", MetaNode.TYPE_ARGUMENTS);
+        put("nonWildcardTypeArgumentsOrDiamond", MetaNode.TYPE_ARGUMENTS);
 
         put("genericConstructorDeclaration", MetaNode.CONSTRUCTOR_DECLARATION);
         put("constructorDeclaration", MetaNode.CONSTRUCTOR_DECLARATION);
@@ -88,11 +91,13 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("expressionList", MetaNode.EXPRESSION_LIST);
         put("expression", MetaNode.EXPRESSION);
         put("primary", MetaNode.EXPRESSION);
+        put("parExpression", MetaNode.EXPRESSION);
         put("pattern", MetaNode.PATTERN);
         put("guardedPattern", MetaNode.GUARDED_PATTERN);
         put("lambdaExpression", MetaNode.LAMBDA_EXPRESSION);
         put("lambdaBody", MetaNode.LAMBDA_BODY);
         put("methodCall", MetaNode.METHOD_CALL);
+        put("identifier", MetaNode.IDENTIFIER);
 
         put("switchExpression", MetaNode.SWITCH_EXPRESSION);
         put("switchLabeledRule", MetaNode.SWITCH_LABELED_RULE);
@@ -139,6 +144,10 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("superSuffix", MetaNode.SUPER_SUFFIX);
         put("explicitGenericInvocationSuffix", MetaNode.EXPLICIT_GENERIC_INVOCATION_SUFFIX);
         put("arguments", MetaNode.ARGUMENTS);
+
+        put("literal", MetaNode.DECIMAL_LITERAL);
+        put("integerLiteral", MetaNode.DECIMAL_LITERAL);
+        put("floatLiteral", MetaNode.FLOAT_LITERAL);
 
         // terminals
         put("IDENTIFIER", MetaNode.IDENTIFIER);
@@ -278,16 +287,6 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("NON_SEALED", VOID_MAPPING);
         put("PACKAGE", VOID_MAPPING);
         put("COMMA", VOID_MAPPING);
-
-        // pruned non-terminals
-        put("literal", VOID_MAPPING);
-        put("integerLiteral",VOID_MAPPING);
-        put("floatLiteral", VOID_MAPPING);
-
-        put("typeArgumentsOrDiamond", VOID_MAPPING);
-        put("nonWildcardTypeArguments", VOID_MAPPING);
-        put("nonWildcardTypeArgumentsOrDiamond", VOID_MAPPING);
-        put("parExpression", VOID_MAPPING);
 
         // don't care
         put("packageDeclaration", VOID_MAPPING);
