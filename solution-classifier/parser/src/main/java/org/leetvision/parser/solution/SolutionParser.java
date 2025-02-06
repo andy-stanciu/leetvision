@@ -5,10 +5,13 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.leetvision.parser.IParsable;
 import org.leetvision.parser.SilentErrorListener;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
+import org.leetvision.parser.reduction.PruneMaster;
 import org.leetvision.parser.reduction.ReducedParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.leetvision.parser.meta.mapper.LanguageMapper.VOID_MAPPING;
 
 public abstract class SolutionParser<P extends Parser> implements IParsable {
     public ParseResult parse(String text, boolean reduce) {
@@ -34,7 +37,7 @@ public abstract class SolutionParser<P extends Parser> implements IParsable {
 
         var tree = parse(parser);
         if (reduce) {
-            tree = reduce(tree);
+            tree = reduce(tree, getLanguageMapper());
         }
         return new ParseResult(!errorListener.hasErrors(), tree);
     }
@@ -49,18 +52,48 @@ public abstract class SolutionParser<P extends Parser> implements IParsable {
      * @param tree The original parse tree.
      * @return A reduced parse tree where chains of single-child nodes are collapsed.
      */
-    private ParseTree reduce(ParseTree tree) {
+    private ParseTree reduce(ParseTree tree, LanguageMapper languageMapper) {
+        var reducedTree = prune(tree, languageMapper);
+        return coalesceRedundantNodes(reducedTree);
+    }
+
+    private ReducedParseTree coalesceRedundantNodes(ReducedParseTree tree) {
         if (tree.getChildCount() == 0) {
             return tree;
         }
         if (tree.getChildCount() == 1) {
-            return reduce(tree.getChild(0));
+            return coalesceRedundantNodes(tree.getChild(0));
         }
 
-        List<ParseTree> reducedChildren = new ArrayList<>();
+        List<ReducedParseTree> reducedChildren = new ArrayList<>();
         for (int i = 0; i < tree.getChildCount(); i++) {
-            reducedChildren.add(reduce(tree.getChild(i)));
+            var child = coalesceRedundantNodes(tree.getChild(i));
+            reducedChildren.add(child);
         }
+        tree.setChildren(reducedChildren);
+
+        return tree;
+    }
+
+    private ReducedParseTree prune(ParseTree tree, LanguageMapper languageMapper) {
+        var mapping = languageMapper.getMapping(tree, getLanguageParser());
+        if (mapping == VOID_MAPPING) {  // prune void mappings
+            return null;
+        }
+
+        List<ReducedParseTree> reducedChildren = new ArrayList<>();
+        for (int i = 0; i < tree.getChildCount(); i++) {
+            var child = prune(tree.getChild(i), languageMapper);
+            if (child == null) {
+                continue;
+            }
+
+            var childMapping = languageMapper.getMapping(child, getLanguageParser());
+            if (!PruneMaster.getInstance().shouldPrune(mapping, childMapping)) {
+                reducedChildren.add(child);
+            }
+        }
+
         return new ReducedParseTree(tree, reducedChildren);
     }
 
