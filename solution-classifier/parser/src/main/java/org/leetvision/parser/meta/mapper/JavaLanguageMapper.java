@@ -11,14 +11,14 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("importDeclaration", MetaNode.IMPORT);
 
         put("typeDeclaration", MetaNode.TYPE_DECLARATION);
-        put("modifier", MetaNode.MODIFIER);
+        put("modifier", MetaNode.VARIABLE_MODIFIER);
         put("classOrInterfaceModifier", MetaNode.CLASS_MODIFIER);
         put("variableModifier", MetaNode.VARIABLE_MODIFIER);
         put("classDeclaration", MetaNode.CLASS_DECLARATION);
         put("localTypeDeclaration", MetaNode.CLASS_DECLARATION);
         put("typeParameters", MetaNode.TYPE_PARAMETERS);
         put("typeParameter", MetaNode.TYPE_PARAMETER);
-        put("typeBound", MetaNode.UNION_TYPE);
+        put("typeBound", MetaNode.TYPE);
 
         put("enumDeclaration", MetaNode.ENUM_DECLARATION);
         put("enumConstants", MetaNode.ENUM_CONSTANTS);
@@ -32,9 +32,8 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("classBodyDeclaration", MetaNode.BODY_DECLARATION);
         put("interfaceBodyDeclaration", MetaNode.BODY_DECLARATION);
         put("interfaceCommonBodyDeclaration", MetaNode.BODY_DECLARATION);
-
-        put("memberDeclaration", MetaNode.MEMBER_DECLARATION);
-        put("interfaceMemberDeclaration", MetaNode.MEMBER_DECLARATION);
+        put("memberDeclaration", MetaNode.BODY_DECLARATION);
+        put("interfaceMemberDeclaration", MetaNode.BODY_DECLARATION);
 
         put("methodDeclaration", MetaNode.METHOD_DECLARATION);
         put("genericMethodDeclaration", MetaNode.METHOD_DECLARATION);
@@ -47,7 +46,8 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("typeArgument", MetaNode.TYPE);
         put("typeList", MetaNode.TYPE_LIST);
         put("typeType", MetaNode.TYPE);
-        put("primitiveType", MetaNode.TYPE_PRIMITIVE);
+        put("classType", MetaNode.TYPE_CLASS);
+        put("primitiveType", MetaNode.TYPE);
         put("typeArguments", MetaNode.TYPE_ARGUMENTS);
         put("typeArgumentsOrDiamond", MetaNode.TYPE_ARGUMENTS);
         put("nonWildcardTypeArguments", MetaNode.TYPE_ARGUMENTS);
@@ -66,14 +66,13 @@ public final class JavaLanguageMapper extends LanguageMapper {
 
         put("variableDeclaratorId", MetaNode.IDENTIFIER);
 
-        put("variableInitializer", MetaNode.VARIABLE_INITIALIZER);
+        put("variableInitializer", MetaNode.OP_EQUAL);
         put("arrayInitializer", MetaNode.ARRAY_INITIALIZER);
 
         put("classOrInterfaceType", MetaNode.CLASS_OR_INTERFACE_TYPE);
-        put("classType", MetaNode.CLASS_TYPE);
 
         put("qualifiedName", MetaNode.QUALIFIED_NAME);
-        put("qualifiedNameList", MetaNode.QUALIFIED_NAME_LIST);
+        put("qualifiedNameList", MetaNode.QUALIFIED_NAME);
 
         put("formalParameters", MetaNode.FORMAL_PARAMETERS);
         put("receiverParameter", MetaNode.FORMAL_PARAMETER);
@@ -82,10 +81,10 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("lastFormalParameter", MetaNode.FORMAL_PARAMETER);
         put("lambdaLVTIList", MetaNode.LAMBDA_PARAMETERS);
         put("lambdaParameters", MetaNode.LAMBDA_PARAMETERS);
-        put("lambdaLVTIParameter", MetaNode.LAMBDA_PARAMETER);
+        put("lambdaLVTIParameter", MetaNode.LAMBDA_PARAMETERS);
 
-        put("elementValuePairs", MetaNode.EXPRESSION_VALUE_PAIRS);
-        put("elementValuePair", MetaNode.EXPRESSION_VALUE_PAIR);
+        put("elementValuePairs", MetaNode.OP_EQUAL);
+        put("elementValuePair", MetaNode.OP_EQUAL);
 
         put("elementValue", MetaNode.EXPRESSION);
         put("expressionList", MetaNode.EXPRESSION_LIST);
@@ -93,9 +92,9 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("primary", MetaNode.EXPRESSION);
         put("parExpression", MetaNode.EXPRESSION);
         put("pattern", MetaNode.PATTERN);
-        put("guardedPattern", MetaNode.GUARDED_PATTERN);
+        put("guardedPattern", MetaNode.PATTERN);
         put("lambdaExpression", MetaNode.LAMBDA_EXPRESSION);
-        put("lambdaBody", MetaNode.LAMBDA_BODY);
+        put("lambdaBody", MetaNode.LAMBDA_EXPRESSION);
         put("methodCall", MetaNode.METHOD_CALL);
         put("identifier", MetaNode.IDENTIFIER);
 
@@ -103,12 +102,12 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("switchLabeledRule", MetaNode.SWITCH_LABELED_RULE);
         put("switchRuleOutcome", MetaNode.SWITCH_RULE_OUTCOME);
 
-        put("elementValueArrayInitializer", MetaNode.EXPRESSION_VALUE_ARRAY_INITIALIZER);
+        put("elementValueArrayInitializer", MetaNode.ARRAY_INITIALIZER);
 
         put("defaultValue", MetaNode.DEFAULT_VALUE);
 
         put("recordDeclaration", MetaNode.RECORD_DECLARATION);
-        put("recordHeader", MetaNode.RECORD_HEADER);
+        put("recordHeader", MetaNode.RECORD_DECLARATION);
         put("recordComponentList", MetaNode.RECORD_COMPONENT_LIST);
         put("recordComponent", MetaNode.RECORD_COMPONENT);
         put("recordBody", MetaNode.RECORD_BODY);
@@ -116,32 +115,32 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("block", MetaNode.BLOCK);
         put("blockStatement", MetaNode.STATEMENT);
         put("localVariableDeclaration", MetaNode.LOCAL_VARIABLE_DECLARATION);
-        put("typeIdentifier", MetaNode.TYPE_IDENTIFIER);
+        put("typeIdentifier", MetaNode.IDENTIFIER);
 
         put("statement", MetaNode.STATEMENT);
         put("catchClause", MetaNode.CATCH_CLAUSE);
         put("catchType", MetaNode.CATCH_TYPE);
         put("finallyBlock", MetaNode.FINALLY_BLOCK);
 
-        put("resourceSpecification", MetaNode.TRY_RESOURCE_SPECIFIER);
-        put("resources", MetaNode.TRY_RESOURCES);
-        put("resource", MetaNode.TRY_RESOURCE);
+        put("resourceSpecification", MetaNode.STATEMENT_TRY);
+        put("resources", MetaNode.STATEMENT_TRY);
+        put("resource", MetaNode.STATEMENT_TRY);
 
         put ("switchBlockStatementGroup", MetaNode.SWITCH_BLOCK_STATEMENT_GROUP);
         put("switchLabel", MetaNode.SWITCH_LABEL);
         put("forControl", MetaNode.FOR_CONTROL);
-        put("forInit", MetaNode.FOR_INIT);
+        put("forInit", MetaNode.FOR_CONTROL);
         put("enhancedForControl", MetaNode.FOREACH_CONTROL);
 
         put("creator", MetaNode.CREATOR);
         put("createdName", MetaNode.CREATED_NAME);
-        put("innerCreator", MetaNode.INNER_CREATOR);
+        put("innerCreator", MetaNode.CREATOR);
         put("arrayCreatorRest", MetaNode.ARRAY_CREATOR_REST);
         put("classCreatorRest", MetaNode.CLASS_CREATOR_REST);
 
         put("explicitGenericInvocation", MetaNode.EXPLICIT_GENERIC_INVOCATION);
 
-        put("superSuffix", MetaNode.SUPER_SUFFIX);
+        put("superSuffix", MetaNode.EXPR_SUPER);
         put("explicitGenericInvocationSuffix", MetaNode.EXPLICIT_GENERIC_INVOCATION_SUFFIX);
         put("arguments", MetaNode.ARGUMENTS);
 
@@ -169,7 +168,6 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("EXTENDS", MetaNode.MODIFIER_EXTENDS);
         put("IMPLEMENTS", MetaNode.MODIFIER_IMPLEMENTS);
         put("FINAL", MetaNode.MODIFIER_FINAL);
-        put("NATIVE", MetaNode.MODIFIER_NATIVE);
         put("PRIVATE", MetaNode.MODIFIER_PRIVATE);
         put("PROTECTED", MetaNode.MODIFIER_PROTECTED);
         put("PUBLIC", MetaNode.MODIFIER_PUBLIC);
@@ -177,8 +175,6 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("STRICTFP", MetaNode.MODIFIER_STRICTFP);
         put("SYNCHRONIZED", MetaNode.MODIFIER_SYNCHRONIZED);
         put("THROWS", MetaNode.MODIFIER_THROWS);
-        put("TRANSIENT", MetaNode.MODIFIER_TRANSIENT);
-        put("VOLATILE", MetaNode.MODIFIER_VOLATILE);
         put("SEALED", MetaNode.MODIFIER_SEALED);
         put("ELLIPSIS", MetaNode.MODIFIER_VARARGS);
 
@@ -287,6 +283,9 @@ public final class JavaLanguageMapper extends LanguageMapper {
         put("NON_SEALED", VOID_MAPPING);
         put("PACKAGE", VOID_MAPPING);
         put("COMMA", VOID_MAPPING);
+        put("NATIVE", VOID_MAPPING);
+        put("TRANSIENT", VOID_MAPPING);
+        put("VOLATILE", VOID_MAPPING);
 
         // don't care
         put("packageDeclaration", VOID_MAPPING);
