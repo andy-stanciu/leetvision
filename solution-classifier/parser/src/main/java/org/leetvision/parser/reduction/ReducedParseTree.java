@@ -12,16 +12,20 @@ import java.util.List;
 public final class ReducedParseTree implements ParseTree {
     @Getter
     private final ParseTree self;
-    private final List<ParseTree> children;
+    private List<ReducedParseTree> children;
 
-    public ReducedParseTree(ParseTree self, List<ParseTree> children) {
+    public ReducedParseTree(ParseTree self, List<ReducedParseTree> children) {
         this.self = self;
         this.children = children;
     }
 
     @Override
-    public ParseTree getChild(int i) {
+    public ReducedParseTree getChild(int i) {
         return children.get(i);
+    }
+
+    public void setChildren(List<ReducedParseTree> children) {
+        this.children = children;
     }
 
     @Override
