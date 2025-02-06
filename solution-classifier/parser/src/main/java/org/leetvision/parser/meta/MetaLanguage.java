@@ -9,13 +9,11 @@ public final class MetaLanguage {
         IMPORT,
 
         TYPE_DECLARATION,
-        MODIFIER,
         CLASS_MODIFIER,
         VARIABLE_MODIFIER,
         CLASS_DECLARATION,
         TYPE_PARAMETERS,
         TYPE_PARAMETER,
-        UNION_TYPE,
 
         ENUM_DECLARATION,
         ENUM_CONSTANTS,
@@ -26,41 +24,30 @@ public final class MetaLanguage {
         CLASS_BODY,
         INTERFACE_BODY,
         BODY_DECLARATION,
-        MEMBER_DECLARATION,
         METHOD_DECLARATION,
         METHOD_BODY,
 
         TYPE,
         CLASS_OR_INTERFACE_TYPE,
-        TYPE_IDENTIFIER,
-        TYPE_PRIMITIVE,
         TYPE_ARGUMENTS,
 
-        QUALIFIED_NAME_LIST,
         QUALIFIED_NAME,
         FORMAL_PARAMETERS,
         FORMAL_PARAMETER,
         LAMBDA_PARAMETERS,
-        LAMBDA_PARAMETER,
 
         CONSTRUCTOR_DECLARATION,
         FIELD_DECLARATION,
         CONST_DECLARATION,
         CONSTANT_DECLARATOR,
-        INTERFACE_METHOD_MODIFIER,
 
         VARIABLE_DECLARATORS,
         VARIABLE_DECLARATOR,
-        VARIABLE_INITIALIZER,
         ARRAY_INITIALIZER,
 
-        EXPRESSION_VALUE_PAIRS,
-        EXPRESSION_VALUE_PAIR,
-        EXPRESSION_VALUE_ARRAY_INITIALIZER,
 
         DEFAULT_VALUE,
         RECORD_DECLARATION,
-        RECORD_HEADER,
         RECORD_COMPONENT_LIST,
         RECORD_COMPONENT,
         RECORD_BODY,
@@ -73,36 +60,27 @@ public final class MetaLanguage {
         CATCH_CLAUSE,
         CATCH_TYPE,
         FINALLY_BLOCK,
-        TRY_RESOURCE_SPECIFIER,
-        TRY_RESOURCES,
-        TRY_RESOURCE,
 
         SWITCH_BLOCK_STATEMENT_GROUP,
         SWITCH_LABEL,
         FOR_CONTROL,
-        FOR_INIT,
         FOREACH_CONTROL,
         EXPRESSION_LIST,
         METHOD_CALL,
         EXPRESSION,
         PATTERN,
-        GUARDED_PATTERN,
         LAMBDA_EXPRESSION,
-        LAMBDA_BODY,
         SWITCH_EXPRESSION,
         SWITCH_LABELED_RULE,
         SWITCH_RULE_OUTCOME,
-        CLASS_TYPE,
 
         CREATOR,
         CREATED_NAME,
-        INNER_CREATOR,
         ARRAY_CREATOR_REST,
         CLASS_CREATOR_REST,
 
         EXPLICIT_GENERIC_INVOCATION,
         TYPE_LIST,
-        SUPER_SUFFIX,
         EXPLICIT_GENERIC_INVOCATION_SUFFIX,
         ARGUMENTS,
 
@@ -125,7 +103,6 @@ public final class MetaLanguage {
         MODIFIER_EXTENDS,
         MODIFIER_IMPLEMENTS,
         MODIFIER_FINAL,
-        MODIFIER_NATIVE,  // ?
         MODIFIER_PRIVATE,
         MODIFIER_PROTECTED,
         MODIFIER_PUBLIC,
@@ -133,8 +110,6 @@ public final class MetaLanguage {
         MODIFIER_STRICTFP,  // ?
         MODIFIER_SYNCHRONIZED,
         MODIFIER_THROWS,
-        MODIFIER_TRANSIENT,
-        MODIFIER_VOLATILE,
         MODIFIER_SEALED,
         MODIFIER_VARARGS,  // ...
 
@@ -217,6 +192,5 @@ public final class MetaLanguage {
         L_SQUARE,
         R_SQUARE,
         DOT,
-        COMMA
     }
 }

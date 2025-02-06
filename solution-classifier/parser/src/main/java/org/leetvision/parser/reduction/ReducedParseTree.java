@@ -1,6 +1,7 @@
 package org.leetvision.parser.reduction;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.misc.Interval;
@@ -12,6 +13,7 @@ import java.util.List;
 public final class ReducedParseTree implements ParseTree {
     @Getter
     private final ParseTree self;
+    @Setter
     private List<ReducedParseTree> children;
 
     public ReducedParseTree(ParseTree self, List<ReducedParseTree> children) {
@@ -22,10 +24,6 @@ public final class ReducedParseTree implements ParseTree {
     @Override
     public ReducedParseTree getChild(int i) {
         return children.get(i);
-    }
-
-    public void setChildren(List<ReducedParseTree> children) {
-        this.children = children;
     }
 
     @Override

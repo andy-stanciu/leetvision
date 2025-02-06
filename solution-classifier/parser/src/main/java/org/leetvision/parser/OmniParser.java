@@ -79,7 +79,7 @@ public final class OmniParser {
             var language = getLanguage(file);
             if (language == Language.JAVA) {  // TODO: support more than just java
                 var parser = new JavaSolutionParser();
-                var parseResult = parser.parse(readSolution(file));
+                var parseResult = parser.parse(readSolution(file), true);
                 if (!parseResult.success()) {
                     throw new IllegalStateException("Found unparsable solution: " + file.getName());
                 }

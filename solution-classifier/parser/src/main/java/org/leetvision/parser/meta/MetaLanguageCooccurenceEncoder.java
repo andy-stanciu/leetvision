@@ -34,8 +34,21 @@ public final class MetaLanguageCooccurenceEncoder implements ICooccurenceEncoder
     public synchronized Map<MetaNode, long[]> vectorize() {
         Map<MetaNode, long[]> vectorized = new TreeMap<>();
         for (int i = 0; i < cooccurrences.length; i++) {
-            vectorized.put(MetaNode.values()[i], cooccurrences[i].clone());
+            var node = MetaNode.values()[i];
+            if (isClear(cooccurrences[i])) {
+                System.err.printf("Warning: unused meta node %s%n", node);
+            }
+            vectorized.put(node, cooccurrences[i].clone());
         }
         return vectorized;
+    }
+
+    private boolean isClear(long[] arr) {
+        for (long l : arr) {
+            if (l != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
