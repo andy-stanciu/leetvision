@@ -26,6 +26,7 @@ public final class MetaLanguage {
         CLASS_BODY,
         INTERFACE_BODY,
         BODY_DECLARATION,
+        DECLARATION_LIST,
         METHOD_DECLARATION,
         EXCEPTION_DECLARATION,
         METHOD_BODY,
@@ -101,8 +102,12 @@ public final class MetaLanguage {
         BOOL_LITERAL,
         CHAR_LITERAL,
         STRING_LITERAL,
+        POINTER_LITERAL,
+        USER_DEFINED_LITERAL,
         MULTILINE_STRING_LITERAL,
         NULL_LITERAL,
+
+        DIRECTIVE,
 
         MODIFIER_ABSTRACT,
         MODIFIER_CONST,
@@ -120,6 +125,7 @@ public final class MetaLanguage {
         MODIFIER_VARARGS,  // ...
         MODIFIER_LIST,
         MODIFIER_OVERRIDE,
+        MODIFIER_MUTABLE,
 
         STATEMENT_ASSERT,
         STATEMENT_BREAK,
@@ -181,7 +187,9 @@ public final class MetaLanguage {
         OP_LAMBDA,
         OP_METHOD_REFERENCE,  // ::
         OP_POINTER_DEREF,
+        OP_DEREF_ACCESS,
         OP_POINTER_ADDR,
+        OP_SIZEOF,
 
         TYPE_BOOLEAN,
         TYPE_BYTE,
@@ -200,6 +208,10 @@ public final class MetaLanguage {
         TYPE_OF,
         TYPE_SIGNED,
         TYPE_UNSIGNED,
+        TYPE_STRUCT,
+        TYPEDEF,
+
+        CAST,
 
         // hacks - concrete but similar enough between all languages
         L_SQUARE,

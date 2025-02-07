@@ -21,26 +21,22 @@ import java.util.function.Consumer;
 import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
 
 public final class OmniParser {
-
-    public static final OmniParser STANDARD = new OmniParser(new ArrayList<>() {{
-        add(new CSolutionParser());
-        add(new CppSolutionParser());
-        add(new PythonSolutionParser());
-        add(new JavaSolutionParser());
-        add(new JavaScriptSolutionParser());
-        add(new TypeScriptSolutionParser());
-        add(new CSharpSolutionParser());
-        add(new GolangSolutionParser());
-    }});
-
+    public static final OmniParser STANDARD = new OmniParser();
     private static final int THREAD_POOL_SIZE = 10;
 
-    private final List<IParsable> suite;
-    private File[] solutionDirectories;
+    private final Map<Language, ISolutionParser> parsers = new HashMap<>() {{
+        put(Language.CPP, new CppSolutionParser());
+        put(Language.JAVA, new JavaSolutionParser());
+        put(Language.C, new CSolutionParser());
+        put(Language.CSHARP, new CSharpSolutionParser());
+        put(Language.GOLANG, new GolangSolutionParser());
+        put(Language.PYTHON, new PythonSolutionParser());
+        put(Language.JAVASCRIPT, new JavaScriptSolutionParser());
+        put(Language.TYPESCRIPT, new TypeScriptSolutionParser());
+    }};
 
-    private OmniParser(List<IParsable> suite) {
-        this.suite = suite;
-    }
+    private File[] solutionDirectories;
+    private OmniParser() {}
 
     public OmniParser withSolutionDirectories(File... solutionDirectories) {
         this.solutionDirectories = solutionDirectories;
@@ -50,47 +46,53 @@ public final class OmniParser {
     public void exportDot(String directory) {
         processSolutionsInParallel(solutionDirectories, file -> {
             var language = getLanguage(file);
-            if (language == Language.JAVA) {  // TODO: support more than just java
-                var parser = new JavaSolutionParser();
-                var result = parser.parse(readSolution(file), true);
-                if (!result.success()) {
-                    throw new IllegalStateException("Found unparsable solution: " + file.getName());
-                }
-
-                var dot = new StringBuilder("digraph AST {\n");
-                traverseDot(result.ast(),
-                        parser.getLanguageMapper(),
-                        parser.getLanguageParser(),
-                        dot,
-                        null,
-                        new AtomicInteger());
-                dot.append("}");
-
-                String fileName = file.getName().split("\\.")[0];
-                String solutionName = file.getParentFile().getName();
-                writeToDisk(dot.toString(), Path.of(directory, solutionName), fileName, "dt");
+            if (language != Language.JAVA && language != Language.CPP) {
+                // TODO: support more than just java and cpp
+                return;
             }
-        }, true, "two-sum");
+
+            var parser = parsers.get(language);
+            var result = parser.parse(readSolution(file), true);
+            if (!result.success()) {
+                throw new IllegalStateException("Found unparsable solution: " + file.getName());
+            }
+
+            var dot = new StringBuilder("digraph AST {\n");
+            traverseDot(result.ast(),
+                    parser.getLanguageMapper(),
+                    parser.getLanguageParser(),
+                    dot,
+                    null,
+                    new AtomicInteger());
+            dot.append("}");
+
+            String fileName = file.getName().split("\\.")[0];
+            String solutionName = file.getParentFile().getName();
+            writeToDisk(dot.toString(), Path.of(directory, solutionName), fileName, "dt");
+        }, true);
     }
 
     public Map<MetaNode, long[]> encodeCooccurences() {
         var cooccurenceEncoder = MetaLanguageCooccurenceEncoder.getInstance();
         processSolutionsInParallel(solutionDirectories, file -> {
             var language = getLanguage(file);
-            if (language == Language.JAVA) {  // TODO: support more than just java
-                var parser = new JavaSolutionParser();
-                var parseResult = parser.parse(readSolution(file), true);
-                if (!parseResult.success()) {
-                    throw new IllegalStateException("Found unparsable solution: " + file.getName());
-                }
-
-                traverseAST(parseResult.ast(),
-                        parser.getLanguageMapper(),
-                        parser.getLanguageParser(),
-                        self -> cooccurenceEncoder.updateCooccurence(self, self),
-                        cooccurenceEncoder::updateCooccurence
-                );
+            if (language != Language.JAVA && language != Language.CPP) {
+                // TODO: support more than just java and cpp
+                return;
             }
+
+            var parser = parsers.get(language);
+            var parseResult = parser.parse(readSolution(file), true);
+            if (!parseResult.success()) {
+                throw new IllegalStateException("Found unparsable solution: " + file.getName());
+            }
+
+            traverseAST(parseResult.ast(),
+                    parser.getLanguageMapper(),
+                    parser.getLanguageParser(),
+                    self -> cooccurenceEncoder.updateCooccurence(self, self),
+                    cooccurenceEncoder::updateCooccurence
+            );
         }, false);
 
         return cooccurenceEncoder.vectorize();
@@ -210,7 +212,7 @@ public final class OmniParser {
         }
 
         // iterate in order of parser suites
-        suite.forEach(parser -> {
+        parsers.values().forEach(parser -> {
             var solutionCount = new AtomicInteger();
             processSolutionsInParallel(solutionDirectories, file -> {
                 try {

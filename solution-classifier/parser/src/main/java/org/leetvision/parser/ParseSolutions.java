@@ -20,10 +20,10 @@ public class ParseSolutions {
 
         omniParser.exportDot(DOT_DIR);
 
-        var embeddings = omniParser.encodeCooccurences();
-        for (var entry : embeddings.entrySet()) {
-            System.out.println(entry.getKey().toString() + ": " + Arrays.toString(entry.getValue()));
-        }
+//        var embeddings = omniParser.encodeCooccurences();
+//        for (var entry : embeddings.entrySet()) {
+//            System.out.println(entry.getKey().toString() + ": " + Arrays.toString(entry.getValue()));
+//        }
 
 //        var solutions = omniParser.getSolutions();
 //        var languages = omniParser.getLanguages();

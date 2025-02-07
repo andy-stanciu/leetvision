@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.leetvision.parser.meta.mapper.LanguageMapper.VOID_MAPPING;
 
-public abstract class SolutionParser<P extends Parser> implements IParsable {
+public abstract class SolutionParser<P extends Parser> implements ISolutionParser {
     public ParseResult parse(String text, boolean reduce) {
         var sourceCode = CharStreams.fromString(text);
         var errorListener = new SilentErrorListener();
@@ -99,7 +99,7 @@ public abstract class SolutionParser<P extends Parser> implements IParsable {
 
     public record ParseResult(boolean success, ParseTree ast) {}
 
-    public final P getLanguageParser() {
+    public final Parser getLanguageParser() {
         return getParser(null);
     }
 
