@@ -12,6 +12,8 @@ public final class MetaLanguage {
         CLASS_MODIFIER,
         VARIABLE_MODIFIER,
         CLASS_DECLARATION,
+        MEMBER_DECLARATION_LIST,
+        MEMBER_DECLARATION,
         TYPE_PARAMETERS,
         TYPE_PARAMETER,
 
@@ -25,6 +27,7 @@ public final class MetaLanguage {
         INTERFACE_BODY,
         BODY_DECLARATION,
         METHOD_DECLARATION,
+        EXCEPTION_DECLARATION,
         METHOD_BODY,
 
         TYPE,
@@ -44,7 +47,8 @@ public final class MetaLanguage {
         VARIABLE_DECLARATORS,
         VARIABLE_DECLARATOR,
         ARRAY_INITIALIZER,
-
+        INITIALIZER,
+        INITIALIZER_LIST,
 
         DEFAULT_VALUE,
         RECORD_DECLARATION,
@@ -75,9 +79,11 @@ public final class MetaLanguage {
         SWITCH_RULE_OUTCOME,
 
         CREATOR,
+        DESTRUCTOR,
         CREATED_NAME,
         ARRAY_CREATOR_REST,
         CLASS_CREATOR_REST,
+        FREE,
 
         EXPLICIT_GENERIC_INVOCATION,
         TYPE_LIST,
@@ -112,6 +118,8 @@ public final class MetaLanguage {
         MODIFIER_THROWS,
         MODIFIER_SEALED,
         MODIFIER_VARARGS,  // ...
+        MODIFIER_LIST,
+        MODIFIER_OVERRIDE,
 
         STATEMENT_ASSERT,
         STATEMENT_BREAK,
@@ -172,6 +180,8 @@ public final class MetaLanguage {
         OP_BITOR,
         OP_LAMBDA,
         OP_METHOD_REFERENCE,  // ::
+        OP_POINTER_DEREF,
+        OP_POINTER_ADDR,
 
         TYPE_BOOLEAN,
         TYPE_BYTE,
@@ -187,6 +197,9 @@ public final class MetaLanguage {
         TYPE_VOID,
         TYPE_VAR,
         TYPE_RECORD,
+        TYPE_OF,
+        TYPE_SIGNED,
+        TYPE_UNSIGNED,
 
         // hacks - concrete but similar enough between all languages
         L_SQUARE,
