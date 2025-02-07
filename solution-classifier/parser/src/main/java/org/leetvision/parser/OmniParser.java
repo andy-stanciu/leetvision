@@ -93,7 +93,7 @@ public final class OmniParser {
                     self -> cooccurenceEncoder.updateCooccurence(self, self),
                     cooccurenceEncoder::updateCooccurence
             );
-        }, false);
+        }, true);
 
         return cooccurenceEncoder.vectorize();
     }
