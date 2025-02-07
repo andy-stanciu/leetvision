@@ -18,6 +18,8 @@ public class ParseSolutions {
 
         var omniParser = OmniParser.STANDARD.withSolutionDirectories(Objects.requireNonNull(dir.listFiles()));
 
+        omniParser.exportDot(DOT_DIR);
+
         var embeddings = omniParser.encodeCooccurences();
         for (var entry : embeddings.entrySet()) {
             System.out.println(entry.getKey().toString() + ": " + Arrays.toString(entry.getValue()));

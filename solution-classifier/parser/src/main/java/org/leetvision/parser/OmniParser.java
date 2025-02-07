@@ -70,7 +70,7 @@ public final class OmniParser {
                 String solutionName = file.getParentFile().getName();
                 writeToDisk(dot.toString(), Path.of(directory, solutionName), fileName, "dt");
             }
-        }, true);
+        }, true, "two-sum");
     }
 
     public Map<MetaNode, long[]> encodeCooccurences() {
