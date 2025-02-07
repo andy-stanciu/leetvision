@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.leetvision.parser.antlr.cpp.CPP14Lexer;
 import org.leetvision.parser.antlr.cpp.CPP14Parser;
 import org.leetvision.parser.Language;
+import org.leetvision.parser.meta.mapper.CppLanguageMapper;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 
 public class CppSolutionParser extends SolutionParser<CPP14Parser> {
@@ -34,6 +35,6 @@ public class CppSolutionParser extends SolutionParser<CPP14Parser> {
 
     @Override
     public LanguageMapper getLanguageMapper() {
-        return null;
+        return CppLanguageMapper.INSTANCE;
     }
 }
