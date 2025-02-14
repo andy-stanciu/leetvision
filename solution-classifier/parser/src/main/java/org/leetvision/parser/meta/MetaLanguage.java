@@ -145,6 +145,7 @@ public final class MetaLanguage {
         STATEMENT_THROW,
         STATEMENT_WHILE,
         STATEMENT_YIELD,
+        STATEMENT_MATCH,
 
         EXPR_INSTANCEOF,
         EXPR_NEW,
@@ -190,6 +191,11 @@ public final class MetaLanguage {
         OP_DEREF_ACCESS,
         OP_POINTER_ADDR,
         OP_SIZEOF,
+        OP_SLICE,
+        OP_IN,
+        OP_POWER,
+        OP_LSHIFT,
+        OP_RSHIFT,
 
         TYPE_BOOLEAN,
         TYPE_BYTE,
