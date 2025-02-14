@@ -8,6 +8,7 @@ import org.leetvision.parser.Language;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 import org.leetvision.parser.antlr.python.Python3Lexer;
 import org.leetvision.parser.antlr.python.Python3Parser;
+import org.leetvision.parser.meta.mapper.PythonLanguageMapper;
 
 public class PythonSolutionParser extends SolutionParser<Python3Parser> {
     public PythonSolutionParser() {}
@@ -34,6 +35,6 @@ public class PythonSolutionParser extends SolutionParser<Python3Parser> {
 
     @Override
     public LanguageMapper getLanguageMapper() {
-        return null;
+        return PythonLanguageMapper.INSTANCE;
     }
 }

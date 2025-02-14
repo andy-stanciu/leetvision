@@ -46,7 +46,7 @@ public final class OmniParser {
     public void exportDot(String directory) {
         processSolutionsInParallel(solutionDirectories, file -> {
             var language = getLanguage(file);
-            if (language != Language.JAVA && language != Language.CPP) {
+            if (language != Language.PYTHON) {
                 // TODO: support more than just java and cpp
                 return;
             }
@@ -69,14 +69,14 @@ public final class OmniParser {
             String fileName = file.getName().split("\\.")[0];
             String solutionName = file.getParentFile().getName();
             writeToDisk(dot.toString(), Path.of(directory, solutionName), fileName, "dt");
-        }, true);
+        }, true, "1-bit-and-2-bit-characters");
     }
 
     public Map<MetaNode, long[]> encodeCooccurences() {
         var cooccurenceEncoder = MetaLanguageCooccurenceEncoder.getInstance();
         processSolutionsInParallel(solutionDirectories, file -> {
             var language = getLanguage(file);
-            if (language != Language.JAVA && language != Language.CPP) {
+            if (language != Language.PYTHON) {
                 // TODO: support more than just java and cpp
                 return;
             }
