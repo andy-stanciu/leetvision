@@ -1,5 +1,7 @@
 package org.leetvision.parser;
 
+import org.leetvision.parser.meta.LanguageFilter;
+
 public enum Language {
     CPP,
     JAVA,
@@ -9,5 +11,10 @@ public enum Language {
     GOLANG,
     PYTHON,
     CSHARP,
-    UNKNOWN
+    UNKNOWN;
+
+    public boolean withinFilter(LanguageFilter filter) {
+        int selfMask = 1 << ordinal();
+        return (filter.getMask() & selfMask) == selfMask;
+    }
 }
