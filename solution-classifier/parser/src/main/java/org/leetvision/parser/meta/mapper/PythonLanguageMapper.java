@@ -7,7 +7,7 @@ import java.util.Map;
 
 import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
 
-public class PythonLanguageMapper extends LanguageMapper {
+public final class PythonLanguageMapper extends LanguageMapper {
     public static final PythonLanguageMapper INSTANCE = new PythonLanguageMapper(new HashMap<>() {{
         put("single_input", VOID_MAPPING);
         put("file_input", MetaNode.PROGRAM);
