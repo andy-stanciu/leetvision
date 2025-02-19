@@ -28,6 +28,10 @@ public abstract class LanguageMapper {
             nodeName = parser.getRuleNames()[rule.getRuleIndex()];
         } else if (ast instanceof TerminalNode terminal) {
             nodeName = parser.getVocabulary().getSymbolicName(terminal.getSymbol().getType());
+
+            if (nodeName == null) {
+                throw new RuntimeException("Unknown node type: " + ast.getClass().getName());
+            }
         } else {
             throw new IllegalArgumentException("Unknown node type: " + ast.getClass().getName());
         }

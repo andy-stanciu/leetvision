@@ -207,6 +207,7 @@ storageClassSpecifier
 typeSpecifier
     : 'void'
     | 'char'
+    | 'bool'
     | 'short'
     | 'int'
     | 'long'
@@ -214,7 +215,6 @@ typeSpecifier
     | 'double'
     | 'signed'
     | 'unsigned'
-    | '_Bool'
     | '_Complex'
     | '__m128'
     | '__m128d'
@@ -670,7 +670,7 @@ Atomic
     ;
 
 Bool
-    : '_Bool'
+    : 'bool'
     ;
 
 Complex
