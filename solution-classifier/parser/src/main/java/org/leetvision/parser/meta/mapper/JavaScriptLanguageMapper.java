@@ -1,0 +1,87 @@
+package org.leetvision.parser.meta.mapper;
+
+import org.leetvision.parser.meta.MetaLanguage;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
+import static org.leetvision.parser.meta.mapper.LanguageMapper.VOID_MAPPING;
+
+public class JavaScriptLanguageMapper extends LanguageMapper {
+    public static final JavaScriptLanguageMapper INSTANCE = new JavaScriptLanguageMapper(new HashMap<>() {{
+        put("program", MetaNode.PROGRAM);
+        put("sourceElement", MetaNode.STATEMENT);
+        put("statement", MetaNode.STATEMENT);
+        put("block", MetaNode.BLOCK);
+        // TODO statementList?
+        put("importStatement", MetaNode.IMPORT);
+        put("importFromBlock", MetaNode.IMPORT);
+        put("importModuleItems", MetaNode.IMPORT);
+        put("importAliasName", MetaNode.IMPORT);
+        put("moduleExportName", VOID_MAPPING); //TODO just void this right
+        put("importedBinding", MetaNode.IMPORT);
+        put("importDefault", MetaNode.IMPORT);
+        put("importNamespace", MetaNode.IMPORT);
+        put("importFrom", MetaNode.IMPORT);
+        put("aliasName", VOID_MAPPING);
+        put("exportStatement", MetaNode.STATEMENT);
+        put("exportFromBlock", VOID_MAPPING);
+        put("exportModuleItems", VOID_MAPPING);
+        put("exportALiasName", VOID_MAPPING);
+        put("declaration", MetaNode.VARIABLE_DECLARATORS); // hack
+        put("variableStatement", MetaNode.VARIABLE_DECLARATORS);
+        put("variableDeclarationList", MetaNode.VARIABLE_DECLARATORS);
+        put("variableDeclaration", MetaNode.VARIABLE_DECLARATOR);
+        put("emptyStatement_", VOID_MAPPING);
+        put("expressionStatement", MetaNode.STATEMENT); // TODO
+        put("ifStatement", MetaNode.STATEMENT);
+        put("iterationStatement", MetaNode.STATEMENT);
+        put("varModifier", MetaNode.VARIABLE_MODIFIER);
+        put("continueStatement", MetaNode.STATEMENT);
+        put("breakStatement", MetaNode.STATEMENT);
+        put("returnStatement", MetaNode.STATEMENT);
+        put("yieldStatement", MetaNode.STATEMENT);
+        put("withStatement", MetaNode.STATEMENT);
+        put("switchStatement", MetaNode.STATEMENT);
+        put("caseBlock", MetaNode.BLOCK);
+        put("caseClauses", MetaNode.BLOCK);
+        put("caseClause", MetaNode.STATEMENT_CASE);
+        put("defaultClause", MetaNode.STATEMENT_CASE);
+        put("labelledStatement", MetaNode.STATEMENT);
+        put("throwStatement", MetaNode.STATEMENT);
+        put("tryStatement", MetaNode.STATEMENT);
+        put("catchProduction", MetaNode.CATCH_CLAUSE); // TODO
+        put("finallyProduction", MetaNode.FINALLY_BLOCK); // TODO
+        put("debuggerStatement", MetaNode.STATEMENT);
+        put("functionDeclaration", MetaNode.METHOD_DECLARATION);
+        put("classDeclaration", MetaNode.CLASS_DECLARATION);
+        put("classTail", MetaNode.CLASS_DECLARATION);
+        put("classElement", MetaNode.MEMBER_DECLARATION);
+        put("methodDefintion", MetaNode.METHOD_DECLARATION);
+        put("fieldDefinition", MetaNode.FIELD_DECLARATION);
+        put("classElementName", MetaNode.IDENTIFIER);
+        put("privateIdentifier", MetaNode.IDENTIFIER);
+        put("formalParameterList", MetaNode.FORMAL_PARAMETERS);
+        put("formalParameterArg", MetaNode.FORMAL_PARAMETER);
+        put("lastFormalParameterArg", MetaNode.FORMAL_PARAMETER);
+        put("functonBody", MetaNode.METHOD_BODY);
+        // TODO sourceElements
+        put("arrayLiteral", MetaNode.ARRAY_CREATOR_REST);
+        put("elementList", MetaNode.ARRAY_CREATOR_REST);
+        put("arrayElement", MetaNode.EXPRESSION);
+        put("propertyAssignment", MetaNode.VARIABLE_DECLARATOR);
+
+
+
+
+
+
+
+
+    }});
+
+    private JavaScriptLanguageMapper(final Map<String, MetaLanguage.MetaNode> mappings) {
+        super(mappings);
+    }
+}
