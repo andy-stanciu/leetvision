@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.leetvision.parser.antlr.c.CLexer;
 import org.leetvision.parser.antlr.c.CParser;
 import org.leetvision.parser.Language;
+import org.leetvision.parser.meta.mapper.CLanguageMapper;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 
 public class CSolutionParser extends SolutionParser<CParser> {
@@ -34,6 +35,6 @@ public class CSolutionParser extends SolutionParser<CParser> {
 
     @Override
     public LanguageMapper getLanguageMapper() {
-        return null;
+        return CLanguageMapper.INSTANCE;
     }
 }
