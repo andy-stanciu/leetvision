@@ -2,6 +2,7 @@ package org.leetvision.parser;
 
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.leetvision.parser.meta.LanguageFilter;
 import org.leetvision.parser.meta.MetaLanguage;
 import org.leetvision.parser.meta.MetaLanguageCooccurenceEncoder;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
@@ -44,10 +45,13 @@ public final class OmniParser {
     }
 
     public void exportDot(String directory) {
+        exportDot(directory, LanguageFilter.ALL);
+    }
+
+    public void exportDot(String directory, LanguageFilter languageFilter) {
         processSolutionsInParallel(solutionDirectories, file -> {
             var language = getLanguage(file);
-            if (language != Language.PYTHON) {
-                // TODO: support more than just java and cpp
+            if (!language.withinFilter(languageFilter)) {
                 return;
             }
 
@@ -73,11 +77,14 @@ public final class OmniParser {
     }
 
     public Map<MetaNode, long[]> encodeCooccurences() {
+        return encodeCooccurences(LanguageFilter.ALL);
+    }
+
+    public Map<MetaNode, long[]> encodeCooccurences(LanguageFilter languageFilter) {
         var cooccurenceEncoder = MetaLanguageCooccurenceEncoder.getInstance();
         processSolutionsInParallel(solutionDirectories, file -> {
             var language = getLanguage(file);
-            if (language != Language.PYTHON) {
-                // TODO: support more than just java and cpp
+            if (!language.withinFilter(languageFilter)) {
                 return;
             }
 
