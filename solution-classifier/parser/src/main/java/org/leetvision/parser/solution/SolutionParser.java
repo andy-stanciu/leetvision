@@ -2,11 +2,11 @@ package org.leetvision.parser.solution;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.leetvision.parser.IParsable;
 import org.leetvision.parser.SilentErrorListener;
+import org.leetvision.parser.graph.rule.replace.Replacer;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
-import org.leetvision.parser.reduction.PruneMaster;
-import org.leetvision.parser.reduction.ReducedParseTree;
+import org.leetvision.parser.graph.rule.prune.Pruner;
+import org.leetvision.parser.graph.ReducedParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,8 +53,27 @@ public abstract class SolutionParser<P extends Parser> implements ISolutionParse
      * @return A reduced parse tree where chains of single-child nodes are collapsed.
      */
     private ParseTree reduce(ParseTree tree, LanguageMapper languageMapper) {
-        var reducedTree = prune(tree, languageMapper);
-        return coalesceRedundantNodes(reducedTree);
+        var reduced = prune(tree, languageMapper);
+        var coalesced = coalesceRedundantNodes(reduced);
+        return replaceNodes(coalesced, languageMapper);
+    }
+
+    private ReducedParseTree replaceNodes(ReducedParseTree tree,
+                                          LanguageMapper languageMapper) {
+        if (tree.getChildCount() == 0) {
+            return tree;
+        }
+
+        List<ReducedParseTree> children = new ArrayList<>();
+        for (int i = 0; i < tree.getChildCount(); i++) {
+            var child = replaceNodes(tree.getChild(i), languageMapper);
+            var newChildren = Replacer.getInstance().replace(child,
+                    languageMapper, getLanguageParser());
+            children.addAll(newChildren);
+        }
+        tree.setChildren(children);
+
+        return tree;
     }
 
     private ReducedParseTree coalesceRedundantNodes(ReducedParseTree tree) {
@@ -89,7 +108,7 @@ public abstract class SolutionParser<P extends Parser> implements ISolutionParse
             }
 
             var childMapping = languageMapper.getMapping(child, getLanguageParser());
-            if (!PruneMaster.getInstance().shouldPrune(mapping, childMapping)) {
+            if (!Pruner.getInstance().shouldPrune(mapping, childMapping)) {
                 reducedChildren.add(child);
             }
         }
