@@ -29,7 +29,7 @@ def phase1(image_filename):
         print(f"Error: The image {image_filename} does not exist in the {image_dir} folder.")
         return
 
-    print(f"Processing: {image_path}")
+    print(f"Starting image segmentation for {image_path}")
 
     # Create a folder named after the image (without extension) inside 'outputs/'
     image_folder = base_output_dir / Path(image_filename).stem
