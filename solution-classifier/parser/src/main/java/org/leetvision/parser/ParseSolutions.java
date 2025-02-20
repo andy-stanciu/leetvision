@@ -1,6 +1,7 @@
 package org.leetvision.parser;
 
 import org.leetvision.parser.meta.LanguageFilter;
+import org.leetvision.parser.meta.SolutionFilter;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -20,7 +21,9 @@ public class ParseSolutions {
 
         var omniParser = OmniParser.STANDARD.withSolutionDirectories(Objects.requireNonNull(dir.listFiles()));
 
-        omniParser.exportDot(DOT_DIR, new LanguageFilter(Language.C));
+        omniParser.exportDot(DOT_DIR,
+                new LanguageFilter(Language.CSHARP),
+                SolutionFilter.ALL);
 
 //        var embeddings = omniParser.encodeCooccurences();
 //        for (var entry : embeddings.entrySet()) {

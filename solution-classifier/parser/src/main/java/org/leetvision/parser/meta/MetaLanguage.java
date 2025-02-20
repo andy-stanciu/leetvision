@@ -48,6 +48,7 @@ public final class MetaLanguage {
         VARIABLE_DECLARATORS,
         VARIABLE_DECLARATOR,
         ARRAY_INITIALIZER,
+        ARRAY_BRACKETS,
         INITIALIZER,
         INITIALIZER_LIST,
 
@@ -215,6 +216,7 @@ public final class MetaLanguage {
         TYPE_SIGNED,
         TYPE_UNSIGNED,
         TYPE_STRUCT,
+        TYPE_STRING,
         TYPEDEF,
 
         CAST,
