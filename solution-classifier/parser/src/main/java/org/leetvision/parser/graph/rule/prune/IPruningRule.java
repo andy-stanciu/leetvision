@@ -1,4 +1,4 @@
-package org.leetvision.parser.reduction.rule;
+package org.leetvision.parser.graph.rule.prune;
 
 import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
 

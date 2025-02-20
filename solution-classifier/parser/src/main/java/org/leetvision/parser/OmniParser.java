@@ -5,6 +5,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.leetvision.parser.meta.LanguageFilter;
 import org.leetvision.parser.meta.MetaLanguage;
 import org.leetvision.parser.meta.MetaLanguageCooccurenceEncoder;
+import org.leetvision.parser.meta.SolutionFilter;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 import org.leetvision.parser.solution.*;
 
@@ -18,6 +19,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
 
@@ -45,10 +47,14 @@ public final class OmniParser {
     }
 
     public void exportDot(String directory) {
-        exportDot(directory, LanguageFilter.ALL);
+        exportDot(directory, LanguageFilter.ALL, SolutionFilter.ALL);
     }
 
     public void exportDot(String directory, LanguageFilter languageFilter) {
+        exportDot(directory, languageFilter, SolutionFilter.ALL);
+    }
+
+    public void exportDot(String directory, LanguageFilter languageFilter, SolutionFilter solutionFilter) {
         processSolutionsInParallel(solutionDirectories, file -> {
             var language = getLanguage(file);
             if (!language.withinFilter(languageFilter)) {
@@ -73,7 +79,8 @@ public final class OmniParser {
             String fileName = file.getName().split("\\.")[0];
             String solutionName = file.getParentFile().getName();
             writeToDisk(dot.toString(), Path.of(directory, solutionName), fileName, "dt");
-        }, true, "1-bit-and-2-bit-characters");
+        }, true, solutionFilter.solutions() == null ? null :
+                Arrays.stream(solutionFilter.solutions()).collect(Collectors.toSet()));
     }
 
     public Map<MetaNode, long[]> encodeCooccurences() {
@@ -306,7 +313,7 @@ public final class OmniParser {
     private int processSolutionsInParallel(File[] solutionDirectories,
                                            Consumer<File> action,
                                            boolean verbose,
-                                           String solutionFilter) {
+                                           Set<String> solutionFilter) {
         ExecutorService executorService = new ThreadPoolExecutor(
                 THREAD_POOL_SIZE,
                 THREAD_POOL_SIZE,
@@ -323,7 +330,7 @@ public final class OmniParser {
         var directories = Arrays.stream(solutionDirectories)
                 .filter(dir -> {
                     if (dir.isDirectory()) {
-                        return solutionFilter == null || dir.getName().equals(solutionFilter);
+                        return solutionFilter == null || solutionFilter.contains(dir.getName());
                     }
                     return false;
                 }).toList();
