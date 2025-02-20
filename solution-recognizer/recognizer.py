@@ -1,15 +1,15 @@
-# Make sure to run this script from it's directory due to the relative path
-
 import warnings
 import numpy as np
 import os
 import cv2
+from pathlib import Path
 from craft_text_detector import Craft
 
 warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning)
 
-image_dir = '../sample-images/'
-output_dir = 'outputs/'
+script_dir = Path(__file__).parent
+image_dir = script_dir / 'sample-images'
+output_dir = script_dir / 'outputs/'
 
 craft = Craft(output_dir=output_dir, crop_type="poly", cuda=False)
 
