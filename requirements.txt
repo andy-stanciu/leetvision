@@ -27,7 +27,7 @@ multidict @ file:///croot/multidict_1730905498140/work
 multiprocess @ file:///croot/multiprocess_1692294385131/work
 networkx==3.2.1
 numexpr @ file:///croot/numexpr_1730215937391/work
-numpy==1.21.6
+numpy==1.23.0
 nvidia-cublas-cu12==12.4.5.8
 nvidia-cuda-cupti-cu12==12.4.127
 nvidia-cuda-nvrtc-cu12==12.4.127
