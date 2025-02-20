@@ -3,9 +3,6 @@ package org.leetvision.parser.meta;
 import org.leetvision.parser.Language;
 
 public record LanguageFilter(Language... languages) {
-    public LanguageFilter {
-    }
-
     public int getMask() {
         int mask = 0;
         if (languages != null) {
