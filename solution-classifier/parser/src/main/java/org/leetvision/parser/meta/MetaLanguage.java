@@ -6,7 +6,6 @@ public final class MetaLanguage {
 
     public enum MetaNode {
         PROGRAM,
-        IMPORT,
 
         TYPE_DECLARATION,
         CLASS_MODIFIER,

@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.leetvision.parser.antlr.go.GoLexer;
 import org.leetvision.parser.antlr.go.GoParser;
 import org.leetvision.parser.Language;
+import org.leetvision.parser.meta.mapper.GoLanguageMapper;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 
 public class GolangSolutionParser extends SolutionParser<GoParser> {
@@ -34,6 +35,6 @@ public class GolangSolutionParser extends SolutionParser<GoParser> {
 
     @Override
     public LanguageMapper getLanguageMapper() {
-        return null;
+        return GoLanguageMapper.INSTANCE;
     }
 }

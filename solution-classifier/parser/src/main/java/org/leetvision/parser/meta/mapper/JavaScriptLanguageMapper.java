@@ -6,29 +6,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
-import static org.leetvision.parser.meta.mapper.LanguageMapper.VOID_MAPPING;
 
-public class JavaScriptLanguageMapper extends LanguageMapper {
+public final class JavaScriptLanguageMapper extends LanguageMapper {
     public static final JavaScriptLanguageMapper INSTANCE = new JavaScriptLanguageMapper(new HashMap<>() {{
         put("program", MetaNode.PROGRAM);
         put("sourceElement", MetaNode.STATEMENT);
         put("statement", MetaNode.STATEMENT);
         put("block", MetaNode.BLOCK);
         // TODO statementList?
-        put("importStatement", MetaNode.IMPORT);
-        put("importFromBlock", MetaNode.IMPORT);
-        put("importModuleItems", MetaNode.IMPORT);
-        put("importAliasName", MetaNode.IMPORT);
+        put("importStatement", VOID_MAPPING);
+        put("importFromBlock", VOID_MAPPING);
+        put("importModuleItems", VOID_MAPPING);
+        put("importAliasName", VOID_MAPPING);
         put("moduleExportName", VOID_MAPPING); //TODO just void this right
-        put("importedBinding", MetaNode.IMPORT);
-        put("importDefault", MetaNode.IMPORT);
-        put("importNamespace", MetaNode.IMPORT);
-        put("importFrom", MetaNode.IMPORT);
+        put("importedBinding", VOID_MAPPING);
+        put("importDefault", VOID_MAPPING);
+        put("importNamespace", VOID_MAPPING);
+        put("importFrom", VOID_MAPPING);
         put("aliasName", VOID_MAPPING);
         put("exportStatement", MetaNode.STATEMENT);
         put("exportFromBlock", VOID_MAPPING);
         put("exportModuleItems", VOID_MAPPING);
-        put("exportALiasName", VOID_MAPPING);
+        put("exportAliasName", VOID_MAPPING);
         put("declaration", MetaNode.VARIABLE_DECLARATORS); // hack
         put("variableStatement", MetaNode.VARIABLE_DECLARATORS);
         put("variableDeclarationList", MetaNode.VARIABLE_DECLARATORS);
@@ -65,7 +64,7 @@ public class JavaScriptLanguageMapper extends LanguageMapper {
         put("formalParameterList", MetaNode.FORMAL_PARAMETERS);
         put("formalParameterArg", MetaNode.FORMAL_PARAMETER);
         put("lastFormalParameterArg", MetaNode.FORMAL_PARAMETER);
-        put("functonBody", MetaNode.METHOD_BODY);
+        put("functionBody", MetaNode.METHOD_BODY);
         // TODO sourceElements
         put("arrayLiteral", MetaNode.ARRAY_CREATOR_REST);
         put("elementList", MetaNode.ARRAY_CREATOR_REST);

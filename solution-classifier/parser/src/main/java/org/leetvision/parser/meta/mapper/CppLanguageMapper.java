@@ -56,7 +56,7 @@ public final class CppLanguageMapper extends LanguageMapper {
         put("constantExpression", MetaNode.EXPRESSION);
         put("statement", MetaNode.STATEMENT);
         put("labeledStatement", MetaNode.STATEMENT);
-        put("expressionStatement", MetaNode.EXPRESSION);
+        put("expressionStatement", MetaNode.STATEMENT);
         put("compoundStatement", MetaNode.BLOCK);
         put("statementSeq", MetaNode.BLOCK);
         put("selectionStatement", MetaNode.STATEMENT);
