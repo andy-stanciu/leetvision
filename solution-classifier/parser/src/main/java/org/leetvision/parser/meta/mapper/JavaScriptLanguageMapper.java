@@ -13,12 +13,12 @@ public final class JavaScriptLanguageMapper extends LanguageMapper {
         put("sourceElement", MetaNode.STATEMENT);
         put("statement", MetaNode.STATEMENT);
         put("block", MetaNode.BLOCK);
-        // TODO statementList?
+        put("statementList", MetaNode.BLOCK);
         put("importStatement", VOID_MAPPING);
         put("importFromBlock", VOID_MAPPING);
         put("importModuleItems", VOID_MAPPING);
         put("importAliasName", VOID_MAPPING);
-        put("moduleExportName", VOID_MAPPING); //TODO just void this right
+        put("moduleExportName", VOID_MAPPING);
         put("importedBinding", VOID_MAPPING);
         put("importDefault", VOID_MAPPING);
         put("importNamespace", VOID_MAPPING);
@@ -43,21 +43,21 @@ public final class JavaScriptLanguageMapper extends LanguageMapper {
         put("yieldStatement", MetaNode.STATEMENT);
         put("withStatement", MetaNode.STATEMENT);
         put("switchStatement", MetaNode.STATEMENT);
-        put("caseBlock", MetaNode.BLOCK);
+        put("caseBlock", MetaNode.SWITCH_BLOCK_STATEMENT_GROUP);
         put("caseClauses", MetaNode.BLOCK);
-        put("caseClause", MetaNode.STATEMENT_CASE);
-        put("defaultClause", MetaNode.STATEMENT_CASE);
+        put("caseClause", MetaNode.SWITCH_LABEL);
+        put("defaultClause", MetaNode.SWITCH_LABEL);
         put("labelledStatement", MetaNode.STATEMENT);
         put("throwStatement", MetaNode.STATEMENT);
         put("tryStatement", MetaNode.STATEMENT);
-        put("catchProduction", MetaNode.CATCH_CLAUSE); // TODO
-        put("finallyProduction", MetaNode.FINALLY_BLOCK); // TODO
-        put("debuggerStatement", MetaNode.STATEMENT);
+        put("catchProduction", MetaNode.CATCH_CLAUSE);
+        put("finallyProduction", MetaNode.FINALLY_BLOCK);
+        put("debuggerStatement", VOID_MAPPING);
         put("functionDeclaration", MetaNode.METHOD_DECLARATION);
         put("classDeclaration", MetaNode.CLASS_DECLARATION);
         put("classTail", MetaNode.CLASS_DECLARATION);
         put("classElement", MetaNode.MEMBER_DECLARATION);
-        put("methodDefintion", MetaNode.METHOD_DECLARATION);
+        put("methodDefinition", MetaNode.METHOD_DECLARATION);
         put("fieldDefinition", MetaNode.FIELD_DECLARATION);
         put("classElementName", MetaNode.IDENTIFIER);
         put("privateIdentifier", MetaNode.IDENTIFIER);
@@ -65,19 +65,11 @@ public final class JavaScriptLanguageMapper extends LanguageMapper {
         put("formalParameterArg", MetaNode.FORMAL_PARAMETER);
         put("lastFormalParameterArg", MetaNode.FORMAL_PARAMETER);
         put("functionBody", MetaNode.METHOD_BODY);
-        // TODO sourceElements
+        put("sourceElements", MetaNode.BLOCK);
         put("arrayLiteral", MetaNode.ARRAY_CREATOR_REST);
         put("elementList", MetaNode.ARRAY_CREATOR_REST);
         put("arrayElement", MetaNode.EXPRESSION);
         put("propertyAssignment", MetaNode.VARIABLE_DECLARATOR);
-
-
-
-
-
-
-
-
     }});
 
     private JavaScriptLanguageMapper(final Map<String, MetaLanguage.MetaNode> mappings) {
