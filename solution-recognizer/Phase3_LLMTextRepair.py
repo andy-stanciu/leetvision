@@ -27,4 +27,4 @@ def phase3(code):
         exit(1)
     
     corrected_code = fix_code(code, API_KEY)
-    print("\nCorrected Code:\n", corrected_code)
+    return corrected_code
