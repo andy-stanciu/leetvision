@@ -4,7 +4,7 @@ import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.leetvision.parser.reduction.ReducedParseTree;
+import org.leetvision.parser.graph.ReducedParseTree;
 
 import java.util.Map;
 
@@ -20,6 +20,9 @@ public abstract class LanguageMapper {
 
     public final MetaNode getMapping(ParseTree ast, Parser parser) {
         if (ast instanceof ReducedParseTree reducedAst) {
+            if (reducedAst.hasOverrideMapping()) {
+                return reducedAst.getOverrideMapping();
+            }
             ast = reducedAst.getSelf();
         }
 
