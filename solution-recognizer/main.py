@@ -15,4 +15,7 @@ phase1(image_path)
 raw_ocr_text = phase2(image_name)
 
 # Phase 3
-phase3(raw_ocr_text)
+result = phase3(raw_ocr_text)
+
+print("\nResult of code recognition\n")
+print(result)
