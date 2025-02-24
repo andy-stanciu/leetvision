@@ -1,27 +1,23 @@
-package org.leetvision.parser.reduction;
-
-import org.leetvision.parser.reduction.rule.IPruningRule;
-import org.leetvision.parser.reduction.rule.TypeArgumentsPruningRule;
-import org.leetvision.parser.reduction.rule.TypeClassPruningRule;
+package org.leetvision.parser.graph.rule.prune;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
 
-public final class PruneMaster {
-    private static final PruneMaster INSTANCE = new PruneMaster(new ArrayList<>() {{
+public final class Pruner {
+    private static final Pruner INSTANCE = new Pruner(new ArrayList<>() {{
         add(new TypeArgumentsPruningRule());
         add(new TypeClassPruningRule());
     }});
 
-    public static PruneMaster getInstance() {
+    public static Pruner getInstance() {
         return INSTANCE;
     }
 
     private final List<IPruningRule> rules;
 
-    private PruneMaster(List<IPruningRule> rules) {
+    private Pruner(List<IPruningRule> rules) {
         this.rules = rules;
     }
 
