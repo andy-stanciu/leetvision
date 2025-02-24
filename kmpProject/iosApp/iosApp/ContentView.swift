@@ -2,24 +2,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            Text("Home")
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
+        ZStack {
+            TabView {
+                Text("Home")
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Home")
+                    }
 
-            CameraView()
-                .tabItem {
-                    Image(systemName: "camera")
-                    Text("Camera")
-                }
+                CameraView()
+                    .tabItem {
+                        Image(systemName: "camera")
+                        Text("Camera")
+                    }
 
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person")
-                    Text("Profile")
-                }
+                Text("Profile")
+                    .tabItem {
+                        Image(systemName: "person")
+                        Text("Profile")
+                    }
+            }
         }
     }
 }
