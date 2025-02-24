@@ -22,7 +22,7 @@ public class ParseSolutions {
         var omniParser = OmniParser.STANDARD.withSolutionDirectories(Objects.requireNonNull(dir.listFiles()));
 
         omniParser.exportDot(DOT_DIR,
-                new LanguageFilter(Language.GOLANG),
+                new LanguageFilter(Language.JAVASCRIPT),
                 SolutionFilter.ALL);
 
 //        var embeddings = omniParser.encodeCooccurences();
