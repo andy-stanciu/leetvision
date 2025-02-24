@@ -18,7 +18,6 @@ def run_ocr(image_path):
         return ""
 
 
-
 def process_output_folder(folder_name):
     folder_path = base_output_dir / folder_name
     
@@ -48,4 +47,5 @@ def phase2(folder_name):
     Returns:
     - str: OCR output including new lines.
     """
+    print(f"Starting OCR for {folder_name}")
     return process_output_folder(folder_name)
