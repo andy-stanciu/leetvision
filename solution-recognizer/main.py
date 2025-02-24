@@ -12,3 +12,5 @@ phase1(image_path)
 
 # Phase 2: Run Phase2_TesseractRecognition.py
 phase2(image_name)
+
+# Phase 3
