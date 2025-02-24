@@ -3,6 +3,7 @@ package org.leetvision.parser.solution;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.leetvision.parser.Language;
+import org.leetvision.parser.meta.mapper.JavaScriptLanguageMapper;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 import org.leetvision.parser.antlr.js.JavaScriptLexer;
 import org.leetvision.parser.antlr.js.JavaScriptParser;
@@ -32,6 +33,6 @@ public class JavaScriptSolutionParser extends SolutionParser<JavaScriptParser> {
 
     @Override
     public LanguageMapper getLanguageMapper() {
-        return null;
+        return JavaScriptLanguageMapper.INSTANCE;
     }
 }

@@ -8,7 +8,7 @@ import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
 public final class JavaLanguageMapper extends LanguageMapper {
     public static final JavaLanguageMapper INSTANCE = new JavaLanguageMapper(new HashMap<>() {{
         put("compilationUnit", MetaNode.PROGRAM);
-        put("importDeclaration", MetaNode.IMPORT);
+        put("importDeclaration", VOID_MAPPING);
 
         put("typeDeclaration", MetaNode.TYPE_DECLARATION);
         put("modifier", MetaNode.VARIABLE_MODIFIER);
