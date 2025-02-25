@@ -6,6 +6,7 @@ import org.leetvision.parser.Language;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 import org.leetvision.parser.antlr.ts.TypeScriptLexer;
 import org.leetvision.parser.antlr.ts.TypeScriptParser;
+import org.leetvision.parser.meta.mapper.TypeScriptLanguageMapper;
 
 public class TypeScriptSolutionParser extends SolutionParser<TypeScriptParser> {
     public TypeScriptSolutionParser() {}
@@ -32,6 +33,6 @@ public class TypeScriptSolutionParser extends SolutionParser<TypeScriptParser> {
 
     @Override
     public LanguageMapper getLanguageMapper() {
-        return null;
+        return TypeScriptLanguageMapper.INSTANCE;
     }
 }
