@@ -20,29 +20,32 @@ def run_ocr(image_path):
 
 def process_output_folder(folder_name):
     folder_path = base_output_dir / folder_name
-
-    if not os.path.exists(folder_path):
-        print(f"The folder '{folder_name}' does not exist in the 'outputs' directory.")
-        return
-
-    crops_folder = folder_path / f"{folder_name}_crops"
-    if not os.path.exists(crops_folder) or not os.path.isdir(crops_folder):
-        print(f"Crops folder not found: {crops_folder}")
-        return
     
+    if not folder_path.exists():
+        return f"The folder '{folder_name}' does not exist in the 'outputs' directory.\n"
+    
+    crops_folder = folder_path / f"{folder_name}_crops"
+    if not crops_folder.exists() or not crops_folder.is_dir():
+        return f"Crops folder not found: {crops_folder}\n"
+    
+    ocr_results = []
     for image in sorted(os.listdir(crops_folder)):
         image_path = crops_folder / image
-        if os.path.isfile(image_path) and image.lower().endswith((".png", ".jpg", ".jpeg")):
-            ocr_result = run_ocr(image_path)
-            print(f"{ocr_result}")
+        if image_path.is_file() and image.lower().endswith((".png", ".jpg", ".jpeg")):
+            ocr_results.append(run_ocr(image_path))
+    
+    return "\n".join(ocr_results)
 
 
 def phase2(folder_name):
     """
-    Run OCR on the cropped text images in the specified folder and print the results.
+    Run OCR on the cropped text images in the specified folder and return the results as a string.
     
     Args:
     - folder_name: str, the name of the folder to process within 'outputs'.
+    
+    Returns:
+    - str: OCR output including new lines.
     """
-    print(f"Starting OCR processing for folder: {folder_name}")
-    process_output_folder(folder_name)
+    print(f"Starting OCR for {folder_name}")
+    return process_output_folder(folder_name)
