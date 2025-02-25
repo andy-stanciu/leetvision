@@ -22,8 +22,8 @@ public class ParseSolutions {
         var omniParser = OmniParser.STANDARD.withSolutionDirectories(Objects.requireNonNull(dir.listFiles()));
 
         omniParser.exportDot(DOT_DIR,
-                new LanguageFilter(Language.JAVASCRIPT),
-                SolutionFilter.ALL);
+                new LanguageFilter(Language.TYPESCRIPT),
+                new SolutionFilter("1-bit-and-2-bit-characters"));
 
 //        var embeddings = omniParser.encodeCooccurences();
 //        for (var entry : embeddings.entrySet()) {
