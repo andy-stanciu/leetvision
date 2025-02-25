@@ -3,4 +3,5 @@ target/
 .idea/
 solutions/
 dot/
+edges/
 .DS_Store
