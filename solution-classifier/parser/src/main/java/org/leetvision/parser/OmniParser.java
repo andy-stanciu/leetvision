@@ -2,10 +2,7 @@ package org.leetvision.parser;
 
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.leetvision.parser.meta.LanguageFilter;
-import org.leetvision.parser.meta.MetaLanguage;
-import org.leetvision.parser.meta.MetaLanguageCooccurenceEncoder;
-import org.leetvision.parser.meta.SolutionFilter;
+import org.leetvision.parser.meta.*;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 import org.leetvision.parser.solution.*;
 
@@ -46,41 +43,96 @@ public final class OmniParser {
         return this;
     }
 
-    public void exportDot(String directory) {
-        exportDot(directory, LanguageFilter.ALL, SolutionFilter.ALL);
+    public void exportSolutions(String dotDirectory, String edgesDirectory, String cooccurencesFile) {
+        exportSolutions(dotDirectory, edgesDirectory, cooccurencesFile, LanguageFilter.ALL, SolutionFilter.ALL);
     }
 
-    public void exportDot(String directory, LanguageFilter languageFilter) {
-        exportDot(directory, languageFilter, SolutionFilter.ALL);
+    public void exportSolutions(String dotDirectory,
+                                String edgesDirectory,
+                                String cooccurencesFile,
+                                LanguageFilter languageFilter) {
+        exportSolutions(dotDirectory, edgesDirectory, cooccurencesFile, languageFilter, SolutionFilter.ALL);
     }
 
-    public void exportDot(String directory, LanguageFilter languageFilter, SolutionFilter solutionFilter) {
-        processSolutionsInParallel(solutionDirectories, file -> {
-            var language = getLanguage(file);
-            if (!language.withinFilter(languageFilter)) {
-                return;
-            }
+    /**
+     * Exports the solutions as DOT files (.dt) and adjacency list (.edges) representations. Additionally, exports
+     * the cooccurence matrix.
+     * @param dotDirectory Relative directory containing .dt exported solutions.
+     * @param edgesDirectory Relative directory containing .edges exported solutions.
+     * @param languageFilter Language filter.
+     * @param solutionFilter Solution filter.
+     */
+    public void exportSolutions(String dotDirectory,
+                                String edgesDirectory,
+                                String cooccurencesFile,
+                                LanguageFilter languageFilter,
+                                SolutionFilter solutionFilter) {
+        int batchSize = 100;
+        int batches = solutionDirectories.length / batchSize + 1;
+        for (int batch = 25; batch < batches; batch++) {
+            System.out.printf("Exporting solutions, batch %d/%d...%n", batch + 1, batches);
+            var cooccurenceEncoder = MetaLanguageCooccurenceEncoder.fromFile(cooccurencesFile);
+            processSolutionsInParallel(solutionDirectories, file -> {
+                var language = getLanguage(file);
+                if (!language.withinFilter(languageFilter)) {
+                    return;
+                }
 
-            var parser = parsers.get(language);
-            var result = parser.parse(readSolution(file), true);
-            if (!result.success()) {
-                throw new IllegalStateException("Found unparsable solution: " + file.getName());
-            }
+                var parser = parsers.get(language);
+                var result = parser.parse(readSolution(file), true);
+                if (!result.success()) {
+                    System.err.println("Warning: found unparsable solution " + file.getName());
+                    return;
+                }
 
-            var dot = new StringBuilder("digraph AST {\n");
-            traverseDot(result.ast(),
-                    parser.getLanguageMapper(),
-                    parser.getLanguageParser(),
-                    dot,
-                    null,
-                    new AtomicInteger());
-            dot.append("}");
+                String fileName = file.getName().split("\\.")[0];
+                String solutionName = file.getParentFile().getName();
 
-            String fileName = file.getName().split("\\.")[0];
-            String solutionName = file.getParentFile().getName();
-            writeToDisk(dot.toString(), Path.of(directory, solutionName), fileName, "dt");
-        }, true, solutionFilter.solutions() == null ? null :
-                Arrays.stream(solutionFilter.solutions()).collect(Collectors.toSet()));
+                // export dot
+                var dot = new StringBuilder("digraph AST {\n");
+                traverseDot(result.ast(),
+                        parser.getLanguageMapper(),
+                        parser.getLanguageParser(),
+                        dot,
+                        null,
+                        new AtomicInteger());
+                dot.append("}");
+
+                writeToDisk(dot.toString(), Path.of(dotDirectory, solutionName), fileName, "dt");
+
+                // export edges
+                var edgeList = new StringBuilder();
+                traverseEdges(result.ast(),
+                        parser.getLanguageMapper(),
+                        cooccurenceEncoder,
+                        parser.getLanguageParser(),
+                        edgeList,
+                        null,
+                        null,
+                        new AtomicInteger());
+
+                writeToDisk(edgeList.toString(), Path.of(edgesDirectory, solutionName), fileName, "edges");
+
+                // export cooccurences
+                var cooccurrences = cooccurenceEncoder.vectorize();
+                var sb = new StringBuilder();
+                for (var entry : cooccurrences.entrySet()) {
+                    sb.append(entry.getKey()).append(':');
+                    for (long l : entry.getValue()) {
+                        sb.append(' ').append(l);
+                    }
+                    sb.append('\n');
+                }
+
+                try (var outputStream = new FileOutputStream(cooccurencesFile)) {
+                    outputStream.write(sb.toString().getBytes(StandardCharsets.UTF_8));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }, true, solutionFilter.solutions() == null ? null :
+                    Arrays.stream(solutionFilter.solutions()).collect(Collectors.toSet()),
+                    new SolutionRange(batch * batchSize, (batch + 1) * batchSize));
+        }
     }
 
     public Map<MetaNode, long[]> encodeCooccurences() {
@@ -88,7 +140,7 @@ public final class OmniParser {
     }
 
     public Map<MetaNode, long[]> encodeCooccurences(LanguageFilter languageFilter) {
-        var cooccurenceEncoder = MetaLanguageCooccurenceEncoder.getInstance();
+        var cooccurenceEncoder = MetaLanguageCooccurenceEncoder.create();
         processSolutionsInParallel(solutionDirectories, file -> {
             var language = getLanguage(file);
             if (!language.withinFilter(languageFilter)) {
@@ -161,6 +213,34 @@ public final class OmniParser {
                 throw new IllegalStateException("Found null child in AST");
             }
             traverseDot(child, languageMapper, parser, dot, currentNodeId, nodeId);
+        }
+    }
+
+    private void traverseEdges(ParseTree ast,
+                               LanguageMapper languageMapper,
+                               ICooccurenceEncoder cooccurenceEncoder,
+                               Parser parser,
+                               StringBuilder edgeList,
+                               String parentNodeId,
+                               String parentNode,
+                               AtomicInteger nodeId) {
+        String currentNodeId = "node" + nodeId.getAndIncrement();
+        var node = languageMapper.getMapping(ast, parser);
+        String currentNode = node.toString();
+        cooccurenceEncoder.updateCooccurence(node, node);  // self-occurrence
+
+        if (parentNodeId != null) {
+            edgeList.append(parentNodeId).append(" ")
+                    .append(parentNode).append(" ")
+                    .append(currentNodeId).append(" ")
+                    .append(currentNode).append("\n");
+        }
+
+        for (int i = 0; i < ast.getChildCount(); i++) {
+            var child = ast.getChild(i);
+            traverseEdges(child, languageMapper, cooccurenceEncoder, parser,
+                    edgeList, currentNodeId, currentNode, nodeId);
+            cooccurenceEncoder.updateCooccurence(languageMapper.getMapping(child, parser), node);  // parent-child
         }
     }
 
@@ -314,6 +394,14 @@ public final class OmniParser {
                                            Consumer<File> action,
                                            boolean verbose,
                                            Set<String> solutionFilter) {
+        return processSolutionsInParallel(solutionDirectories, action, verbose, solutionFilter, SolutionRange.ALL);
+    }
+
+    private int processSolutionsInParallel(File[] solutionDirectories,
+                                           Consumer<File> action,
+                                           boolean verbose,
+                                           Set<String> solutionFilter,
+                                           SolutionRange solutionRange) {
         ExecutorService executorService = new ThreadPoolExecutor(
                 THREAD_POOL_SIZE,
                 THREAD_POOL_SIZE,
@@ -328,12 +416,13 @@ public final class OmniParser {
         var questionCount = new AtomicInteger();
 
         var directories = Arrays.stream(solutionDirectories)
-                .filter(dir -> {
-                    if (dir.isDirectory()) {
-                        return solutionFilter == null || solutionFilter.contains(dir.getName());
-                    }
-                    return false;
-                }).toList();
+                .filter(dir -> dir.isDirectory() && (solutionFilter == null || solutionFilter.contains(dir.getName())))
+                .sorted()
+                .toList();
+
+        directories = directories.subList(solutionRange.start(),
+                Math.min(solutionRange.end(), directories.size()));
+
         int totalQuestions = directories.size();
 
         for (var dir : directories) {

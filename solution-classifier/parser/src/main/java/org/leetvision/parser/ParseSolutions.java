@@ -10,6 +10,8 @@ import java.util.*;
 public class ParseSolutions {
     private static final String SOLUTIONS_DIR = "solution-classifier/solutions";
     private static final String DOT_DIR = "solution-classifier/dot";
+    private static final String EDGES_DIR = "solution-classifier/edges";
+    private static final String COOCCURRENCES_FILE = "solution-classifier/cooccurrences.txt";
 
     public static void main(String[] args) throws IOException {
         var path = Path.of(SOLUTIONS_DIR);
@@ -19,27 +21,13 @@ public class ParseSolutions {
             return;
         }
 
-        var omniParser = OmniParser.STANDARD.withSolutionDirectories(Objects.requireNonNull(dir.listFiles()));
+        var omniParser = OmniParser.STANDARD
+                .withSolutionDirectories(Objects.requireNonNull(dir.listFiles()));
 
-        omniParser.exportDot(DOT_DIR,
-                new LanguageFilter(Language.TYPESCRIPT),
-                new SolutionFilter("1-bit-and-2-bit-characters"));
-
-//        var embeddings = omniParser.encodeCooccurences();
-//        for (var entry : embeddings.entrySet()) {
-//            System.out.println(entry.getKey().toString() + ": " + Arrays.toString(entry.getValue()));
-//        }
-
-//        var solutions = omniParser.getSolutions();
-//        var languages = omniParser.getLanguages();
-//
-//        System.out.printf("Solutions (%d questions):%n", solutions.size());
-//        for (var entry : solutions) {
-//            System.out.println(entry.getKey() + ": " + entry.getValue());
-//        }
-//        System.out.println("Language frequencies:");
-//        for (var entry : languages.entrySet()) {
-//            System.out.println(entry.getKey() + ": " + entry.getValue());
-//        }
+        omniParser.exportSolutions(DOT_DIR,
+                EDGES_DIR,
+                COOCCURRENCES_FILE,
+                LanguageFilter.ALL,
+                SolutionFilter.ALL);
     }
 }
