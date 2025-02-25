@@ -31,7 +31,6 @@ public abstract class LanguageMapper {
             nodeName = parser.getRuleNames()[rule.getRuleIndex()];
         } else if (ast instanceof TerminalNode terminal) {
             nodeName = parser.getVocabulary().getSymbolicName(terminal.getSymbol().getType());
-
             if (nodeName == null) {
                 throw new RuntimeException("Unknown node type: " + ast.getClass().getName());
             }
@@ -40,7 +39,8 @@ public abstract class LanguageMapper {
         }
 
         if (!mappings.containsKey(nodeName)) {
-            throw new IllegalArgumentException("Node " + nodeName + " is not defined");
+            throw new IllegalArgumentException("Meta node " + nodeName + " is not defined in " +
+                    getClass().getSimpleName());
         }
         return mappings.get(nodeName);
     }

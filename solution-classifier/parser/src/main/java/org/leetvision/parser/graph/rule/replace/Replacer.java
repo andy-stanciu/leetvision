@@ -5,14 +5,13 @@ import org.leetvision.parser.graph.ReducedParseTree;
 import org.leetvision.parser.meta.mapper.LanguageMapper;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import static org.leetvision.parser.meta.MetaLanguage.MetaNode;
 
 public final class Replacer {
     private static final Replacer INSTANCE = new Replacer(new ArrayList<>() {{
         add(new ArrayBracketsReplacementRule());
+        add(new ArrayCreatorReplacementRule());
     }});
 
     public static Replacer getInstance() {
