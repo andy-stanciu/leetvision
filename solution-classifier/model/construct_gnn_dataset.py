@@ -43,9 +43,11 @@ class SolutionDataset(Dataset):
         node_cooccurrences = np.array(cooccurrences)
         data.x = torch.from_numpy(node_cooccurrences).float()
 
-        label = np.zeros(QUESTION_COUNT)
-        label[folder_idx] = 1
-        data.y = torch.tensor(label, dtype=torch.long)
+        # label = np.zeros(QUESTION_COUNT)
+        # label[folder_idx] = 1
+        # data.y = torch.tensor(label, dtype=torch.long)
+        
+        data.y = torch.tensor(folder_idx, dtype=torch.long)
 
         return data
 

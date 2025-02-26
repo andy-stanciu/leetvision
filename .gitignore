@@ -5,3 +5,4 @@ solutions/
 dot/
 edges/
 .DS_Store
+*.pt
