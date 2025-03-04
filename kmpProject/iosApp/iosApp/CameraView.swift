@@ -81,3 +81,22 @@ struct CameraView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
+
+struct CameraViewContainer: View {
+    var body: some View {
+        NavigationView {
+            VStack {
+                CameraView()
+                    .edgesIgnoringSafeArea(.all)
+                NavigationLink(destination: ConfirmProblemView()) {
+                    Text("Go to Confirm Problem")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding()
+            }
+        }
+    }
+}
