@@ -6,7 +6,7 @@ from PIL import Image
 import sys
 
 script_dir = Path(__file__).parent
-base_output_dir = script_dir / 'outputs'
+base_output_dir = script_dir / 'server/outputs'
 
 def run_ocr(image_path):
     try:
@@ -22,7 +22,7 @@ def process_output_folder(folder_name):
     folder_path = base_output_dir / folder_name
     
     if not folder_path.exists():
-        return f"The folder '{folder_name}' does not exist in the 'outputs' directory.\n"
+        return f"The folder '{folder_name}' does not exist in the 'server' directory.\n"
     
     crops_folder = folder_path / f"{folder_name}_crops"
     if not crops_folder.exists() or not crops_folder.is_dir():
