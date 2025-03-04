@@ -31,11 +31,9 @@ def recognize():
         
         # Phase 2: OCR Recognition
         raw_ocr_text = phase2(image_id)
-        
+
         # Phase 3: Text Repair
         result = phase3(raw_ocr_text)
-
-        print(result)
         
         return jsonify({"recognized_text": result})
     

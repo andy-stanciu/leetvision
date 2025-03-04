@@ -3,7 +3,7 @@ import os
 
 def fix_code(code, api_key):
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("gemini-2.0-flash")
     prompt = "The following code may contain typos and other artifacts, please correct it.\n\n" + code
     response = model.generate_content(prompt)
     return response.text if response else "No response received."
