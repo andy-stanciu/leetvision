@@ -11,6 +11,12 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		FD84915A2D6D0317001032E4 /* ConfirmProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8491592D6D0302001032E4 /* ConfirmProblemView.swift */; };
+		FD84915C2D6E202C001032E4 /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84915B2D6E2024001032E4 /* MainAppView.swift */; };
+		FD84915E2D6E23D5001032E4 /* ExecuteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84915D2D6E23D2001032E4 /* ExecuteView.swift */; };
+		FD8491602D6E23E1001032E4 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84915F2D6E23DF001032E4 /* LearnView.swift */; };
+		FD8491622D6E23F2001032E4 /* ExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8491612D6E23F0001032E4 /* ExplainView.swift */; };
+		FD8491642D6E2401001032E4 /* FixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8491632D6E23FF001032E4 /* FixView.swift */; };
 		FD91BDD32D5563B400D0FF45 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91BDD22D5563B400D0FF45 /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +28,12 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		FD8491592D6D0302001032E4 /* ConfirmProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmProblemView.swift; sourceTree = "<group>"; };
+		FD84915B2D6E2024001032E4 /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
+		FD84915D2D6E23D2001032E4 /* ExecuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteView.swift; sourceTree = "<group>"; };
+		FD84915F2D6E23DF001032E4 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		FD8491612D6E23F0001032E4 /* ExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplainView.swift; sourceTree = "<group>"; };
+		FD8491632D6E23FF001032E4 /* FixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixView.swift; sourceTree = "<group>"; };
 		FD91BDD22D5563B400D0FF45 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +84,12 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				FD8491632D6E23FF001032E4 /* FixView.swift */,
+				FD8491612D6E23F0001032E4 /* ExplainView.swift */,
+				FD84915F2D6E23DF001032E4 /* LearnView.swift */,
+				FD84915D2D6E23D2001032E4 /* ExecuteView.swift */,
+				FD84915B2D6E2024001032E4 /* MainAppView.swift */,
+				FD8491592D6D0302001032E4 /* ConfirmProblemView.swift */,
 				FD91BDD22D5563B400D0FF45 /* CameraView.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
@@ -187,8 +205,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD8491642D6E2401001032E4 /* FixView.swift in Sources */,
+				FD8491622D6E23F2001032E4 /* ExplainView.swift in Sources */,
 				FD91BDD32D5563B400D0FF45 /* CameraView.swift in Sources */,
+				FD8491602D6E23E1001032E4 /* LearnView.swift in Sources */,
+				FD84915C2D6E202C001032E4 /* MainAppView.swift in Sources */,
+				FD84915E2D6E23D5001032E4 /* ExecuteView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				FD84915A2D6D0317001032E4 /* ConfirmProblemView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
