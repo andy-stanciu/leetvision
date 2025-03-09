@@ -6,7 +6,7 @@ from PIL import Image
 import sys
 
 script_dir = Path(__file__).parent
-base_output_dir = script_dir / 'server/outputs'
+base_output_dir = script_dir / 'outputs'
 
 def run_ocr(image_path):
     try:
