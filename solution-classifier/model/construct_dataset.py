@@ -12,9 +12,10 @@ import pickle
 QUESTION_COUNT = len(QUESTIONS)
 
 class SolutionDataset(Dataset):
-    def __init__(self, root, transform=None, pre_transform=None):
+    def __init__(self, root, dims=194, transform=None, pre_transform=None):
         super(SolutionDataset, self).__init__()
         self.root = root
+        self.dims = dims
         self.transform = transform
         self.pre_transform = pre_transform
         
@@ -31,7 +32,7 @@ class SolutionDataset(Dataset):
 
     def get(self, idx):
         folder_idx, _, path = self.solution_files[idx]
-        graph = read_nodes(path)
+        graph = read_nodes(path, self.dims)
 
         cooccurrences = []
         for _, data_dict in graph.nodes(data=True):
@@ -53,7 +54,7 @@ class SolutionDataset(Dataset):
 
     def visualize(self, idx):
         _, folder, path = self.solution_files[idx]
-        graph = read_nodes(path)
+        graph = read_nodes(path, self.dims)
         pos = hierarchy_pos(graph)
         fig = plt.figure(figsize=(10, 8))
         fig.canvas.manager.set_window_title(folder)

@@ -49,7 +49,7 @@ def normalize(arr):
     normalized = (arr - arr_mean) / arr_std
     return normalized
 
-def read_cooccurrences(strip=False):
+def read_cooccurrences(strip=False, dims=None):
     cooccurrences = parse_cooccurrences(COOCCURRENCES)
 
     if strip:
@@ -57,6 +57,18 @@ def read_cooccurrences(strip=False):
 
     for k, v in cooccurrences.items():
         cooccurrences[k] = normalize(v)
+
+    if dims is not None:
+        # Project cooccurrences to lower dimensions using PCA
+        keys = list(cooccurrences.keys())
+        vectors = np.array(list(cooccurrences.values()))
+
+        pca = PCA(n_components=dims)
+        reduced_vectors = pca.fit_transform(vectors)
+
+        # Update cooccurrences with the reduced representations
+        cooccurrences = {keys[i]: reduced_vectors[i] for i in range(len(keys))}
+
     return cooccurrences
 
 if __name__ == "__main__":

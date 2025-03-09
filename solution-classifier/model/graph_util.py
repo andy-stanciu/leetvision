@@ -33,10 +33,10 @@ def hierarchy_pos(G, root=None, width=10.0, vert_gap=0.2, vert_loc=0, xcenter=0.
 
     return _hierarchy_pos(G, root, 0, width, vert_loc, {})
 
-def read_nodes(file):
+def read_nodes(file, dims):
     try:
         graph = nx.DiGraph()
-        cooccurrences = read_cooccurrences()
+        cooccurrences = read_cooccurrences(dims=dims)
         with open(file, 'r') as file:
             for line in file:
                 line = line.strip()
@@ -61,9 +61,9 @@ def read_nodes(file):
         print(f"Error: File '{file}' not found.")
     return None
 
-def read_nodes_from_string(data_string):
+def read_nodes_from_string(data_string, dims):
     graph = nx.DiGraph()
-    cooccurrences = read_cooccurrences()
+    cooccurrences = read_cooccurrences(dims=dims)
     file_like_object = io.StringIO(data_string)
     for line in file_like_object:
         line = line.strip()
