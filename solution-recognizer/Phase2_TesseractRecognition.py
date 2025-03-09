@@ -12,7 +12,6 @@ def run_ocr(image_path):
     try:
         image = Image.open(image_path)
         ocr_result = pytesseract.image_to_string(image)
-        print(ocr_result)
         return ocr_result
     except Exception as e:
         print(f"Error during OCR processing for {image_path}: {e}")
