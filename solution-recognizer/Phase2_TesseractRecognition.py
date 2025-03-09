@@ -12,6 +12,7 @@ def run_ocr(image_path):
     try:
         image = Image.open(image_path)
         ocr_result = pytesseract.image_to_string(image)
+        print(ocr_result)
         return ocr_result
     except Exception as e:
         print(f"Error during OCR processing for {image_path}: {e}")
@@ -20,6 +21,8 @@ def run_ocr(image_path):
 
 def process_output_folder(folder_name):
     folder_path = base_output_dir / folder_name
+
+    print(folder_path)
     
     if not folder_path.exists():
         return f"The folder '{folder_name}' does not exist in the 'server' directory.\n"
