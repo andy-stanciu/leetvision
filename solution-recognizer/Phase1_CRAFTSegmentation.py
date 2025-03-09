@@ -27,7 +27,7 @@ def phase1(image_path_str):
     print(f"Starting image segmentation for {image_path}")
 
     # Define output directory
-    base_output_dir = image_path.parent / 'outputs'
+    base_output_dir = image_path.parent / '../outputs'
 
     # Create a folder named after the image (without extension) inside 'outputs/'
     image_folder = base_output_dir / image_path.stem
