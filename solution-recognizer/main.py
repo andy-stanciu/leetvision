@@ -1,4 +1,3 @@
-import subprocess
 import os
 from Phase1_CRAFTSegmentation import phase1
 from Phase2_TesseractRecognition import phase2
