@@ -8,4 +8,5 @@ edges/
 *.pt
 *.zip
 solution-recognizer/server
+solution-recognizer/outputs/*
 solution-recognizer/sample-images/outputs/*
