@@ -8,8 +8,9 @@ from solution_classifier.model import classifier, model_constants
 
 app = Flask(__name__)
 
+
 @app.route("/classify", methods=["POST"])
-def execute():
+def classify():
     try:
         data = request.get_json()
         if "image" not in data:
@@ -47,6 +48,7 @@ def execute():
 
         return jsonify({
             "code": code_block,
+            "language": language,
             "questions": [
                 {"question": question, "id": id_value}
                 for question, id_value in question_ids
