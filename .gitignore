@@ -13,3 +13,5 @@ solution-recognizer/sample-images/outputs/*
 *.xcworkspacedata
 *.xcuserstate
 *.plist
+*.egg-info
+*/__pychache__/*
