@@ -11,3 +11,9 @@ setup(
     version="0.1",
     packages=find_packages(),
 )
+
+setup(
+    name="leetcode_client",
+    version="0.1",
+    packages=find_packages(),
+)
