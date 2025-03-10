@@ -1,19 +1,13 @@
 import requests
 import json
 import time
+from constants import *
 
 def get_leetcode_cookies():
     return {
-        "LEETCODE_SESSION": ("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X3ZlcmlmaWVkX2VtYWlsIjpudWxsLCJhY2NvdW50X3VzZXIiOiJhM2xqZyIsIl9hdXRoX3VzZXJfaWQiOiIxNjk2NDA0NCIs"
-                            "Il9hdXRoX3VzZXJfYmFja2VuZCI6ImFsbGF1dGguYWNjb3VudC5hdXRoX2JhY2tlbmRzLkF1dGhlbnRpY2F0aW9uQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjkxNThjNjdiZmNmMDU5"
-                            "ZjlmNzk3MmZkNzg2NzRkYjg2ZjA2MmJmMjg0NGQwNmM4MmVhNTBjMGZlMDczMDQ3NjgiLCJzZXNzaW9uX3V1aWQiOiJmNGVmNzFlOCIsImlkIjoxNjk2NDA0NCwiZW1haWwiOiJvZmZp"
-                            "Y2lhbGtyeXRoZXhAZ21haWwuY29tIiwidXNlcm5hbWUiOiJsZWV0LXZpc2lvbiIsInVzZXJfc2x1ZyI6ImxlZXQtdmlzaW9uIiwiYXZhdGFyIjoiaHR0cHM6Ly9hc3NldHMubGVl"
-                            "dGNvZGUuY29tL3VzZXJzL2RlZmF1bHRfYXZhdGFyLmpwZyIsInJlZnJlc2hlZF9hdCI6MTc0MTUwNDE3MywiaXAiOiI3NS4xNzIuODAuODIiLCJpZGVudGl0eSI6ImI4MDFkNDk0ZjEy"
-                            "Mjc5M2IwNjEyNjM2YmZhMjM0YjljIiwiZGV2aWNlX3dpdGhfaXAiOlsiOWYyZjQ5NmU3NWIxOWVhMWM4ZjI1NmIwMjgyNDkxOTkiLCI3NS4xNzIuODAuODIiXX0.8X474uHlhbsUemD_"
-                            "Vooi7CX57aLSlAzSLnOEleyQFpE"),
-        "cf_clearance": ("5HRdBeTcsu.erh0qdNywchtd9ES5jXdm89BIb3psRds-1741504156-1.2.1.1-gEDqIhraBW6d8lrU8I.9nL195nuEXFqHLp0jCC8KxdbswiuaZZDnBNdMiOnZHXiMgMZZtB648vBPA8iYKYaN"
-                        "ynVMK3d4R.i0GVXqSt9JOvDOTO4xG3iznPIZbXUtMkVUUkZFd_UJPKLsO3NnyLNwlA.j5B97wLvrrLoTGKdwtXDnakfaDc841KpRTo_eej3PuAvmG0_tQJAfQrFTeXYzV4OVK3NePskdihr0VR93IWadeZu98chhCX0fI7xgLIR4kHPoK5UwBVbehQehqaQ2TMhZz3w2mmCR0nOaCix9N43I425HAxslUFw1ls3WyVrQqzSflpUHwMvPLmkWwuLk3Ebfp9raTTt9YAiN1y6lG6pmv9xU0Gec7WumXbh01tuP8dOqv6_ASB3mqXpw3PSMlEjs9GnmOsgzbzAHU542edH598PeUreMms.7sDk7oXbxE5HSv1O_vfNlR9j1kwa5tA"),
-        "csrftoken": "DOvzdRHELV68Zu5Wdorx6JQajZwsZgkPTM3cclW5ol1em5qLZn9UFbHwqHQW4NLh",
+        "LEETCODE_SESSION" : LEETCODE_SESSION,
+        "cf_clearance": CF_CLEARANCE,
+        "csrftoken": CSRFTOKEN
     }
 
 def submit_solution(question, question_id, language, code):
@@ -87,21 +81,21 @@ def view_solution(solution_id):
     print(json.dumps(response, indent=4))
 
 
-solution_id = submit_solution(
-                "two-sum", 1, "java",
-                "class Solution {\n"
-                " public int[] twoSum(int[] nums, int target) {\n"
-                " Map<Integer, Integer> seen = new HashMap<>();\n\n"
-                " for (int i = 0; i < nums.length; i++) {\n"
-                " int complement = target - nums[i];\n"
-                " if (seen.containsKey(complement)) {\n"
-                " return new int[] { seen.get(complement), i };\n"
-                " }\n"
-                " seen.put(nums[i], i);\n"
-                " }\n\n"
-                " throw new RuntimeException(); // hello world \n"
-                " }\n"
-                "}")
+# solution_id = submit_solution(
+#                 "two-sum", 1, "java",
+#                 "class Solution {\n"
+#                 " public int[] twoSum(int[] nums, int target) {\n"
+#                 " Map<Integer, Integer> seen = new HashMap<>();\n\n"
+#                 " for (int i = 0; i < nums.length; i++) {\n"
+#                 " int complement = target - nums[i];\n"
+#                 " if (seen.containsKey(complement)) {\n"
+#                 " return new int[] { seen.get(complement), i };\n"
+#                 " }\n"
+#                 " seen.put(nums[i], i);\n"
+#                 " }\n\n"
+#                 " throw new RuntimeException(); // hello world \n"
+#                 " }\n"
+#                 "}")
 
-time.sleep(5)
-view_solution(solution_id)
+# time.sleep(5)
+# view_solution(solution_id)

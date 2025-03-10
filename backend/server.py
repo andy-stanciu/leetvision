@@ -4,10 +4,35 @@ from io import BytesIO
 from PIL import Image
 from solution_recognizer import ocr
 from constants import *
-from solution_classifier.model import classifier, model_constants
+from solution_classifier.model import classifier
+from leetcode_client import leetcode_client
+import time
 
 app = Flask(__name__)
 
+@app.route("/execute", methods=["POST"])
+def execute():
+    try:
+        data = request.get_json()
+        required_keys = ["code", "language", "question", "question_id"]
+        if not all(key in data for key in required_keys):
+            return jsonify({"error": "Missing required parameters"}), 400
+
+        code = data["code"]
+        language = data["language"]
+        question = data["question"]
+        question_id = data["question_id"]
+
+        # Call the submit_solution function with all parameters
+        submission_id = leetcode_client.submit_solution(question, question_id, language, code)
+        time.sleep(5) # await for the solution to execute
+        submission_details = leetcode_client.view_solution(submission_id)
+
+        return jsonify({"result": submission_details}), 200
+
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/classify", methods=["POST"])
 def classify():
