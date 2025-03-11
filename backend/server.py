@@ -68,35 +68,43 @@ def execute():
 def classify():
     try:
         data = request.get_json()
-        if "image" not in data:
+        provided_image = "image" in data
+        provided_code = "code" in data and "language" in data
+
+        if not provided_image and not provided_code:
             return jsonify({
-                "error": "No image provided"
+                "error": "No image or code provided"
             }), 400
 
-        image_data = base64.b64decode(data["image"])
-        image_stream = BytesIO(image_data)
-        image = Image.open(image_stream)
-
-        # step 1: ocr
-        text = ocr.extract_text(image, OCR_PROMPT, verbose=True)
-
-        # step 2: extract code blocks (should be only one)
-        code_blocks = ocr.extract_code_block(text)
-        if len(code_blocks) == 0:
-            return jsonify({
-                "error": "Failed to detect code"
-            }), 411
-        
         language, code_block, escaped_code_block = None, None, None
-        for lang, code in code_blocks:
-            language = lang.lower()
-            code_block = code
-            escaped_code_block = ocr.escape_code(code)
-            break  # one iteration
+
+        if provided_image:
+            image_data = base64.b64decode(data["image"])
+            image_stream = BytesIO(image_data)
+            image = Image.open(image_stream)
+
+            # step 1: ocr
+            text = ocr.extract_text(image, OCR_PROMPT, verbose=True)
+
+            # step 2: extract code blocks (should be only one)
+            code_blocks = ocr.extract_code_block(text)
+            if len(code_blocks) == 0:
+                return jsonify({
+                    "error": "Failed to detect code"
+                }), 411
+            
+            for lang, code in code_blocks:
+                language = lang.lower()
+                code_block = code
+                escaped_code_block = ocr.escape_code(code)
+                break  # one iteration
+        else:
+            language = data['language']
+            code_block = ocr.unescape_code(data['code'])
+            escaped_code_block = data['code']
 
         # step 3: parse solution as ast graph edges
         success, parse_result = classifier.parse_code_block(escaped_code_block)
-
         if not success or not parse_result:
             return jsonify({
                 "error": "Code failed to parse",

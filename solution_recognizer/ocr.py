@@ -42,16 +42,7 @@ def extract_code_block(text):
     return matches
 
 def unescape_code(s: str) -> str:
-    """
-    Replace literal '\\n' and '\\t' in the string with actual newline and tab characters.
-    
-    Args:
-        s (str): The input string with literal escape sequences.
-    
-    Returns:
-        str: The unescaped string.
-    """
-    return s.replace("\\n", "\n").replace("\\t", "\t")
+    return json.loads(s)
 
 def escape_code(s: str) -> str:
     return json.dumps(s)
