@@ -19,9 +19,9 @@ def parse_code_block(code_block):
     result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     
     if result.returncode != 0:
-        return None
+        return (False, result.stderr)
     else:
-        return result.stdout
+        return (True, result.stdout)
     
 def vectorize_edges(edges, verbose=False):
     graph = read_nodes_from_string(edges, dims=NODE_FEATURES, path=COOCCURRENCES)
