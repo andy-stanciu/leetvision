@@ -1,3 +1,8 @@
+import warnings
+
+warnings.filterwarnings("ignore", message="An issue occurred while importing 'torch-scatter'")
+warnings.filterwarnings("ignore", message="An issue occurred while importing 'torch-sparse'")
+
 import torch
 import subprocess
 from .knn import *
