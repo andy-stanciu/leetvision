@@ -16,7 +16,9 @@ def execute():
         data = request.get_json()
         required_keys = ["code", "language", "question", "question_id"]
         if not all(key in data for key in required_keys):
-            return jsonify({"error": "Missing required parameters"}), 400
+            return jsonify({
+                "error": "Missing required parameters: code, language, question, question_id"
+            }), 400
 
         code = data["code"]
         language = data["language"]
@@ -24,22 +26,52 @@ def execute():
         question_id = data["question_id"]
 
         # Call the submit_solution function with all parameters
-        submission_id = leetcode_client.submit_solution(question, question_id, language, code, verbose=True)
-        time.sleep(2) # await for the solution to execute
-        submission_details = leetcode_client.view_solution(submission_id, verbose=True)
+        success, submission_result = leetcode_client.submit_solution(question, 
+                                                                 question_id, 
+                                                                 language, 
+                                                                 code, 
+                                                                 verbose=True)
+        
+        if not success:
+            return jsonify({
+                "error": "Failed to submit solution",
+                "reason": submission_result
+            }), 500
+        
+        valid_result, submission_details = False, None
+        while not valid_result:
+            time.sleep(2) # await for the solution to execute
 
-        return jsonify({"result": submission_details}), 200
+            success, submission_details = leetcode_client.view_solution(submission_result)
+        
+            if not success:
+                return jsonify({
+                    "error": "Failed to view submission details",
+                    "reason": submission_details
+                }), 500
+            
+            if 'data' in submission_details and \
+                'submissionDetails' in submission_details['data'] and \
+                'runtime' in submission_details['data']['submissionDetails'] and \
+                submission_details['data']['submissionDetails']['runtime'] is not None:
+                valid_result = True
+
+        return jsonify(submission_details), 200
 
     except Exception as e:
         print(e)
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "error": str(e)
+        }), 500
 
 @app.route("/classify", methods=["POST"])
 def classify():
     try:
         data = request.get_json()
         if "image" not in data:
-            return jsonify({"error": "No image provided"}), 400
+            return jsonify({
+                "error": "No image provided"
+            }), 400
 
         image_data = base64.b64decode(data["image"])
         image_stream = BytesIO(image_data)
@@ -51,7 +83,9 @@ def classify():
         # step 2: extract code blocks (should be only one)
         code_blocks = ocr.extract_code_block(text)
         if len(code_blocks) == 0:
-            raise RuntimeError("Unexpected OCR failure")
+            return jsonify({
+                "error": "Failed to detect code"
+            }), 411
         
         language, code_block, escaped_code_block = None, None, None
         for lang, code in code_blocks:
@@ -61,13 +95,18 @@ def classify():
             break  # one iteration
 
         # step 3: parse solution as ast graph edges
-        edges = classifier.parse_code_block(escaped_code_block)
+        success, parse_result = classifier.parse_code_block(escaped_code_block)
 
-        if edges is None:
-            raise RuntimeError("Unexpected parser failure")
+        if not success or not parse_result:
+            return jsonify({
+                "error": "Code failed to parse",
+                "reason": parse_result,
+                "code": code_block,
+                "language": language
+            }), 412
         
         # step 4: classify solution with knn
-        solution_vec = classifier.vectorize_edges(edges, verbose=True)
+        solution_vec = classifier.vectorize_edges(parse_result, verbose=True)
         questions = classifier.predict_question(solution_vec, verbose=True)
         question_ids = classifier.map_questions(questions)
 
@@ -82,7 +121,9 @@ def classify():
 
     except Exception as e:
         print(e)
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "error": str(e)
+        }), 500
 
 if __name__ == "__main__":
     app.run(host=HOST, port=PORT)

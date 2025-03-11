@@ -1,6 +1,5 @@
 import requests
 import json
-import time
 from constants import *
 
 def get_leetcode_cookies():
@@ -39,13 +38,16 @@ def submit_solution(question, question_id, language, code, verbose=False):
     response = requests.post(url, headers=headers, cookies=get_leetcode_cookies(), json=payload)
     if verbose:
         print("Status Code:", response.status_code)
+
     if response.status_code != 200:
-        raise RuntimeError()
-    response = response.json()
-    id = int(response['submission_id'])
-    if verbose:
-        print(f"submission id: {id}")
-    return id
+        response = response.json()
+        return (False, response)
+    else:
+        response = response.json()
+        id = int(response['submission_id'])
+        if verbose:
+            print(f"submission id: {id}")
+        return (True, id)
 
 def view_solution(solution_id, verbose=False):
     url = "https://leetcode.com/graphql/"
@@ -82,30 +84,12 @@ def view_solution(solution_id, verbose=False):
     response = requests.post(url, headers=headers, cookies=get_leetcode_cookies(), json=payload)
     if verbose:
         print("Status Code:", response.status_code)
+    
     if response.status_code != 200:
-        raise RuntimeError()
-    response = response.json()
-    if verbose:
-        print(json.dumps(response, indent=4))
-
-    return response
-
-
-# solution_id = submit_solution(
-#                 "two-sum", 1, "java",
-#                 "class Solution {\n"
-#                 " public int[] twoSum(int[] nums, int target) {\n"
-#                 " Map<Integer, Integer> seen = new HashMap<>();\n\n"
-#                 " for (int i = 0; i < nums.length; i++) {\n"
-#                 " int complement = target - nums[i];\n"
-#                 " if (seen.containsKey(complement)) {\n"
-#                 " return new int[] { seen.get(complement), i };\n"
-#                 " }\n"
-#                 " seen.put(nums[i], i);\n"
-#                 " }\n\n"
-#                 " throw new RuntimeException(); // hello world \n"
-#                 " }\n"
-#                 "}")
-
-# time.sleep(5)
-# view_solution(solution_id)
+        response = response.json()
+        return (False, response)
+    else:
+        response = response.json()
+        if verbose:
+            print(json.dumps(response, indent=4))
+        return (True, response)
