@@ -141,23 +141,7 @@ struct HomeView: View {
                 self.classifyResponse = classifyResponse
             }
             
-            // Check if we have a valid question to execute
-            if let firstQuestion = classifyResponse.questions.first,
-               let code = classifyResponse.code,
-               let language = classifyResponse.language {
-                
-                // Call execute endpoint
-                let executeResponse = try await NetworkService.execute(
-                    code: code,
-                    language: language,
-                    question: firstQuestion.question,
-                    questionId: firstQuestion.id
-                )
-                
-                DispatchQueue.main.async {
-                    self.executeResponse = executeResponse
-                }
-            }
+            // TODO: use classifyResponse
             
             DispatchQueue.main.async {
                 self.isLoading = false
@@ -200,55 +184,31 @@ struct ResultsView: View {
                         .font(.headline)
                     
                     ForEach(classifyResponse.questions, id: \.id) { question in
-                        Text(question.question)
-                            .padding()
-                            .background(Color.blue.opacity(0.1))
-                            .cornerRadius(8)
-                    }
-                }
-            }
-            
-            // Execution results
-            if let executeResponse = executeResponse {
-                VStack(alignment: .leading) {
-                    Text("Execution Results")
-                        .font(.headline)
-                    
-                    VStack(alignment: .leading, spacing: 10) {
-                        HStack {
-                            Text("Status:")
-                                .fontWeight(.bold)
-                            Text(executeResponse.status)
-                                .foregroundColor(executeResponse.status == "success" ? .green : .red)
-                        }
-                        
-                        if let output = executeResponse.output {
-                            Text("Output:")
-                                .fontWeight(.bold)
-                            Text(output)
-                                .font(.system(.body, design: .monospaced))
+                        Button(action: {
+                            // Handle the button tap
+                            handleQuestionTap(for: question, classifyResponse: classifyResponse)
+                        }) {
+                            Text(question.question)
                                 .padding()
-                                .background(Color.gray.opacity(0.1))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color.blue.opacity(0.1))
                                 .cornerRadius(8)
                         }
-                        
-                        if let error = executeResponse.error {
-                            Text("Error:")
-                                .fontWeight(.bold)
-                            Text(error)
-                                .foregroundColor(.red)
-                                .font(.system(.body, design: .monospaced))
-                                .padding()
-                                .background(Color.red.opacity(0.1))
-                                .cornerRadius(8)
-                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.vertical, 4)
                     }
-                    .padding()
-                    .background(Color.gray.opacity(0.05))
-                    .cornerRadius(8)
                 }
             }
         }
+    }
+
+    private func handleQuestionTap(for question: ClassifyResponse.Question, classifyResponse: ClassifyResponse) async throws -> ExecuteResponse {
+        return try await NetworkService.execute(
+            code: classifyResponse.code,
+            language: classifyResponse.language,
+            question: question.question,
+            questionId: question.id
+        )
     }
 }
 
@@ -266,19 +226,25 @@ struct NetworkService {
         )
     }
     
-    static func execute(code: String, language: String, question: String, questionId: String) async throws -> ExecuteResponse {
-        let payload: [String: Any] = [
-            "code": code,
-            "language": language,
-            "question": question,
-            "question_id": questionId
-        ]
-        
-        return try await sendRequest(
-            endpoint: "/execute",
-            body: payload,
-            responseType: ExecuteResponse.self
-        )
+    static func execute(code: String?, language: String?, question: String, questionId: Int) async throws -> ExecuteResponse {
+        var payload: [String: Any] = [
+            "question": question,
+            "question_id": questionId
+        ]
+        
+        // Only add 'code' and 'language' if they are non-nil.
+        if let code = code {
+            payload["code"] = code
+        }
+        if let language = language {
+            payload["language"] = language
+        }
+        
+        return try await sendRequest(
+            endpoint: "/execute",
+            body: payload,
+            responseType: ExecuteResponse.self
+        )
     }
     
     private static func sendRequest<T: Decodable>(
@@ -345,16 +311,72 @@ struct ClassifyResponse: Decodable {
     let questions: [Question]
     
     struct Question: Decodable {
-        let id: String
+        let id: Int
         let question: String
     }
 }
 
 struct ExecuteResponse: Decodable {
-    let status: String
-    let output: String?
-    let error: String?
+    let data: SubmissionData
+
+    struct SubmissionData: Decodable {
+        let submissionDetails: SubmissionDetails
+    }
+
+    struct SubmissionDetails: Decodable {
+        let code: String
+        let codeOutput: String?
+        let compileError: String?
+        let expectedOutput: String?
+        let flagType: String
+        let fullCodeOutput: String?
+        let lang: Language
+        let lastTestcase: String?
+        let memory: Int
+        let memoryDisplay: String
+        let memoryDistribution: String?
+        let memoryPercentile: Double
+        let notes: String?
+        let question: Question
+        let runtime: Int
+        let runtimeDisplay: String
+        let runtimeDistribution: String?
+        let runtimeError: String?
+        let runtimePercentile: Double
+        let statusCode: Int
+        let stdOutput: String?
+        let testBodies: String?
+        let testDescriptions: String?
+        let testInfo: String?
+        let timestamp: Int
+        let topicTags: [String]
+        let totalCorrect: Int
+        let totalTestcases: Int
+        let user: User
+    }
+
+    struct Language: Decodable {
+        let name: String
+        let verboseName: String
+    }
+
+    struct Question: Decodable {
+        let hasFrontendPreview: Bool
+        let questionId: String
+        let titleSlug: String
+    }
+
+    struct User: Decodable {
+        let profile: UserProfile
+        let username: String
+    }
+
+    struct UserProfile: Decodable {
+        let realName: String
+        let userAvatar: String
+    }
 }
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
