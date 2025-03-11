@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		FDDB6A102D809FC900A405F4 /* Exceptions for "leetvision" folder in "leetvision" target */ = {
+		A133911B2D80FB59004F686F /* Exceptions for "leetvision" folder in "leetvision" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +43,7 @@
 		FDDB69C02D809E1C00A405F4 /* leetvision */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				FDDB6A102D809FC900A405F4 /* Exceptions for "leetvision" folder in "leetvision" target */,
+				A133911B2D80FB59004F686F /* Exceptions for "leetvision" folder in "leetvision" target */,
 			);
 			path = leetvision;
 			sourceTree = "<group>";
@@ -406,10 +406,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"leetvision/Preview Content\"";
-				DEVELOPMENT_TEAM = TQ87ATBK9N;
+				DEVELOPMENT_TEAM = S8T7PU3B9Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = leetvision/Info.plist;
@@ -424,8 +425,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ashaymanocha.leetvision;
+				PRODUCT_BUNDLE_IDENTIFIER = org.andystanciu.leetvision;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -437,10 +439,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"leetvision/Preview Content\"";
-				DEVELOPMENT_TEAM = TQ87ATBK9N;
+				DEVELOPMENT_TEAM = S8T7PU3B9Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = leetvision/Info.plist;
@@ -455,8 +458,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ashaymanocha.leetvision;
+				PRODUCT_BUNDLE_IDENTIFIER = org.andystanciu.leetvision;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -178,26 +178,26 @@ struct ResultsView: View {
             }
             
             // Questions section
-            if !classifyResponse.questions.isEmpty {
-                VStack(alignment: .leading) {
-                    Text("Questions")
-                        .font(.headline)
-                    
-                    ForEach(classifyResponse.questions, id: \.id) { question in
-                        Button(action: {
-                            // Handle the button tap
-                            handleQuestionTap(for: question, classifyResponse: classifyResponse)
-                        }) {
-                            Text(question.question)
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.blue.opacity(0.1))
-                                .cornerRadius(8)
+            ForEach(classifyResponse.questions, id: \.id) { question in
+                Button(action: {
+                    Task {
+                        do {
+                            let response = try await handleQuestionTap(for: question, classifyResponse: classifyResponse)
+                            // Use 'response' as needed
+                        } catch {
+                            // Handle the error appropriately (e.g., show an alert)
+                            print("Error handling question tap: \(error)")
                         }
-                        .buttonStyle(PlainButtonStyle())
-                        .padding(.vertical, 4)
                     }
+                }) {
+                    Text(question.question)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(8)
                 }
+                .buttonStyle(PlainButtonStyle())
+                .padding(.vertical, 4)
             }
         }
     }
@@ -227,24 +227,25 @@ struct NetworkService {
     }
     
     static func execute(code: String?, language: String?, question: String, questionId: Int) async throws -> ExecuteResponse {
-        var payload: [String: Any] = [
-            "question": question,
-            "question_id": questionId
-        ]
-        
-        // Only add 'code' and 'language' if they are non-nil.
-        if let code = code {
-            payload["code"] = code
-        }
-        if let language = language {
-            payload["language"] = language
-        }
-        
-        return try await sendRequest(
-            endpoint: "/execute",
-            body: payload,
-            responseType: ExecuteResponse.self
-        )
+        var payload: [String: Any] = [
+            "question": question,
+            "question_id": questionId
+        ]
+        
+        // Only add 'code' and 'language' if they are non-nil.
+        if let code = code {
+            payload["code"] = code
+        }
+        
+        if let language = language {
+            payload["language"] = language
+        }
+        
+        return try await sendRequest(
+            endpoint: "/execute",
+            body: payload,
+            responseType: ExecuteResponse.self
+        )
     }
     
     private static func sendRequest<T: Decodable>(
