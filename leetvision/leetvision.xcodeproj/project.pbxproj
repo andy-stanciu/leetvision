@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		FDDB69CF2D809E2000A405F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDDB69B62D809E1C00A405F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDDB69BD2D809E1C00A405F4;
+			remoteInfo = leetvision;
+		};
+		FDDB69D92D809E2000A405F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDDB69B62D809E1C00A405F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDDB69BD2D809E1C00A405F4;
+			remoteInfo = leetvision;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FDDB69BE2D809E1C00A405F4 /* leetvision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = leetvision.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDDB69CE2D809E2000A405F4 /* leetvisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = leetvisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDDB69D82D809E2000A405F4 /* leetvisionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = leetvisionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FDDB6A102D809FC900A405F4 /* Exceptions for "leetvision" folder in "leetvision" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FDDB69BD2D809E1C00A405F4 /* leetvision */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FDDB69C02D809E1C00A405F4 /* leetvision */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FDDB6A102D809FC900A405F4 /* Exceptions for "leetvision" folder in "leetvision" target */,
+			);
+			path = leetvision;
+			sourceTree = "<group>";
+		};
+		FDDB69D12D809E2000A405F4 /* leetvisionTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = leetvisionTests;
+			sourceTree = "<group>";
+		};
+		FDDB69DB2D809E2000A405F4 /* leetvisionUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = leetvisionUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FDDB69BB2D809E1C00A405F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDDB69CB2D809E2000A405F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDDB69D52D809E2000A405F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FDDB69B52D809E1C00A405F4 = {
+			isa = PBXGroup;
+			children = (
+				FDDB69C02D809E1C00A405F4 /* leetvision */,
+				FDDB69D12D809E2000A405F4 /* leetvisionTests */,
+				FDDB69DB2D809E2000A405F4 /* leetvisionUITests */,
+				FDDB69BF2D809E1C00A405F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FDDB69BF2D809E1C00A405F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FDDB69BE2D809E1C00A405F4 /* leetvision.app */,
+				FDDB69CE2D809E2000A405F4 /* leetvisionTests.xctest */,
+				FDDB69D82D809E2000A405F4 /* leetvisionUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FDDB69BD2D809E1C00A405F4 /* leetvision */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDDB69E22D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvision" */;
+			buildPhases = (
+				FDDB69BA2D809E1C00A405F4 /* Sources */,
+				FDDB69BB2D809E1C00A405F4 /* Frameworks */,
+				FDDB69BC2D809E1C00A405F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FDDB69C02D809E1C00A405F4 /* leetvision */,
+			);
+			name = leetvision;
+			packageProductDependencies = (
+			);
+			productName = leetvision;
+			productReference = FDDB69BE2D809E1C00A405F4 /* leetvision.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FDDB69CD2D809E2000A405F4 /* leetvisionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDDB69E52D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvisionTests" */;
+			buildPhases = (
+				FDDB69CA2D809E2000A405F4 /* Sources */,
+				FDDB69CB2D809E2000A405F4 /* Frameworks */,
+				FDDB69CC2D809E2000A405F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FDDB69D02D809E2000A405F4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FDDB69D12D809E2000A405F4 /* leetvisionTests */,
+			);
+			name = leetvisionTests;
+			packageProductDependencies = (
+			);
+			productName = leetvisionTests;
+			productReference = FDDB69CE2D809E2000A405F4 /* leetvisionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FDDB69D72D809E2000A405F4 /* leetvisionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDDB69E82D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvisionUITests" */;
+			buildPhases = (
+				FDDB69D42D809E2000A405F4 /* Sources */,
+				FDDB69D52D809E2000A405F4 /* Frameworks */,
+				FDDB69D62D809E2000A405F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FDDB69DA2D809E2000A405F4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FDDB69DB2D809E2000A405F4 /* leetvisionUITests */,
+			);
+			name = leetvisionUITests;
+			packageProductDependencies = (
+			);
+			productName = leetvisionUITests;
+			productReference = FDDB69D82D809E2000A405F4 /* leetvisionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FDDB69B62D809E1C00A405F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					FDDB69BD2D809E1C00A405F4 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					FDDB69CD2D809E2000A405F4 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = FDDB69BD2D809E1C00A405F4;
+					};
+					FDDB69D72D809E2000A405F4 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = FDDB69BD2D809E1C00A405F4;
+					};
+				};
+			};
+			buildConfigurationList = FDDB69B92D809E1C00A405F4 /* Build configuration list for PBXProject "leetvision" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FDDB69B52D809E1C00A405F4;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = FDDB69BF2D809E1C00A405F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FDDB69BD2D809E1C00A405F4 /* leetvision */,
+				FDDB69CD2D809E2000A405F4 /* leetvisionTests */,
+				FDDB69D72D809E2000A405F4 /* leetvisionUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FDDB69BC2D809E1C00A405F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDDB69CC2D809E2000A405F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDDB69D62D809E2000A405F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FDDB69BA2D809E1C00A405F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDDB69CA2D809E2000A405F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDDB69D42D809E2000A405F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FDDB69D02D809E2000A405F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDDB69BD2D809E1C00A405F4 /* leetvision */;
+			targetProxy = FDDB69CF2D809E2000A405F4 /* PBXContainerItemProxy */;
+		};
+		FDDB69DA2D809E2000A405F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDDB69BD2D809E1C00A405F4 /* leetvision */;
+			targetProxy = FDDB69D92D809E2000A405F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FDDB69E02D809E2000A405F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FDDB69E12D809E2000A405F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FDDB69E32D809E2000A405F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"leetvision/Preview Content\"";
+				DEVELOPMENT_TEAM = TQ87ATBK9N;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = leetvision/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take and import photos.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ashaymanocha.leetvision;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FDDB69E42D809E2000A405F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"leetvision/Preview Content\"";
+				DEVELOPMENT_TEAM = TQ87ATBK9N;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = leetvision/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take and import photos.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ashaymanocha.leetvision;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FDDB69E62D809E2000A405F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TQ87ATBK9N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ashaymanocha.leetvisionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/leetvision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/leetvision";
+			};
+			name = Debug;
+		};
+		FDDB69E72D809E2000A405F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TQ87ATBK9N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ashaymanocha.leetvisionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/leetvision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/leetvision";
+			};
+			name = Release;
+		};
+		FDDB69E92D809E2000A405F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TQ87ATBK9N;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ashaymanocha.leetvisionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = leetvision;
+			};
+			name = Debug;
+		};
+		FDDB69EA2D809E2000A405F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TQ87ATBK9N;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ashaymanocha.leetvisionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = leetvision;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FDDB69B92D809E1C00A405F4 /* Build configuration list for PBXProject "leetvision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDDB69E02D809E2000A405F4 /* Debug */,
+				FDDB69E12D809E2000A405F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDDB69E22D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDDB69E32D809E2000A405F4 /* Debug */,
+				FDDB69E42D809E2000A405F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDDB69E52D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvisionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDDB69E62D809E2000A405F4 /* Debug */,
+				FDDB69E72D809E2000A405F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDDB69E82D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvisionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDDB69E92D809E2000A405F4 /* Debug */,
+				FDDB69EA2D809E2000A405F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FDDB69B62D809E1C00A405F4 /* Project object */;
+}
