@@ -11,7 +11,7 @@ enum AppConstants {
     /// Network configuration
     enum Network {
         // set as my Mac's IP for now
-        static let host = "10.0.0.95"
+        static let host = "10.19.114.186"
         static let port = 20501
     }
     
