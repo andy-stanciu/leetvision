@@ -10,12 +10,12 @@ def get_leetcode_cookies():
         "csrftoken": CSRFTOKEN
     }
 
-def submit_solution(question, question_id, language, code):
+def submit_solution(question, question_id, language, code, verbose=False):
     url = f"https://leetcode.com/problems/{question}/submit/"
 
     headers = {
         "sec-ch-ua-platform": '"macOS"',
-        "x-csrftoken": "DOvzdRHELV68Zu5Wdorx6JQajZwsZgkPTM3cclW5ol1em5qLZn9UFbHwqHQW4NLh",
+        "x-csrftoken": CSRFTOKEN,
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
         "sec-ch-ua": '"Not(A:Brand";v="99", "Google Chrome";v="133", "Chromium";v="133"',
         "content-type": "application/json",
@@ -37,18 +37,22 @@ def submit_solution(question, question_id, language, code):
     }
 
     response = requests.post(url, headers=headers, cookies=get_leetcode_cookies(), json=payload)
-    print("Status Code:", response.status_code)
+    if verbose:
+        print("Status Code:", response.status_code)
+    if response.status_code != 200:
+        raise RuntimeError()
     response = response.json()
     id = int(response['submission_id'])
-    print(f"submission id: {id}")
+    if verbose:
+        print(f"submission id: {id}")
     return id
 
-def view_solution(solution_id):
+def view_solution(solution_id, verbose=False):
     url = "https://leetcode.com/graphql/"
 
     headers = {
         "sec-ch-ua-platform": '"macOS"',
-        "x-csrftoken": "AapDpxVYCZtFYly3dANHwmJQKtNGta4eKGiJHF2WugTOFAtkdlemyPdazjJDZeLu",
+        "x-csrftoken": CSRFTOKEN,
         "authorization": "",
         "uuuserid": "9f2f496e75b19ea1c8f256b028249199",
         "sec-ch-ua": '"Not(A:Brand";v="99", "Google Chrome";v="133", "Chromium";v="133"',
@@ -76,9 +80,15 @@ def view_solution(solution_id):
     }
 
     response = requests.post(url, headers=headers, cookies=get_leetcode_cookies(), json=payload)
-    print("Status Code:", response.status_code)
+    if verbose:
+        print("Status Code:", response.status_code)
+    if response.status_code != 200:
+        raise RuntimeError()
     response = response.json()
-    print(json.dumps(response, indent=4))
+    if verbose:
+        print(json.dumps(response, indent=4))
+
+    return response
 
 
 # solution_id = submit_solution(

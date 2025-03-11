@@ -24,9 +24,9 @@ def execute():
         question_id = data["question_id"]
 
         # Call the submit_solution function with all parameters
-        submission_id = leetcode_client.submit_solution(question, question_id, language, code)
-        time.sleep(5) # await for the solution to execute
-        submission_details = leetcode_client.view_solution(submission_id)
+        submission_id = leetcode_client.submit_solution(question, question_id, language, code, verbose=True)
+        time.sleep(2) # await for the solution to execute
+        submission_details = leetcode_client.view_solution(submission_id, verbose=True)
 
         return jsonify({"result": submission_details}), 200
 
