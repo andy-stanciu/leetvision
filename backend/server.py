@@ -42,7 +42,7 @@ def execute():
         while not valid_result:
             time.sleep(2) # await for the solution to execute
 
-            success, submission_details = leetcode_client.view_solution(submission_result)
+            success, submission_details = leetcode_client.view_solution(submission_result, verbose=True)
         
             if not success:
                 return jsonify({
@@ -52,9 +52,11 @@ def execute():
             
             if 'data' in submission_details and \
                 'submissionDetails' in submission_details['data'] and \
-                'runtime' in submission_details['data']['submissionDetails'] and \
-                submission_details['data']['submissionDetails']['runtime'] is not None:
-                valid_result = True
+                'runtime' in submission_details['data']['submissionDetails']:
+                
+                details = submission_details['data']['submissionDetails']
+                if details['runtime'] is not None: # solution execution done
+                    valid_result = True
 
         return jsonify(submission_details), 200
 
