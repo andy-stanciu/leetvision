@@ -1,0 +1,22 @@
+class Solution {
+
+    public int[] method1(int n) {
+        int[] ans = new int[n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            ans[i] = ans[i / 2] + i % 2;
+        }
+        return ans;
+    }
+
+    int getBinaryCountOfOne(int n) {
+        int count = 0;
+        while (n > 0) {
+            int ost = n % 2;
+            if (ost == 1) {
+                count++;
+            }
+            n /= 2;
+        }
+        return count;
+    }
+}

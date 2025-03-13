@@ -1,0 +1,19 @@
+class Solution {
+
+    public int canCompleteCircuit(int[] param1, int[] cost) {
+        int totalSum = 0;
+        int maxSum = 0;
+        int startIndex = 0;
+        for (int i = 0; i < param1.length; i++) {
+            int difference = param1[i] - cost[i];
+            totalSum += difference;
+            if (difference > maxSum + difference) {
+                maxSum = difference;
+                startIndex = i;
+            } else {
+                maxSum += difference;
+            }
+        }
+        return totalSum < 0 ? -1 : startIndex;
+    }
+}

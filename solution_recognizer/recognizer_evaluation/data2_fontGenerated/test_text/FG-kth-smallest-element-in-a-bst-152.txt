@@ -1,0 +1,21 @@
+class Solution {
+
+    public int method1(TreeNode root, int k) {
+        PriorityQueue<Integer> var1 = new PriorityQueue<>();
+        helper(root, var1, k);
+        int ans = 0;
+        for (int i = 0; i < k; i++) {
+            ans = var1.poll();
+        }
+        return ans;
+    }
+
+    public void helper(TreeNode node, PriorityQueue<Integer> var1, int k) {
+        if (node == null) {
+            return;
+        }
+        helper(node.left, var1, k);
+        var1.offer(node.val);
+        helper(node.right, var1, k);
+    }
+}

@@ -1,0 +1,16 @@
+class Solution {
+
+    public int[] method1(int[] nums) {
+        int[] pro = new int[nums.length];
+        int lMul = 1, rMul = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            pro[i] = rMul;
+            rMul *= nums[i];
+        }
+        for (int j = 0; j < nums.length; j++) {
+            pro[j] *= lMul;
+            lMul *= nums[j];
+        }
+        return pro;
+    }
+}

@@ -1,0 +1,38 @@
+class Solution {
+
+    List<List<Integer>> res = new ArrayList<>();
+
+    List<Integer> var1 = new ArrayList<>();
+
+    public List<List<Integer>> method1(TreeNode root, int param1) {
+        if (root == null) {
+            return res;
+        }
+        dfs(root, param1, 0);
+        return res;
+    }
+
+    private void dfs(TreeNode root, int target, int current) {
+        if (root == null) {
+            return;
+        }
+        if (root.left == null && root.right == null) {
+            if (current + root.val == target) {
+                var1.add(root.val);
+                List<Integer> flag = new ArrayList<>();
+                for (int it : var1) {
+                    flag.add(it);
+                }
+                res.add(flag);
+                var1.remove(var1.size() - 1);
+            }
+            return;
+        }
+        current += root.val;
+        var1.add(root.val);
+        dfs(root.left, target, current);
+        dfs(root.right, target, current);
+        current -= root.val;
+        var1.remove(var1.size() - 1);
+    }
+}
