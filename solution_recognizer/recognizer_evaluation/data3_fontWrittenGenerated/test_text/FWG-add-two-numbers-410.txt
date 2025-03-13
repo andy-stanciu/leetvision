@@ -1,0 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // Initialize dummy node and carry value
+        ListNode dummy = new ListNode(0);
+        ListNode current = dummy;
+        int carry = 0;
+        // Traverse both linked lists
+        while (l1 != null || l2 != null || carry != 0) {
+            // Get values from l1 and l2 if they exist, else use 0
+            int x = (l1 != null) ? l1.val : 0;
+            int y = (l2 != null) ? l2.val : 0;
+            // Calculate the sum of current digits and carry
+            int sum = carry + x + y;
+            // Update carry (integer division) and the value of the next node (modulus)
+            carry = sum / 10;
+            current.next = new ListNode(sum % 10);
+            // Move pointers forward
+            current = current.next;
+            if (l1 != null)
+                l1 = l1.next;
+            if (l2 != null)
+                l2 = l2.next;
+        }
+        // Return the next node of dummy (head of the resultant linked list)
+        return dummy.next;
+    }
+}

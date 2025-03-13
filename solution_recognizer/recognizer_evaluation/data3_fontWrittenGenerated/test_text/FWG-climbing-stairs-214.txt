@@ -1,0 +1,15 @@
+class Solution {
+
+    public int method1(int n) {
+        int prev = 1;
+        int prev2 = 0;
+        for (int idx = 1; idx <= n; idx++) {
+            int one = prev;
+            int two = prev2;
+            int curr = one + two;
+            prev2 = prev;
+            prev = curr;
+        }
+        return prev;
+    }
+}

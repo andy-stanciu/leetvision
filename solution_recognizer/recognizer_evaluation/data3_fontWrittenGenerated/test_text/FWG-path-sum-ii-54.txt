@@ -1,0 +1,24 @@
+class Solution {
+
+    public List<List<Integer>> method1(TreeNode root, int param1) {
+        List<List<Integer>> var1 = new ArrayList<>();
+        method2(root, param1, new ArrayList<Integer>(), var1);
+        return var1;
+    }
+
+    // The magical function that will populate our paths
+    public void method2(TreeNode root, int param1, List<Integer> current, List<List<Integer>> var1) {
+        // Recursive functions require two things, i.e. A base case and the recursive call
+        // The base case
+        if (root == null)
+            return;
+        current.add(root.val);
+        // the answer case
+        if (root.val == param1 && root.right == null && root.left == null) {
+            var1.add(current);
+        }
+        // The recursive paths
+        method2(root.left, param1 - root.val, new ArrayList<Integer>(current), var1);
+        method2(root.right, param1 - root.val, new ArrayList<Integer>(current), var1);
+    }
+}

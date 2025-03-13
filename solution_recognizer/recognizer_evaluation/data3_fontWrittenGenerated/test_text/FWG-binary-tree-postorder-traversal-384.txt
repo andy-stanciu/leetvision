@@ -1,0 +1,18 @@
+class Solution {
+
+    public List<Integer> method1(TreeNode root) {
+        method2(root);
+        return ans;
+    }
+
+    List<Integer> ans = new ArrayList<>();
+
+    public void method2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        method2(root.left);
+        method2(root.right);
+        ans.add(root.val);
+    }
+}

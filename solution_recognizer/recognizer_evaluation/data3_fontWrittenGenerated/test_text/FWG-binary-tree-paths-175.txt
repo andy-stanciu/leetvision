@@ -1,0 +1,34 @@
+class Solution {
+
+    public List<String> method1(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        helper(root, sb, result);
+        return result;
+    }
+
+    private void helper(TreeNode root, StringBuilder sb, List<String> result) {
+        if (root == null) {
+            return;
+        }
+        if (root.left == null && root.right == null) {
+            sb.append(root.val);
+            String str = new String(sb);
+            result.add(str);
+            sb.append("->");
+            return;
+        }
+        sb.append(root.val);
+        sb.append("->");
+        if (root.left != null) {
+            helper(root.left, sb, result);
+            String str = "" + root.left.val;
+            sb.setLength(sb.length() - str.length() - 2);
+        }
+        if (root.right != null) {
+            helper(root.right, sb, result);
+            String str = "" + root.right.val;
+            sb.setLength(sb.length() - str.length() - 2);
+        }
+    }
+}

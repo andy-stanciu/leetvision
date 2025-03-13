@@ -1,0 +1,70 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ * int val;
+ * ListNode next;
+ * ListNode() {}
+ * ListNode(int val) { this.val = val; }
+ * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+
+    ListNode mergedHead = null, mergedTail = null;
+
+    public ListNode method1(ListNode head, int k) {
+        ListNode prev = null, current = head;
+        int count = 0, var1 = 0;
+        while (current != null) {
+            if (var1 == 0) {
+                var1 = method2(current, k);
+                if (var1 < k) {
+                    method4(current);
+                    break;
+                }
+            }
+            if (var1 <= k) {
+                current = head.next;
+                head.next = prev;
+                prev = head;
+                if (current != null)
+                    head = current;
+                var1--;
+                if (var1 == 0) {
+                    method3(prev);
+                    count = 0;
+                    prev = null;
+                }
+            }
+        }
+        return mergedHead;
+    }
+
+    int method2(ListNode current, int k) {
+        ListNode localCurrent = current;
+        int count = 0;
+        while (count < k && localCurrent != null) {
+            localCurrent = localCurrent.next;
+            count++;
+        }
+        return count;
+    }
+
+    void method3(ListNode currentHead) {
+        ListNode local = currentHead;
+        if (mergedHead == null)
+            mergedHead = currentHead;
+        if (mergedTail == null) {
+            while (local.next != null) local = local.next;
+            mergedTail = local;
+        } else
+            mergedTail.next = local;
+        while (mergedTail.next != null) {
+            mergedTail = mergedTail.next;
+        }
+    }
+
+    void method4(ListNode current) {
+        mergedTail.next = current;
+    }
+}

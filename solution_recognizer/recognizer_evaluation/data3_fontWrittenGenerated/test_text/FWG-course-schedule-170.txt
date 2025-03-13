@@ -1,0 +1,38 @@
+class Solution {
+
+    public boolean canFinish(int param1, int[][] prerequisites) {
+        boolean[] visited = new boolean[param1];
+        boolean[] inStack = new boolean[param1];
+        List<Integer>[] edges = new ArrayList[param1];
+        for (int i = 0; i < param1; i++) edges[i] = new ArrayList<>();
+        for (int i = 0; i < prerequisites.length; i++) {
+            int src = prerequisites[i][1];
+            int dst = prerequisites[i][0];
+            edges[src].add(dst);
+        }
+        for (int i = 0; i < param1; i++) {
+            if (hasCycle(edges, param1, visited, inStack, i))
+                return false;
+        }
+        return true;
+    }
+
+    private static boolean hasCycle(List<Integer>[] edges, int n, boolean[] visited, boolean[] inStack, int src) {
+        if (src > n)
+            return false;
+        if (visited[src]) {
+            if (inStack[src])
+                return true;
+            return false;
+        }
+        visited[src] = true;
+        inStack[src] = true;
+        for (int i = 0; i < edges[src].size(); i++) {
+            int dst = edges[src].get(i);
+            if (hasCycle(edges, n, visited, inStack, dst))
+                return true;
+        }
+        inStack[src] = false;
+        return false;
+    }
+}
