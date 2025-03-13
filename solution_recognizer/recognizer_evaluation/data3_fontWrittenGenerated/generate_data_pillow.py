@@ -27,8 +27,8 @@ def convert_txt_to_image(input_folder, output_folder):
                 font = ImageFont.truetype(os.path.join(font_dir, random_font_file), font_size)
 
             input_path = os.path.join(input_folder, filename)
-            output_path = os.path.join(output_folder, f'{font.getname()[0]}_{random.randint(1, 9999999999)}.png')
-
+            output_path = os.path.join(output_folder, os.path.splitext(filename)[0]+ ".png")
+            
             try:
                 with open(input_path, 'r', encoding='utf-8') as f:
                     text = f.read()
