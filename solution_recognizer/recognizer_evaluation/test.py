@@ -86,12 +86,14 @@ def run_experiments(images_dir, text_dir, char_accs, word_accs, line_accs):
                 print(f"Error processing {image_path}: {e}")
 
 
+
 def plot_accuracy_metrics(experiment_results):
-    dataset_names = list(experiment_results.keys())
-    
-    char_accuracies = [data['char_accs'] for data in experiment_results.values()]
-    word_accuracies = [data['word_accs'] for data in experiment_results.values()]
-    line_accuracies = [data['line_accs'] for data in experiment_results.values()]
+    dataset_names = sorted(list(experiment_results.keys()))
+
+    # Convert accuracies to percentage scale (0 to 100)
+    char_accuracies = [[x * 100 for x in data['char_accs']] for data in experiment_results.values()]
+    word_accuracies = [[x * 100 for x in data['word_accs']] for data in experiment_results.values()]
+    line_accuracies = [[x * 100 for x in data['line_accs']] for data in experiment_results.values()]
 
     plt.figure(figsize=(15, 6))
 
@@ -100,7 +102,8 @@ def plot_accuracy_metrics(experiment_results):
     plt.boxplot(char_accuracies, labels=dataset_names)
     plt.title('Character Accuracy')
     plt.xlabel('Datasets')
-    plt.ylabel('Accuracy')
+    plt.ylabel('Accuracy (%)')
+    plt.ylim(-0.5, 100.5)
     plt.xticks(rotation=45)
 
     # Word Accuracy
@@ -108,6 +111,8 @@ def plot_accuracy_metrics(experiment_results):
     plt.boxplot(word_accuracies, labels=dataset_names)
     plt.title('Word Accuracy')
     plt.xlabel('Datasets')
+    plt.ylabel('Accuracy (%)')
+    plt.ylim(-0.5, 100.5)
     plt.xticks(rotation=45)
 
     # Line Accuracy
@@ -115,6 +120,8 @@ def plot_accuracy_metrics(experiment_results):
     plt.boxplot(line_accuracies, labels=dataset_names)
     plt.title('Line Accuracy')
     plt.xlabel('Datasets')
+    plt.ylabel('Accuracy (%)')
+    plt.ylim(-0.5, 100.5) 
     plt.xticks(rotation=45)
 
     plt.tight_layout()
