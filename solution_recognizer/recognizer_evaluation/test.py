@@ -41,7 +41,8 @@ def process_directories(base_dir):
     
     directories = [root for root, _, _ in os.walk(base_dir) if 'data' in os.path.basename(root)]
     
-    for root in tqdm(directories, desc="Processing datasets", unit="dataset"):
+    for root in directories:
+        print(f"Starting experiments for {str(root)}")
         dataset_name = os.path.basename(root)
 
         test_images_dir = os.path.join(root, 'test_images')
@@ -135,7 +136,7 @@ def load_results():
 
 
 def ocr_to_test(image, prompt, verbose=False):
-    time.sleep(1) # delay to avoid quota limit
+    time.sleep(5) # delay to avoid quota limit
 
     key = os.getenv("GEMINI_KEY")
     if key is None:
