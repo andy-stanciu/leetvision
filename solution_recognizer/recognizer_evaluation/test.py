@@ -11,6 +11,7 @@ import warnings
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import time
+import seaborn as sns
 
 
 OCR_PROMPT = "Extract the text as code from this image, preserving the indentation. " \
@@ -33,7 +34,8 @@ def main():
         print("Loading previous experiment results...")
         experiment_results = load_results()
 
-    plot_accuracy_metrics(experiment_results)
+    plot_box(experiment_results)
+    plot_violin(experiment_results)
 
 
 def process_directories(base_dir):
@@ -87,7 +89,7 @@ def run_experiments(images_dir, text_dir, char_accs, word_accs, line_accs):
 
 
 
-def plot_accuracy_metrics(experiment_results):
+def plot_box(experiment_results):
     dataset_names = sorted(list(experiment_results.keys()))
 
     # Convert accuracies to percentage scale (0 to 100)
@@ -123,6 +125,47 @@ def plot_accuracy_metrics(experiment_results):
     plt.ylabel('Accuracy (%)')
     plt.ylim(-0.5, 100.5) 
     plt.xticks(rotation=45)
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_violin(experiment_results):
+    dataset_names = sorted(list(experiment_results.keys()))
+
+    # Convert accuracies to percentage scale (0 to 100)
+    char_accuracies = [[x * 100 for x in data['char_accs']] for data in experiment_results.values()]
+    word_accuracies = [[x * 100 for x in data['word_accs']] for data in experiment_results.values()]
+    line_accuracies = [[x * 100 for x in data['line_accs']] for data in experiment_results.values()]
+
+    plt.figure(figsize=(15, 6))
+
+    # Character Accuracy
+    plt.subplot(1, 3, 1)
+    sns.violinplot(data=char_accuracies)
+    plt.title('Character Accuracy')
+    plt.xlabel('Datasets')
+    plt.ylabel('Accuracy (%)')
+    plt.ylim(-0.5, 100.5)
+    plt.xticks(ticks=range(len(dataset_names)), labels=dataset_names, rotation=45)
+
+    # Word Accuracy
+    plt.subplot(1, 3, 2)
+    sns.violinplot(data=word_accuracies)
+    plt.title('Word Accuracy')
+    plt.xlabel('Datasets')
+    plt.ylabel('Accuracy (%)')
+    plt.ylim(-0.5, 100.5)
+    plt.xticks(ticks=range(len(dataset_names)), labels=dataset_names, rotation=45)
+
+    # Line Accuracy
+    plt.subplot(1, 3, 3)
+    sns.violinplot(data=line_accuracies)
+    plt.title('Line Accuracy')
+    plt.xlabel('Datasets')
+    plt.ylabel('Accuracy (%)')
+    plt.ylim(-0.5, 100.5) 
+    plt.xticks(ticks=range(len(dataset_names)), labels=dataset_names, rotation=45)
 
     plt.tight_layout()
     plt.show()
