@@ -1,7 +1,7 @@
 import io
 import networkx as nx
 import matplotlib.pyplot as plt
-from .read_cooccurrences import *
+from read_cooccurrences import *
 
 def hierarchy_pos(G, root=None, width=10.0, vert_gap=0.2, vert_loc=0, xcenter=0.5):
     """
