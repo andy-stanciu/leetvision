@@ -46,7 +46,7 @@ def predict_question(solution_vec, verbose=False):
     knn = load_knn("backend/knn/knn_statpool_194d", 
                    embedding_method=_global_stats_pool, 
                    pca_dim=NODE_FEATURES, verbose=verbose)
-    c, k = 5, 5
+    c, k = 20, 20
 
     knn.update_k(k)
     preds = knn.predict(solution_vec, metric="cosine", top_c=c).numpy().flatten()

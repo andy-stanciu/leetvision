@@ -2,84 +2,69 @@ import SwiftUI
 
 struct ResultsView: View {
     let classifyResponse: ClassifyResponse
-    let executeResponse: ExecuteResponse?  // Optional if needed elsewhere
 
-    // New state to drive navigation to the execute response view
-    @State private var selectedExecuteResponse: ExecuteResponse?
-    @State private var shouldNavigateToExecuteResponse = false
+    // Navigation trigger to go to QuestionsView
+    @State private var navigateToQuestions: Bool = false
+    
+    // Environment dismiss to pop back to Home (for retake)
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            // Display extracted code if available
-            if let code = classifyResponse.code, let language = classifyResponse.language {
-                VStack(alignment: .leading) {
-                    Text("Extracted Code (\(language))")
-                        .font(.headline)
-                    Text(code)
-                        .font(.system(.body, design: .monospaced))
-                        .padding()
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(8)
-                }
-            }
+            // Title
+            Text("Here's what we got")
+                .font(.system(size: 34, weight: .bold))
+                .padding(.bottom, 4)
             
-            // Display questions as buttons
-            ForEach(classifyResponse.questions, id: \.id) { question in
-                Button(action: {
-                    Task {
-                        do {
-                            let response = try await handleQuestionTap(
-                                for: question,
-                                classifyResponse: classifyResponse
-                            )
-                            // Update state on the main thread to trigger navigation
-                            DispatchQueue.main.async {
-                                self.selectedExecuteResponse = response
-                                self.shouldNavigateToExecuteResponse = true
-                            }
-                        } catch {
-                            print("Error handling question tap: \(error)")
-                        }
-                    }
-                }) {
-                    Text(question.question)
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(8)
-                }
-                .buttonStyle(PlainButtonStyle())
-                .padding(.vertical, 4)
+            // Code block display: non-editable with horizontal scrolling
+            ScrollView(.horizontal, showsIndicators: true) {
+                CodeBlockView(code: extractedCode, language: languageName)
+                    .frame(minHeight: 150)
             }
+            .background(Color(UIColor.systemGray6))
+            .cornerRadius(8)
             
-            // Hidden NavigationLink that activates when shouldNavigateToExecuteResponse is true
+            // Single "Looks good!" button spanning full width
+            Button("Looks good!") {
+                navigateToQuestions = true
+            }
+            .font(.title2)
+            .buttonStyle(.borderedProminent)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 20)
+            
+            // NavigationLink to go to QuestionsView
             NavigationLink(
-                destination: executeResponseDestination,
-                isActive: $shouldNavigateToExecuteResponse,
+                destination: Group {
+                    if classifyResponse.questions.isEmpty {
+                        AnyView(EmptyView())
+                    } else {
+                        AnyView(QuestionsView(classifyResponse: classifyResponse))
+                    }
+                },
+                isActive: $navigateToQuestions,
                 label: { EmptyView() }
             )
+            
+            Spacer()
         }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
     }
     
-    // Computed property for the destination view.
-    private var executeResponseDestination: some View {
-        if let response = selectedExecuteResponse {
-            return AnyView(ExecuteResponseView(executeResponse: response))
-        } else {
-            return AnyView(EmptyView())
-        }
+    // Computed property: explicitly trim trailing whitespace and newlines
+    private var extractedCode: String {
+        let code = classifyResponse.code ?? ""
+        return code.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    // MARK: - Networking for Question Handling
-    private func handleQuestionTap(
-        for question: ClassifyResponse.Question,
-        classifyResponse: ClassifyResponse
-    ) async throws -> ExecuteResponse {
-        return try await NetworkService.execute(
-            code: classifyResponse.code,
-            language: classifyResponse.language,
-            question: question.question,
-            questionId: question.id
-        )
+    private var languageName: String {
+        classifyResponse.language ?? "plaintext"
+    }
+}
+
+struct ResultsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ResultsView(classifyResponse: ClassifyResponse(code: "print(\"Hello, world!\")\n\n", language: "swift", questions: []))
     }
 }

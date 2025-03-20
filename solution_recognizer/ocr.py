@@ -41,6 +41,27 @@ def extract_code_block(text):
     # Each match is a tuple (language, code)
     return matches
 
+def map_language(lang):
+    lang = lang.lower()
+    if lang == 'java':
+        return 'java'
+    elif lang == 'c++' or lang == 'cpp':
+        return 'cpp'
+    elif lang == 'python' or lang == 'python3':
+        return 'python3'
+    elif lang == 'c':
+        return 'c'
+    elif lang == 'c#' or lang == 'csharp':
+        return 'csharp'
+    elif lang == 'javascript' or lang == 'js':
+        return 'javascript'
+    elif lang == 'typescript' or lang == 'ts':
+        return 'typescript'
+    elif lang == 'go' or lang == 'golang':
+        return 'golang'
+    else:
+        raise ValueError()
+
 def unescape_code(s: str) -> str:
     return json.loads(s)
 

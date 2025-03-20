@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2CE7EBDF2715BDC378C78FD9 /* Pods_leetvisionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED86578C2A61D9FF5A0A26F /* Pods_leetvisionTests.framework */; };
+		DBEBA7CD26E173C9560371E3 /* Pods_leetvision_leetvisionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7EF6952F068CE23A5B6790 /* Pods_leetvision_leetvisionUITests.framework */; };
+		FD0CCA1D35C31F4E4EE69069 /* Pods_leetvision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630A1500ACC9F5CB9844CD02 /* Pods_leetvision.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FDDB69CF2D809E2000A405F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,13 +30,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A070C362614F6E68B45FAF4 /* Pods-leetvision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leetvision.release.xcconfig"; path = "Target Support Files/Pods-leetvision/Pods-leetvision.release.xcconfig"; sourceTree = "<group>"; };
+		5ED86578C2A61D9FF5A0A26F /* Pods_leetvisionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_leetvisionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		630A1500ACC9F5CB9844CD02 /* Pods_leetvision.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_leetvision.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA91DEE382B2CFAD67CBF6CB /* Pods-leetvisionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leetvisionTests.release.xcconfig"; path = "Target Support Files/Pods-leetvisionTests/Pods-leetvisionTests.release.xcconfig"; sourceTree = "<group>"; };
+		B4D7057787DCFF91E645808E /* Pods-leetvision.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leetvision.debug.xcconfig"; path = "Target Support Files/Pods-leetvision/Pods-leetvision.debug.xcconfig"; sourceTree = "<group>"; };
+		BE90B5648B8CED3E8E8E6118 /* Pods-leetvision-leetvisionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leetvision-leetvisionUITests.release.xcconfig"; path = "Target Support Files/Pods-leetvision-leetvisionUITests/Pods-leetvision-leetvisionUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C82080150952B6BD7F0F2CEA /* Pods-leetvision-leetvisionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leetvision-leetvisionUITests.debug.xcconfig"; path = "Target Support Files/Pods-leetvision-leetvisionUITests/Pods-leetvision-leetvisionUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D0E480D81B81E2D8D6624E6A /* Pods-leetvisionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leetvisionTests.debug.xcconfig"; path = "Target Support Files/Pods-leetvisionTests/Pods-leetvisionTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED7EF6952F068CE23A5B6790 /* Pods_leetvision_leetvisionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_leetvision_leetvisionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDDB69BE2D809E1C00A405F4 /* leetvision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = leetvision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDDB69CE2D809E2000A405F4 /* leetvisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = leetvisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDDB69D82D809E2000A405F4 /* leetvisionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = leetvisionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A133911B2D80FB59004F686F /* Exceptions for "leetvision" folder in "leetvision" target */ = {
+		A176CF5E2D82BEA800EE270B /* Exceptions for "leetvision" folder in "leetvision" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +58,7 @@
 		FDDB69C02D809E1C00A405F4 /* leetvision */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A133911B2D80FB59004F686F /* Exceptions for "leetvision" folder in "leetvision" target */,
+				A176CF5E2D82BEA800EE270B /* Exceptions for "leetvision" folder in "leetvision" target */,
 			);
 			path = leetvision;
 			sourceTree = "<group>";
@@ -65,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD0CCA1D35C31F4E4EE69069 /* Pods_leetvision.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CE7EBDF2715BDC378C78FD9 /* Pods_leetvisionTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +96,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBEBA7CD26E173C9560371E3 /* Pods_leetvision_leetvisionUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFD55F0E213143EE9C6C4906 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				630A1500ACC9F5CB9844CD02 /* Pods_leetvision.framework */,
+				ED7EF6952F068CE23A5B6790 /* Pods_leetvision_leetvisionUITests.framework */,
+				5ED86578C2A61D9FF5A0A26F /* Pods_leetvisionTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA8C80548F56C4C4B303E5F9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4D7057787DCFF91E645808E /* Pods-leetvision.debug.xcconfig */,
+				1A070C362614F6E68B45FAF4 /* Pods-leetvision.release.xcconfig */,
+				C82080150952B6BD7F0F2CEA /* Pods-leetvision-leetvisionUITests.debug.xcconfig */,
+				BE90B5648B8CED3E8E8E6118 /* Pods-leetvision-leetvisionUITests.release.xcconfig */,
+				D0E480D81B81E2D8D6624E6A /* Pods-leetvisionTests.debug.xcconfig */,
+				AA91DEE382B2CFAD67CBF6CB /* Pods-leetvisionTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FDDB69B52D809E1C00A405F4 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +133,8 @@
 				FDDB69D12D809E2000A405F4 /* leetvisionTests */,
 				FDDB69DB2D809E2000A405F4 /* leetvisionUITests */,
 				FDDB69BF2D809E1C00A405F4 /* Products */,
+				DA8C80548F56C4C4B303E5F9 /* Pods */,
+				BFD55F0E213143EE9C6C4906 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +155,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FDDB69E22D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvision" */;
 			buildPhases = (
+				CCBC3B516978F726A5836692 /* [CP] Check Pods Manifest.lock */,
 				FDDB69BA2D809E1C00A405F4 /* Sources */,
 				FDDB69BB2D809E1C00A405F4 /* Frameworks */,
 				FDDB69BC2D809E1C00A405F4 /* Resources */,
@@ -124,8 +168,6 @@
 				FDDB69C02D809E1C00A405F4 /* leetvision */,
 			);
 			name = leetvision;
-			packageProductDependencies = (
-			);
 			productName = leetvision;
 			productReference = FDDB69BE2D809E1C00A405F4 /* leetvision.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +176,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FDDB69E52D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvisionTests" */;
 			buildPhases = (
+				856698DCAF5DF80FE41C75A0 /* [CP] Check Pods Manifest.lock */,
 				FDDB69CA2D809E2000A405F4 /* Sources */,
 				FDDB69CB2D809E2000A405F4 /* Frameworks */,
 				FDDB69CC2D809E2000A405F4 /* Resources */,
@@ -147,8 +190,6 @@
 				FDDB69D12D809E2000A405F4 /* leetvisionTests */,
 			);
 			name = leetvisionTests;
-			packageProductDependencies = (
-			);
 			productName = leetvisionTests;
 			productReference = FDDB69CE2D809E2000A405F4 /* leetvisionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,6 +198,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FDDB69E82D809E2000A405F4 /* Build configuration list for PBXNativeTarget "leetvisionUITests" */;
 			buildPhases = (
+				C324D37B6F01D8CBEB98FF37 /* [CP] Check Pods Manifest.lock */,
 				FDDB69D42D809E2000A405F4 /* Sources */,
 				FDDB69D52D809E2000A405F4 /* Frameworks */,
 				FDDB69D62D809E2000A405F4 /* Resources */,
@@ -170,8 +212,6 @@
 				FDDB69DB2D809E2000A405F4 /* leetvisionUITests */,
 			);
 			name = leetvisionUITests;
-			packageProductDependencies = (
-			);
 			productName = leetvisionUITests;
 			productReference = FDDB69D82D809E2000A405F4 /* leetvisionUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -208,6 +248,9 @@
 			);
 			mainGroup = FDDB69B52D809E1C00A405F4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A1C4E9162D82B6520054DB52 /* XCRemoteSwiftPackageReference "Highlightr" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FDDB69BF2D809E1C00A405F4 /* Products */;
 			projectDirPath = "";
@@ -243,6 +286,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		856698DCAF5DF80FE41C75A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-leetvisionTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C324D37B6F01D8CBEB98FF37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-leetvision-leetvisionUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCBC3B516978F726A5836692 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-leetvision-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FDDB69BA2D809E1C00A405F4 /* Sources */ = {
@@ -403,6 +515,7 @@
 		};
 		FDDB69E32D809E2000A405F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4D7057787DCFF91E645808E /* Pods-leetvision.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -420,6 +533,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -436,6 +550,7 @@
 		};
 		FDDB69E42D809E2000A405F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A070C362614F6E68B45FAF4 /* Pods-leetvision.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -453,6 +568,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -469,6 +585,7 @@
 		};
 		FDDB69E62D809E2000A405F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0E480D81B81E2D8D6624E6A /* Pods-leetvisionTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -488,6 +605,7 @@
 		};
 		FDDB69E72D809E2000A405F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA91DEE382B2CFAD67CBF6CB /* Pods-leetvisionTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +625,7 @@
 		};
 		FDDB69E92D809E2000A405F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C82080150952B6BD7F0F2CEA /* Pods-leetvision-leetvisionUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -524,6 +643,7 @@
 		};
 		FDDB69EA2D809E2000A405F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE90B5648B8CED3E8E8E6118 /* Pods-leetvision-leetvisionUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -579,6 +699,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1C4E9162D82B6520054DB52 /* XCRemoteSwiftPackageReference "Highlightr" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raspu/Highlightr";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = FDDB69B62D809E1C00A405F4 /* Project object */;
 }

@@ -19,13 +19,7 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    // Title
-                    Text("Code Analyzer")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.bottom, 10)
-                    
-                    // Image selection area
+                    // Image selection area with updated styling
                     VStack {
                         if let imageData = selectedImageData,
                            let uiImage = UIImage(data: imageData) {
@@ -33,13 +27,14 @@ struct HomeView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxHeight: 300)
-                                .cornerRadius(8)
+                                .cornerRadius(12)
                         } else {
                             RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.gray.opacity(0.2))
-                                .frame(height: 200)
+                                .fill(Color(.systemGray5))
+                                .frame(height: 220)
                                 .overlay(
                                     Text("Select an image containing code")
+                                        .font(.headline)
                                         .foregroundColor(.gray)
                                 )
                         }
@@ -48,31 +43,35 @@ struct HomeView: View {
                             selection: $selectedItem,
                             matching: .images
                         ) {
-                            Text("Select Image")
+                            Text("Select image")
+                                .font(.headline)
                                 .padding()
-                                .background(Color.blue)
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue.opacity(0.7))
                                 .foregroundColor(.white)
-                                .cornerRadius(8)
+                                .cornerRadius(12)
                         }
                         .padding(.top, 10)
                         
                         if selectedImageData != nil {
-                            Button("Analyze Code") {
+                            Button("Execute code") {
                                 Task {
                                     await analyzeImage()
                                 }
                             }
+                            .font(.headline)
                             .padding()
-                            .background(Color.green)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.green.opacity(0.7))
                             .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .cornerRadius(12)
                             .padding(.top, 5)
                         }
                     }
                     .padding()
                     .background(Color.white)
                     .cornerRadius(12)
-                    .shadow(radius: 2)
+                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
                     
                     // Loading indicator
                     if isLoading {
@@ -86,11 +85,20 @@ struct HomeView: View {
                     // Error message
                     if let errorMessage = errorMessage {
                         Text(errorMessage)
+                            .font(.body)
                             .foregroundColor(.red)
                             .padding()
                             .background(Color.red.opacity(0.1))
-                            .cornerRadius(8)
+                            .cornerRadius(12)
                     }
+                    
+                    // Header image at the top
+                    Image("leetvision")
+                        .resizable()
+                        .scaledToFill()
+                        .clipped()
+                        .cornerRadius(12)
+                        .padding(.bottom, 20)
                     
                     // Hidden NavigationLink to navigate to the results page
                     NavigationLink(
@@ -98,13 +106,18 @@ struct HomeView: View {
                         isActive: $shouldNavigate,
                         label: { EmptyView() }
                     )
+                    
+                    Spacer()
                 }
                 .padding()
             }
             .onChange(of: selectedItem) { newItem in
                 loadImageData(from: newItem)
             }
-            .navigationTitle("Home")
+            // Background color set to rgba(194,209,215,255)
+            .background(Color(red: 194/255, green: 209/255, blue: 215/255, opacity: 1.0))
+            .ignoresSafeArea(.all, edges: .bottom)
+            .navigationBarHidden(false)
         }
     }
     
@@ -112,10 +125,7 @@ struct HomeView: View {
     private var destinationView: some View {
         Group {
             if let classifyResponse = classifyResponse {
-                ResultsView(
-                    classifyResponse: classifyResponse,
-                    executeResponse: executeResponse
-                )
+                ResultsView(classifyResponse: classifyResponse)
             } else {
                 EmptyView()
             }
@@ -160,7 +170,6 @@ struct HomeView: View {
             DispatchQueue.main.async {
                 self.classifyResponse = response
                 self.isLoading = false
-                // Trigger navigation to the results page
                 self.shouldNavigate = true
             }
         } catch {

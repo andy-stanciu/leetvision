@@ -96,7 +96,7 @@ def classify():
                 }), 411
             
             for lang, code in code_blocks:
-                language = lang.lower()
+                language = ocr.map_language(lang)
                 code_block = code
                 escaped_code_block = ocr.escape_code(code)
                 break  # one iteration

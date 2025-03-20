@@ -1,15 +1,19 @@
-/*
-See the License.txt file for this sample's licensing information.
-*/
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab = 0
     @State private var showingCameraView = false
     
     var body: some View {
-        TabView {
-            // Camera tab - just shows a button to present camera
+        TabView(selection: $selectedTab) {
+            // Home tab - first, default selected.
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+                .tag(0)
+            
+            // Camera tab - second.
             VStack {
                 Button {
                     showingCameraView = true
@@ -26,16 +30,10 @@ struct ContentView: View {
             .tabItem {
                 Label("Camera", systemImage: "camera")
             }
+            .tag(1)
             .fullScreenCover(isPresented: $showingCameraView) {
                 CameraView()
             }
-            
-            // Home tab
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            
         }
     }
 }
