@@ -1,0 +1,50 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    public List<Double> method1(TreeNode root) {
+        // Intuition - Queue(Level order Traversal)
+        // Approach -
+        // We will use level order traversal to find the average of each level nodes
+        // We will first add root node to the queue
+        // Following steps for traversal and finding average
+        // Step 1 - We will repeat the below steps for M iterations where N is the size of the queue
+        // Step 2 - Remove one node from the queue, add its value to the sum and add it left and right child to the queue
+        // Step 3 - At the end of M iterations calculate the average and add the average to the answer list
+        // Repeat the above steps till the queue is empty
+        // Time Complexity - O(N) N is the number of nodes of the tree
+        // Space Complexity - O(N) N is the number of nodes of the tree
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        List<Double> ans = new ArrayList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            int M = q.size();
+            long sum = 0;
+            for (int i = 0; i < M; i++) {
+                TreeNode temp = q.remove();
+                sum += temp.val;
+                if (temp.left != null) {
+                    q.add(temp.left);
+                }
+                if (temp.right != null) {
+                    q.add(temp.right);
+                }
+            }
+            ans.add(sum / (M * 1.0));
+        }
+        return ans;
+    }
+}

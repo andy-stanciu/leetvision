@@ -1,0 +1,34 @@
+class Solution {
+
+    public boolean check(String s, int f, int l) {
+        while (f < l) {
+            if (s.charAt(f) != s.charAt(l))
+                return false;
+            f++;
+            l--;
+        }
+        return true;
+    }
+
+    public void solve(List<List<String>> ans, String s, int f, int l, ArrayList<String> ad) {
+        if (f > l) {
+            ans.add(new ArrayList<>(ad));
+            return;
+        }
+        for (int i = f; i <= l; i++) {
+            if (check(s, f, i)) {
+                ad.add(s.substring(f, i + 1));
+                solve(ans, s, i + 1, l, ad);
+                ad.remove(ad.size() - 1);
+            }
+        }
+        return;
+    }
+
+    public List<List<String>> partition(String s) {
+        List<List<String>> ans = new ArrayList<>();
+        ArrayList<String> ad = new ArrayList<>();
+        solve(ans, s, 0, s.length() - 1, ad);
+        return ans;
+    }
+}

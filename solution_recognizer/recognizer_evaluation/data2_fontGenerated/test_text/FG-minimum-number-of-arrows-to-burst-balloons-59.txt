@@ -1,0 +1,24 @@
+class Solution {
+
+    public static int sortCol(int[] v1, int[] v2) {
+        return v1[1] - v2[1];
+    }
+
+    public int findMinArrowShots(int[][] points) {
+        if (points.length == 1)
+            return 1;
+        int row = points.length;
+        int count = 1;
+        Arrays.sort(points, Comparator.comparingInt(v -> v[1]));
+        int prevElement = points[0][1];
+        for (int i = 1; i < row; i++) {
+            if (prevElement >= points[i][0]) {
+                continue;
+            } else {
+                count++;
+                prevElement = points[i][1];
+            }
+        }
+        return count;
+    }
+}

@@ -1,0 +1,19 @@
+class Solution {
+
+    public List<String> method1(int n) {
+        List<String> ans = new ArrayList<>();
+        method2(ans, n, 0, 0, "");
+        return ans;
+    }
+
+    public void method2(List<String> ans, int n, int op, int cl, String curr) {
+        if (curr.length() == n * 2) {
+            ans.add(curr);
+            return;
+        }
+        if (op < n)
+            method2(ans, n, op + 1, cl, curr + "(");
+        if (cl < op)
+            method2(ans, n, op, cl + 1, curr + ")");
+    }
+}

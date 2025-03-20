@@ -1,0 +1,38 @@
+class Solution {
+
+    public ListNode method1(ListNode l1, ListNode l2) {
+        int carry = 0;
+        ListNode result = null;
+        ListNode pre = null;
+        while (l1 != null || l2 != null) {
+            int temp = 0;
+            if (l1 != null && l2 != null) {
+                temp = l1.val + l2.val;
+                temp = temp + carry;
+                l2 = l2.next;
+                l1 = l1.next;
+            } else if (l2 != null && l1 == null) {
+                temp = l2.val;
+                temp = temp + carry;
+                l2 = l2.next;
+            } else if (l2 == null && l1 != null) {
+                temp = l1.val;
+                temp = temp + carry;
+                l1 = l1.next;
+            }
+            ListNode tnode = new ListNode(temp % 10);
+            if (result == null) {
+                result = tnode;
+                pre = tnode;
+            } else {
+                pre.next = tnode;
+            }
+            carry = temp / 10;
+            pre = tnode;
+        }
+        if (carry > 0) {
+            pre.next = new ListNode(carry);
+        }
+        return result;
+    }
+}

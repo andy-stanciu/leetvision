@@ -1,0 +1,17 @@
+class Solution {
+
+    public List<Integer> method1(TreeNode root) {
+        List<Integer> al = new ArrayList<>();
+        method2(root, al);
+        return al;
+    }
+
+    private void method2(TreeNode root, List<Integer> al) {
+        if (root == null) {
+            return;
+        }
+        method2(root.left, al);
+        al.add(root.val);
+        method2(root.right, al);
+    }
+}

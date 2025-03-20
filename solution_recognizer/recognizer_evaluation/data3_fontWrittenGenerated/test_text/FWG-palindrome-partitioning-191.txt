@@ -1,0 +1,36 @@
+class Solution {
+
+    public List<List<String>> partition(String s) {
+        List<List<String>> res = new ArrayList<>();
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            dp[i][i] = true;
+        }
+        for (int len = 1; len < s.length(); len++) {
+            for (int r = 0; r < s.length() - len; r++) {
+                int c = r + len;
+                if (len == 1) {
+                    dp[r][c] = s.charAt(r) == s.charAt(c);
+                } else {
+                    dp[r][c] = (s.charAt(r) == s.charAt(c)) && dp[r + 1][c - 1];
+                }
+            }
+        }
+        getPart(0, s, dp, res, new ArrayList<>());
+        return res;
+    }
+
+    public void getPart(int idx, String s, boolean[][] dp, List<List<String>> res, List<String> curr) {
+        if (idx == s.length()) {
+            res.add(new ArrayList<>(curr));
+            return;
+        }
+        for (int i = idx; i < s.length(); i++) {
+            if (dp[idx][i]) {
+                curr.add(s.substring(idx, i + 1));
+                getPart(i + 1, s, dp, res, curr);
+                curr.remove(curr.size() - 1);
+            }
+        }
+    }
+}

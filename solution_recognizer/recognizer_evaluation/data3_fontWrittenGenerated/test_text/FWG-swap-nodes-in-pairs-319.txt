@@ -1,0 +1,26 @@
+class //using arraylist
+Solution {
+
+    public ListNode method1(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+        ListNode temp = head;
+        List<Integer> list = new ArrayList<>();
+        while (temp != null) {
+            list.add(temp.val);
+            temp = temp.next;
+        }
+        for (int i = 0; i <= list.size() - 2; i = i + 2) {
+            //swapping the values in the list
+            int x = list.get(i);
+            list.set(i, list.get(i + 1));
+            list.set(i + 1, x);
+        }
+        temp = head;
+        for (int i = 0; i <= list.size() - 1; i++) {
+            temp.val = list.get(i);
+            temp = temp.next;
+        }
+        return head;
+    }
+}

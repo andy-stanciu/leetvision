@@ -1,0 +1,29 @@
+class Solution {
+
+    public String convert(String s, int numRows) {
+        if (numRows == 1 || numRows >= s.length())
+            return s;
+        StringBuilder[] strBuilder = new StringBuilder[numRows];
+        for (int row = 0; row < numRows; row++) {
+            strBuilder[row] = new StringBuilder();
+        }
+        int index = 0;
+        int row = 0;
+        int direction = 1;
+        while (index < s.length()) {
+            strBuilder[row].append(s.charAt(index));
+            if (row == 0) {
+                direction = 1;
+            } else if (row == numRows - 1) {
+                direction = -1;
+            }
+            row += direction;
+            index++;
+        }
+        StringBuilder var1 = new StringBuilder();
+        for (StringBuilder rows : strBuilder) {
+            var1.append(rows);
+        }
+        return var1.toString();
+    }
+}

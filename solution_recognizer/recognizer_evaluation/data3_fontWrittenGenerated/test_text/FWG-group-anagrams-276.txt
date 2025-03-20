@@ -1,0 +1,15 @@
+class Solution {
+
+    public List<List<String>> method1(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        for (String str : strs) {
+            char[] charStr = str.toCharArray();
+            Arrays.sort(charStr);
+            String sortStr = new String(charStr);
+            if (!map.containsKey(sortStr))
+                map.put(sortStr, new ArrayList<>());
+            map.get(sortStr).add(str);
+        }
+        return new ArrayList<>(map.values());
+    }
+}

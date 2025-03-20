@@ -1,0 +1,18 @@
+class Solution {
+
+    public int method1(int[] nums) {
+        Arrays.sort(nums);
+        int count = 0;
+        int max = nums[nums.length - 1];
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] < max) {
+                count++;
+                max = nums[i];
+            }
+            if (count == 2) {
+                return nums[i];
+            }
+        }
+        return nums[nums.length - 1];
+    }
+}

@@ -1,0 +1,32 @@
+class Solution {
+
+    public void gameOfLife(int[][] board) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                int liveCount = 0;
+                int[][] dirs = new int[][] { { 1, 0 }, { 1, 1 }, { 0, 1 }, { -1, 0 }, { 0, -1 }, { -1, 1 }, { 1, -1 }, { -1, -1 } };
+                for (int[] dir : dirs) {
+                    int iX = i + dir[0];
+                    int jX = j + dir[1];
+                    if (iX < board.length && iX >= 0 && jX >= 0 && jX < board[0].length && board[iX][jX] != 0 && (board[iX][jX] == 1 || board[iX][jX] % 2 == 0)) {
+                        liveCount++;
+                    }
+                }
+                if (liveCount < 2 || liveCount > 3) {
+                    board[i][j] = board[i][j] == 0 ? -1 : -2;
+                } else if (liveCount > 2) {
+                    board[i][j] = board[i][j] == 0 ? 3 : 4;
+                }
+            }
+        }
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] <= 0) {
+                    board[i][j] = 0;
+                } else {
+                    board[i][j] = 1;
+                }
+            }
+        }
+    }
+}

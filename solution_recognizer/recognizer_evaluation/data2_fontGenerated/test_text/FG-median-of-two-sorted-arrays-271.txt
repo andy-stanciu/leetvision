@@ -1,0 +1,40 @@
+class Solution {
+
+    public double method1(int[] a, int[] b) {
+        //Make array of a+b length
+        int[] c = new int[a.length + b.length];
+        for (int i = 0; i < a.length; i++) {
+            //Add values of a & b
+            c[i] = a[i];
+        }
+        for (int n = 0; n < b.length; n++) {
+            c[n + a.length] = b[n];
+        }
+        /* for(int x = 0;x<c.length-1;x++){  // bubble sort don\'t use inc time
+        for(int s = 0;s<c.length-x-1;s++){
+            if(c[s] > c[s+1]){
+                int temp = c[s+1];
+                c[s+1] = c[s];
+                c[s] = temp;
+            }
+        }
+    } */
+        //Sort for calculation
+        Arrays.sort(c);
+        // For even
+        int j = c.length / 2;
+        // For odd
+        double k = c.length / 2;
+        if (c.length % 2 == 1) {
+            System.out.println(c[j]);
+            //If odd have unique value
+            j = c[j];
+            return j;
+        } else {
+            //If even returns sum of following values
+            k = (double) (c[j - 1] + c[j]) / 2;
+            System.out.println(k);
+            return k;
+        }
+    }
+}

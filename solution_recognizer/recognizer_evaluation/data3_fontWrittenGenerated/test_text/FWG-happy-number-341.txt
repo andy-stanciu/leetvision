@@ -1,0 +1,24 @@
+class Solution {
+
+    public boolean method1(int n) {
+        if (n < 0 && n > 9) {
+            return false;
+        }
+        int result;
+        result = res(0, n);
+        while (result != 1 && result != 4) {
+            result = res(0, result);
+        }
+        return result == 1;
+    }
+
+    public int res(int sum, int num) {
+        int temp = num;
+        while (temp > 0) {
+            int last = temp % 10;
+            sum += last * last;
+            temp = temp / 10;
+        }
+        return sum;
+    }
+}

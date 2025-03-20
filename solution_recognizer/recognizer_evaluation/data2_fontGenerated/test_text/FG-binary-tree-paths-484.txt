@@ -1,0 +1,25 @@
+class Solution {
+
+    List<String> var1 = new ArrayList<>();
+
+    public List<String> method1(TreeNode root) {
+        if (root == null)
+            return var1;
+        method2(root, new StringBuilder());
+        return var1;
+    }
+
+    private void method2(TreeNode node, StringBuilder path) {
+        if (node == null)
+            return;
+        path.append(node.val);
+        if (node.left == null && node.right == null)
+            var1.add(path.toString());
+        else {
+            path.append("->");
+            String currNodePath = path.toString();
+            method2(node.left, path);
+            method2(node.right, new StringBuilder(currNodePath));
+        }
+    }
+}

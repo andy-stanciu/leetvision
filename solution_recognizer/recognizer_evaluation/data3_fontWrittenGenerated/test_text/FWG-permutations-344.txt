@@ -1,0 +1,25 @@
+class Solution {
+
+    List<List<Integer>> ans = new ArrayList<>();
+
+    void find(ArrayList<Integer> res, int[] nums, int j) {
+        if (j == nums.length) {
+            ans.add(new ArrayList<Integer>(res));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (res.get(i) == 11) {
+                res.set(i, nums[j]);
+                find(res, nums, j + 1);
+                res.set(i, 11);
+            }
+        }
+    }
+
+    public List<List<Integer>> permute(int[] nums) {
+        ArrayList<Integer> res = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) res.add(11);
+        find(res, nums, 0);
+        return ans;
+    }
+}

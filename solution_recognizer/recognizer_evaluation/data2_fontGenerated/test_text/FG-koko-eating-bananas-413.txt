@@ -1,0 +1,36 @@
+class Solution {
+
+    public int method1(int[] piles, int h) {
+        int start = 1;
+        int end = Integer.MIN_VALUE;
+        for (int i = 0; i < piles.length; i++) {
+            if (piles[i] > end) {
+                end = piles[i];
+            }
+        }
+        int ans = -1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (method2(piles, mid, h)) {
+                ans = mid;
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    static boolean method2(int[] piles, int param1, int hours) {
+        int hoursspent = 0;
+        for (int i = 0; i < piles.length; i++) {
+            hoursspent += piles[i] / param1;
+            if (piles[i] % param1 != 0) {
+                hoursspent += 1;
+            }
+            if (hoursspent > hours)
+                return false;
+        }
+        return true;
+    }
+}

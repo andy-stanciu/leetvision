@@ -1,0 +1,21 @@
+class Solution {
+
+    public int maxProfit(int[] prices) {
+        //Approach: Using TwoPointers algorithm
+        //l is buy, r is sell
+        int l = 0, r = 1;
+        int maxP = 0;
+        while (r < prices.length) {
+            //profitable
+            if (prices[l] < prices[r]) {
+                //profit = prices[r]-prices[l]
+                maxP = Math.max(maxP, prices[r] - prices[l]);
+                r++;
+            } else {
+                l = r;
+                r++;
+            }
+        }
+        return maxP;
+    }
+}

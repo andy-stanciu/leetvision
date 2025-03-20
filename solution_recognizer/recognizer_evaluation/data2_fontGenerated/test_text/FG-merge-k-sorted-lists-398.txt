@@ -1,0 +1,88 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+
+    public ListNode mergeKLists1(ListNode[] lists) {
+        if (lists.length == 0)
+            return null;
+        PriorityQueue<ListNode> heap = new PriorityQueue<>((n1, n2) -> Integer.compare(n1.val, n2.val));
+        ListNode head = new ListNode();
+        ListNode tail = head;
+        //insert first
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null)
+                heap.add(lists[i]);
+        }
+        while (!heap.isEmpty()) {
+            ListNode node = heap.poll();
+            tail.next = node;
+            tail = tail.next;
+            if (node.next != null) {
+                heap.add(node.next);
+            }
+        }
+        return head.next;
+    }
+
+    // Merge Two Lists at a Time
+    //This approach repeatedly merges two lists until only one list remains.
+    public ListNode mergeKLists2(ListNode[] lists) {
+        if (lists == null || lists.length == 0)
+            return null;
+        int interval = 1;
+        while (interval < lists.length) {
+            for (int i = 0; i + interval < lists.length; i += interval * 2) {
+                lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+            }
+            interval *= 2;
+        }
+        return lists[0];
+    }
+
+    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
+        ListNode current = dummy;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                current.next = l1;
+                l1 = l1.next;
+            } else {
+                current.next = l2;
+                l2 = l2.next;
+            }
+            current = current.next;
+        }
+        if (l1 != null)
+            current.next = l1;
+        if (l2 != null)
+            current.next = l2;
+        return dummy.next;
+    }
+
+    /*
+    Merge with Divide and Conquer
+    This approach divides the list of lists into two halves, merges each half, and then merges the two resulting lists. This is done recursively.
+    */
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0)
+            return null;
+        return mergeKLists(lists, 0, lists.length - 1);
+    }
+
+    private ListNode mergeKLists(ListNode[] lists, int left, int right) {
+        if (left == right)
+            return lists[left];
+        int mid = left + (right - left) / 2;
+        ListNode l1 = mergeKLists(lists, left, mid);
+        ListNode l2 = mergeKLists(lists, mid + 1, right);
+        return mergeTwoLists(l1, l2);
+    }
+}
