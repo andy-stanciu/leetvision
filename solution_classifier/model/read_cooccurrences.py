@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 
-from model_constants import *
+from .model_constants import *
 
 COOCCURRENCES = '../cooccurrences.txt'
 
