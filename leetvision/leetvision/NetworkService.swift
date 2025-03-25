@@ -20,7 +20,10 @@ struct NetworkService {
     ) async throws -> ExecuteResponse {
         var payload: [String: Any] = [
             "question": question,
-            "question_id": questionId
+            "question_id": questionId,
+            "LEETCODE_SESSION": AppConstants.LeetCode.leetcode_session,
+            "csrftoken": AppConstants.LeetCode.csrftoken,
+            "cf_clearance": AppConstants.LeetCode.cf_clearance
         ]
         
         // Only add 'code' and 'language' if non-nil.

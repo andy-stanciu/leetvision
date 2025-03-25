@@ -5,7 +5,7 @@ from PIL import Image
 from solution_recognizer import ocr
 from constants import *
 from solution_classifier.model import classifier
-from leetcode_client import leetcode_client
+from leetcode_client.leetcode_client import LeetCodeClient
 import time
 
 app = Flask(__name__)
@@ -14,17 +14,24 @@ app = Flask(__name__)
 def execute():
     try:
         data = request.get_json()
-        required_keys = ["code", "language", "question", "question_id"]
+        required_keys = ["code", "language", "question", "question_id", "csrftoken", "cf_clearance", "LEETCODE_SESSION"]
         if not all(key in data for key in required_keys):
             return jsonify({
-                "error": "Missing required parameters: code, language, question, question_id"
+                "error": "Missing required parameters: code, language, question, question_id, csrftoken, cf_clearance, LEETCODE_SESSION"
             }), 400
 
         code = data["code"]
         language = data["language"]
         question = data["question"]
         question_id = data["question_id"]
+        csrftoken = data["csrftoken"]
+        cf_clearance = data["cf_clearance"]
+        leetcode_session = data["LEETCODE_SESSION"]
 
+        leetcode_client = LeetCodeClient(leetcode_session=leetcode_session, 
+                                         cf_clearance=cf_clearance, 
+                                         csrftoken=csrftoken)
+        
         # Call the submit_solution function with all parameters
         success, submission_result = leetcode_client.submit_solution(question, 
                                                                  question_id, 
