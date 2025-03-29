@@ -176,10 +176,10 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Highlightr/Highlightr.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Sourceful/Sourceful.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Highlightr/Highlightr.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Sourceful/Sourceful.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

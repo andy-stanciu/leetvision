@@ -32,7 +32,7 @@ struct AnalyzingView: View {
                 .animation(Animation.linear(duration: 1.5).repeatForever(autoreverses: false), value: animate)
                 
                 // Analyzing message.
-                Text("Analyzing your LeetCode solution...")
+                Text("Analyzing your solution...")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2CE7EBDF2715BDC378C78FD9 /* Pods_leetvisionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED86578C2A61D9FF5A0A26F /* Pods_leetvisionTests.framework */; };
+		A11289EA2D978B82001193B2 /* HighlightSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A11289E92D978B82001193B2 /* HighlightSwift */; };
 		DBEBA7CD26E173C9560371E3 /* Pods_leetvision_leetvisionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7EF6952F068CE23A5B6790 /* Pods_leetvision_leetvisionUITests.framework */; };
 		FD0CCA1D35C31F4E4EE69069 /* Pods_leetvision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630A1500ACC9F5CB9844CD02 /* Pods_leetvision.framework */; };
 /* End PBXBuildFile section */
@@ -45,10 +46,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A176CF5E2D82BEA800EE270B /* Exceptions for "leetvision" folder in "leetvision" target */ = {
+		A1278EAC2D93B5B6004AED0C /* Exceptions for "leetvision" folder in "leetvision" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				"Preview Content/Preview Assets.xcassets",
 			);
 			target = FDDB69BD2D809E1C00A405F4 /* leetvision */;
 		};
@@ -58,7 +60,7 @@
 		FDDB69C02D809E1C00A405F4 /* leetvision */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A176CF5E2D82BEA800EE270B /* Exceptions for "leetvision" folder in "leetvision" target */,
+				A1278EAC2D93B5B6004AED0C /* Exceptions for "leetvision" folder in "leetvision" target */,
 			);
 			path = leetvision;
 			sourceTree = "<group>";
@@ -81,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD0CCA1D35C31F4E4EE69069 /* Pods_leetvision.framework in Frameworks */,
+				A11289EA2D978B82001193B2 /* HighlightSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +253,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				A1C4E9162D82B6520054DB52 /* XCRemoteSwiftPackageReference "Highlightr" */,
+				A11289E82D978A34001193B2 /* XCRemoteSwiftPackageReference "HighlightSwift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FDDB69BF2D809E1C00A405F4 /* Products */;
@@ -528,9 +532,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = leetvision/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take and import photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library to allow you to select images containing code.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -539,7 +545,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.andystanciu.leetvision;
+				PRODUCT_BUNDLE_IDENTIFIER = org.andystanciu.leetvision2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -563,9 +569,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = leetvision/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take and import photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library to allow you to select images containing code.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -574,7 +582,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.andystanciu.leetvision;
+				PRODUCT_BUNDLE_IDENTIFIER = org.andystanciu.leetvision2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -701,6 +709,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A11289E82D978A34001193B2 /* XCRemoteSwiftPackageReference "HighlightSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/appstefan/HighlightSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.9;
+			};
+		};
 		A1C4E9162D82B6520054DB52 /* XCRemoteSwiftPackageReference "Highlightr" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raspu/Highlightr";
@@ -710,6 +726,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A11289E92D978B82001193B2 /* HighlightSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A11289E82D978A34001193B2 /* XCRemoteSwiftPackageReference "HighlightSwift" */;
+			productName = HighlightSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FDDB69B62D809E1C00A405F4 /* Project object */;
 }

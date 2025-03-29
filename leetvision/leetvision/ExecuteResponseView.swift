@@ -40,8 +40,7 @@ struct ExecuteResponseView: View {
                             .font(.headline)
                             .padding(.bottom, 4)
                         ScrollView(.horizontal, showsIndicators: true) {
-                            CodeBlockView(code: extractedCode, language: languageName)
-                                .frame(minHeight: 150)
+                            CodeBlockView(code: extractedCode, language: languageName, typewriterEffect: false)
                         }
                         .background(Color(UIColor.systemGray6))
                         .cornerRadius(8)
@@ -140,8 +139,7 @@ struct ExecuteResponseView: View {
                             .font(.headline)
                             .padding(.bottom, 4)
                         ScrollView(.horizontal, showsIndicators: true) {
-                            CodeBlockView(code: extractedCode, language: languageName)
-                                .frame(minHeight: 150)
+                            CodeBlockView(code: extractedCode, language: languageName, typewriterEffect: false)
                         }
                         .background(Color(UIColor.systemGray6))
                         .cornerRadius(8)
@@ -210,8 +208,7 @@ struct ExecuteResponseView: View {
                         .font(.headline)
                         .padding(.bottom, 4)
                     ScrollView(.horizontal, showsIndicators: true) {
-                        CodeBlockView(code: extractedCode, language: languageName)
-                            .frame(minHeight: 150)
+                        CodeBlockView(code: extractedCode, language: languageName, typewriterEffect: false)
                     }
                     .background(Color(UIColor.systemGray6))
                     .cornerRadius(8)
