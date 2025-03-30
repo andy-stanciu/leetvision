@@ -43,7 +43,7 @@ struct ResultsView: View {
                     .shadow(color: Color.black.opacity(0.1), radius: 5)
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Similar LeetCode questions")
+                        Text("Similar questions")
                             .font(.title3)
                             .padding(.bottom, 6)
                             .foregroundColor(Color(UIColor.white))

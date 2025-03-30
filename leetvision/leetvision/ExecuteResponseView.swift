@@ -1,4 +1,5 @@
 import SwiftUI
+import Charts
 
 struct ExecuteResponseView: View {
     let executeResponse: ExecuteResponse
@@ -176,42 +177,171 @@ struct ExecuteResponseView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.green)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 4)
                     
-                    // Runtime Details
-                    HStack {
-                        Text("Runtime:")
-                            .fontWeight(.semibold)
-                        Text(runtimeDisplay)
-                        Spacer()
-                        Text("Percentile: \(runtimePercentileString)%")
+                    VStack(alignment: .leading, spacing: 12) {
+                        // Test Cases Info
+                        HStack {
+                            Text("Test Cases:")
+                                .fontWeight(.semibold)
+                            Text("\(totalCorrectText) / \(totalTestcasesText)")
+                        }
                     }
-                    
-                    // Memory Details
-                    HStack {
-                        Text("Memory:")
-                            .fontWeight(.semibold)
-                        Text(memoryDisplay)
-                        Spacer()
-                        Text("Percentile: \(memoryPercentileString)%")
-                    }
-                    
-                    // Test Cases Info
-                    HStack {
-                        Text("Test Cases:")
-                            .fontWeight(.semibold)
-                        Text("\(totalCorrectText) / \(totalTestcasesText)")
-                    }
-                    
-                    // Code snippet with horizontal scrolling
-                    Text("Code")
-                        .font(.headline)
-                        .padding(.bottom, 4)
-                    ScrollView(.horizontal, showsIndicators: true) {
-                        CodeBlockView(code: extractedCode, language: languageName, typewriterEffect: false)
-                    }
-                    .background(Color(UIColor.systemGray6))
+                    .padding(12)
+                    .background(Color(UIColor.blackAccent))
                     .cornerRadius(8)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5)
+                    
+                    VStack(alignment: .leading, spacing: 12) {
+                        // Runtime Details
+                        HStack {
+                            Text("Runtime:")
+                                .fontWeight(.semibold)
+                            Text(runtimeDisplay)
+                            Spacer()
+                            Text("Percentile:")
+                                .fontWeight(.semibold)
+                            Text("\(runtimePercentileString)%")
+                        }
+                        
+                        // Runtime Distribution Chart with Avatar Overlay
+                        if let runtimeDistribution = runtimeDistributionData {
+                            let maxX = runtimeDistribution.distribution
+                                    .compactMap { Double($0.x) }
+                                    .max() ?? 100.0
+                            let maxXScaled = maxX + 10
+                            
+                            VStack(alignment: .leading, spacing: 8) {
+                                Chart {
+                                    // Draw each bar from the distribution.
+                                    ForEach(runtimeDistribution.distribution) { entry in
+                                        if let xValue = Double(entry.x) {
+                                            BarMark(
+                                                x: .value("Runtime (ms)", xValue),
+                                                y: .value("%", entry.percent)
+                                            )
+                                        }
+                                    }
+                                    // Overlay the user's avatar icon.
+                                    let userRuntime = Double(runtime)
+                                        if let closestEntry = runtimeDistribution.distribution.min(by: { first, second in
+                                           let firstValue = Double(first.x) ?? 0
+                                           let secondValue = Double(second.x) ?? 0
+                                           return abs(firstValue - userRuntime) < abs(secondValue - userRuntime)
+                                       }) {
+                                        let userY = closestEntry.percent
+                                        PointMark(
+                                            x: .value("Runtime (ms)", userRuntime),
+                                            y: .value("%", userY)
+                                        )
+                                        .annotation(position: .top) {
+                                            AsyncImage(url: URL(string: userAvatar)) { image in
+                                                image.resizable()
+                                                     .frame(width: 20, height: 20)
+                                                     .clipShape(Circle())
+                                            } placeholder: {
+                                                Circle().fill(Color.gray).frame(width: 20, height: 20)
+                                            }
+                                        }
+                                    }
+                                }
+                                .chartXAxisLabel("Runtime (ms)")
+                                .chartYAxisLabel("%")
+                                .chartXScale(domain: 0...maxXScaled)
+                                .frame(height: 200)
+                            }
+                            .padding(.horizontal, 20)
+                        }
+                    }
+                    .padding(12)
+                    .background(Color(UIColor.blackAccent))
+                    .cornerRadius(8)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5)
+                    
+                    VStack(alignment: .leading, spacing: 12) {
+                        // Memory Details
+                        HStack {
+                            Text("Memory:")
+                                .fontWeight(.semibold)
+                            Text(memoryDisplay)
+                            Spacer()
+                            Text("Percentile:")
+                                .fontWeight(.semibold)
+                            Text("\(memoryPercentileString)%")
+                        }
+                        
+                        // Memory Distribution Chart with Avatar Overlay
+                        if let memoryDistribution = memoryDistributionData {
+                            let maxX = memoryDistribution.distribution
+                                    .compactMap { Double($0.x) }
+                                    .max() ?? 1000.0
+                            let maxXScaled = (maxX / 1000.0) + 10.0
+                            
+                            VStack(alignment: .leading, spacing: 8) {
+                                Chart {
+                                    // Draw each bar from the distribution.
+                                    ForEach(memoryDistribution.distribution) { entry in
+                                        if let xValue = Double(entry.x) {
+                                            // Convert x by dividing by 1000.
+                                            let convertedX = xValue / 1000.0
+                                            BarMark(
+                                                x: .value("Memory (MB)", convertedX),
+                                                y: .value("%", entry.percent)
+                                            )
+                                        }
+                                    }
+                                    // Overlay the user's avatar icon.
+                                    let userMemory = Double(memory)
+                                       if let closestEntry = memoryDistribution.distribution.min(by: { first, second in
+                                           let firstValue = Double(first.x) ?? 0
+                                           let secondValue = Double(second.x) ?? 0
+                                           return abs(firstValue - userMemory) < abs(secondValue - userMemory)
+                                       }) {
+                                        let userY = closestEntry.percent
+                                           let convertedUserMemory = userMemory / 1000.0 / 1000.0
+                                        PointMark(
+                                            x: .value("Memory (MB)", convertedUserMemory),
+                                            y: .value("%", userY)
+                                        )
+                                        .annotation(position: .top) {
+                                            AsyncImage(url: URL(string: userAvatar)) { image in
+                                                image.resizable()
+                                                     .frame(width: 20, height: 20)
+                                                     .clipShape(Circle())
+                                            } placeholder: {
+                                                Circle().fill(Color.gray).frame(width: 20, height: 20)
+                                            }
+                                        }
+                                    }
+                                }
+                                .chartXAxisLabel("Memory (MB)")
+                                .chartYAxisLabel("%")
+                                .chartXScale(domain: 0...maxXScaled)
+                                .frame(height: 200)
+                            }
+                            .padding(.horizontal, 20)
+                        }
+                    }
+                    .padding(12)
+                    .background(Color(UIColor.blackAccent))
+                    .cornerRadius(8)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5)
+                    
+                    VStack(alignment: .leading, spacing: 12) {
+                        // Code snippet with horizontal scrolling
+                        Text("Submission")
+                            .font(.headline)
+                            .padding(.bottom, 4)
+                        ScrollView(.horizontal, showsIndicators: true) {
+                            CodeBlockView(code: extractedCode, language: languageName, typewriterEffect: false)
+                        }
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(8)
+                    }
+                    .padding(12)
+                    .background(Color(UIColor.blackAccent))
+                    .cornerRadius(8)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5)
                     
                     // User Info
                     HStack(alignment: .center, spacing: 12) {
@@ -256,6 +386,10 @@ struct ExecuteResponseView: View {
         submissionDetails.lang.name
     }
     
+    private var memory: Int {
+        submissionDetails.memory
+    }
+    
     private var memoryDisplay: String {
         submissionDetails.memoryDisplay
     }
@@ -265,6 +399,10 @@ struct ExecuteResponseView: View {
             return String(format: "%.2f", mp)
         }
         return "N/A"
+    }
+    
+    private var runtime: Int {
+        submissionDetails.runtime
     }
     
     private var runtimeDisplay: String {
@@ -318,5 +456,34 @@ struct ExecuteResponseView: View {
     
     private var compileErrorText: String {
         submissionDetails.compileError ?? "None"
+    }
+    
+    private var runtimeDistributionData: Distribution? {
+        guard let json = submissionDetails.runtimeDistribution,
+              let data = json.data(using: .utf8) else { return nil }
+        return try? JSONDecoder().decode(Distribution.self, from: data)
+    }
+    
+    private var memoryDistributionData: Distribution? {
+        guard let json = submissionDetails.memoryDistribution,
+              let data = json.data(using: .utf8) else { return nil }
+        return try? JSONDecoder().decode(Distribution.self, from: data)
+    }
+}
+
+struct Distribution: Codable {
+    let lang: String
+    let distribution: [DistributionEntry]
+}
+
+struct DistributionEntry: Codable, Identifiable {
+    var id: String { x }
+    let x: String
+    let percent: Double
+
+    init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        self.x = try container.decode(String.self)
+        self.percent = try container.decode(Double.self)
     }
 }
